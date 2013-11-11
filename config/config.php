@@ -37,7 +37,17 @@ define('LANG_DIR', 			'lang/');
 /**
  * public source directory
  */
-define('PUBLIC_DIR',		'public');
+define('PUBLIC_DIR',		'public/');
+
+/**
+ * configuration directory
+ */
+define('CONFIG_DIR',		'config/');
+
+/**
+ * application configuration file
+ */
+define('CONFIG_FILE',		'config.ini');
 
 /**
  * database authetification

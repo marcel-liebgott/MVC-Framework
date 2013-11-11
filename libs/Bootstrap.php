@@ -25,19 +25,21 @@ class FW_Bootstrap{
 	private $db;
 	private $lang;
 	private $msg;
+	private $log;
+	private $config;
 
 	private $url;
 
 	public function __construct(){
 	}
 
-	public function setRegistry(){
-		if(self::$registry === null){
-			self::$registry = new FW_Registry();
-		}
-
-		$this->initRegistry();
-	}
+	public function setRegistry($path = null){
+        if(self::$registry == null){
+            self::$registry = new FW_Registry();
+        }
+        
+        $this->initRegistry($path);
+    }
 
 	private function getUrl(){
 		$this->url = $this->request->getUrl();
@@ -45,16 +47,26 @@ class FW_Bootstrap{
 
 	private function initRegistry(){
 		$this->request = FW_Request::getInstance();
-		$this->response = FW_Response::getInstance();
-		$this->db = FW_Database::getInstance();
-		$this->lang = FW_Language::getInstance();
-		$this->msg = FW_Messages::getInstance();
-
 		self::$registry->setRequest($this->request);
+
+		$this->response = FW_Response::getInstance();
 		self::$registry->setResponse($this->response);
+
+		$this->db = FW_Database::getInstance();
 		self::$registry->setDatabase($this->db);
+
+		$this->lang = FW_Language::getInstance();
 		self::$registry->setLanguage($this->lang);
+
+		$this->msg = FW_Messages::getInstance();
 		self::$registry->setMessages($this->msg);
+
+		$this->config = FW_Configuration::getInstance();
+		$this->config->readIni(CONFIG_DIR . CONFIG_FILE);
+		self::$registry->setConfiguration($this->config);
+
+		$this->log = FW_Logger::getInstance();
+		self::$registry->setLogger($this->log);		
 	}
 
 	public function init(){

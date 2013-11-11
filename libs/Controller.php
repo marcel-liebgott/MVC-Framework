@@ -52,6 +52,14 @@ class FW_Controller{
 	protected $db;
 
 	/**
+	 * logger instance
+	 *
+	 * @access protected
+	 * @var FW_Logger
+	 */
+	protected $log;
+
+	/**
 	 * constructor
 	 *
 	 * @access public
@@ -59,6 +67,7 @@ class FW_Controller{
 	public function __construct(/*FW_CommandResolver $resolver*/){
 		$this->view = new FW_View();
 		$this->db = FW_Registry::getInstance()->getDatabase();
+		$this->log = FW_Registry::getInstance()->getLogger();
 		// $this->resolver = $resolver;
 		$this->preFilter = new FW_FilterChain();
 		$this->postFilter = new FW_FilterChain();

@@ -13,6 +13,7 @@ class FW_Registry{
     const KEY_CONFIGURATION = 'config';
     const KEY_LANGUAGE = 'lang';
     const KEY_MESSAGES = 'msg';
+    const KEY_LOGGER = 'logger';
 
     public static function getInstance(){
         if(self::$instance == null){
@@ -84,6 +85,14 @@ class FW_Registry{
     
     public function getLanguage(){
         return self::get(self::KEY_LANGUAGE);
+    }
+
+    public function setLogger(FW_Logger $logger){
+        self::set(self::KEY_LOGGER, $logger);
+    }
+
+    public function getLogger(){
+        return self::get(self::KEY_LOGGER);
     }
 }
 ?>
