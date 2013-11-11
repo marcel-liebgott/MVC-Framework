@@ -59,6 +59,14 @@ class FW_Request{
 	 */
 	private $auth = array();
 
+    /**
+     * referer page
+     *
+     * @access private
+     * @var string
+     */
+    private $referer;
+
 	/**
 	 * obkject instance
 	 *
@@ -97,6 +105,10 @@ class FW_Request{
             if(substr($key,0, 5) == "HTTP_"){
                 $key = strtolower($key);
                 $this->header[substr($key, 5)] = $value;
+            }
+
+            if($key == "HTTP_REFERER"){
+                $this->referer = $value;
             }
         }
         
@@ -302,6 +314,16 @@ class FW_Request{
         }else{
             return null;
         }
+    }
+
+    /**
+     * return the referer
+     *
+     * @access public
+     * @return string
+     */
+    public function getReferer(){
+        return $this->referer;
     }
 }
 ?>
