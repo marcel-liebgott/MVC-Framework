@@ -253,7 +253,7 @@ class FW_View extends FW_ViewParser{
             $value = $this->vars[$from];
             $tmp = $result[3];
         }else{
-            $this->log->addLog("Can't find source of the replacement (" . $from . ")"))
+            $this->log->addLog("Can't find source of the replacement (" . $from . ")"));
         }
 
         $tmp = $result[3];
