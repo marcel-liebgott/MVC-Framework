@@ -52,7 +52,7 @@ class FW_Logger{
         $config = FW_Registry::getInstance()->getConfiguration();
 
         $this->logFile = $config->getConfig('log_file');
-        $this->logPath = trim($config->getConfig('get_log_path'), '/') . '/';
+        $this->logPath = trim($config->getConfig('log_path'), '/') . '/';
     }
 
     /**
@@ -61,8 +61,14 @@ class FW_Logger{
      * @access public
      * @param string
      */
-    public function addLog($content){
-        error_log(implode('|', $this->getLogContent()) . "\n", 3, $this->getLogPath() . $this->getLogFile());
+    public function addLog($content, $class){
+        $data = array(
+            date('d.m.Y'),
+            date('H:i:s'),
+            $content,
+            $class
+        );
+        error_log(implode('|', $data) . "\n", 3, $this->logPath . $this->logFile);
     }
 }
 
