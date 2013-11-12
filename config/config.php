@@ -50,6 +50,24 @@ define('CONFIG_DIR',		'config/');
 define('CONFIG_FILE',		'config.ini');
 
 /**
+ * database file
+ */
+define('SQL_FILE',			'sql.php');
+
+/**
+ * application information
+ */
+// for other hash keys
+define('HASH_GENERAL_KEY',      'o0G11X7qLqCQZbXS7aRil39sZH6Zm8glE0ZFcvWKTdTGGQFCjHxVyiWWe5dQ');
+
+// for database passwords only
+define('HASH_PASSWORD_KEY',     'aL4X1oO3atpcx9qL2TGTtmOn74D4dQ4OCg4qbwcNqNwm9grTzVVd4o7TDYKj');
+
+// version
+define('VERSION_ID',        '100');
+define('VERSION',           '');
+
+/**
  * database authetification
  */
 define('TYPE',				'mysql');
