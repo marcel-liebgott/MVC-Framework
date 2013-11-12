@@ -35,7 +35,7 @@ class FW_View extends FW_ViewParser{
     
     public function __construct($class){
         $this->class = $class;
-        $this->log = FW_Registry->getInstance();
+        $this->log = FW_Registry::getInstance()->getLogger();
         parent::__construct();
     }
     
@@ -255,7 +255,7 @@ class FW_View extends FW_ViewParser{
         }else{
             $this->log->addLog("Can't find source of the replacement (" . $from . ")"))
         }
-        
+
         $tmp = $result[3];
         
         if(is_array($value)){
