@@ -60,14 +60,32 @@ class FW_Controller{
 	protected $log;
 
 	/**
+	 * breadcrumb navigation
+	 *
+	 * @access private
+	 * @var FW_Breadcrumb
+	 */
+	protected $breadcrumb;
+
+	/**
+	 * special instance with special application stuff
+	 *
+	 * @access protected
+	 * @var FW_Special
+	 */
+	protected $special;
+
+	/**
 	 * constructor
 	 *
 	 * @access public
 	 */
 	public function __construct(/*FW_CommandResolver $resolver*/){
-		$this->view = new FW_View();
+		$this->special = FW_Special::getInstance();
+		$this->view = new FW_View(get_class($this));
 		$this->db = FW_Registry::getInstance()->getDatabase();
 		$this->log = FW_Registry::getInstance()->getLogger();
+		$this->breadcrumb = FW_Breadcrumb::getInstance();
 		// $this->resolver = $resolver;
 		$this->preFilter = new FW_FilterChain();
 		$this->postFilter = new FW_FilterChain();
