@@ -15,6 +15,8 @@ if(!defined('PATH')){
 
 class FW_View extends FW_ViewParser{
     private $template;
+    private $class;
+    private $log;
     
     private $templateFile;
     private $headerFile;
@@ -31,7 +33,9 @@ class FW_View extends FW_ViewParser{
     private $include_regex = '#\{include\s*(.+)\s*\"(.+)\"\}#s';
     private $bbcode_regex = '#\{bbcode\}\s*(.+?)\s*\{endbbcode\}#s';
     
-    public function __construct(){
+    public function __construct($class){
+        $this->class = $class;
+        $this->log = FW_Registry->getInstance();
         parent::__construct();
     }
     
@@ -234,7 +238,7 @@ class FW_View extends FW_ViewParser{
      */
     private function parseFor($result){
         if(count($result) != 4){
-            throw new FW_Exception("somethink wrong with your for-statement (for)");
+            $this->log->addLog("somethink wrong with your for-statement (for)", $this->class);
         }
         
         $key = $result[1];
@@ -242,10 +246,16 @@ class FW_View extends FW_ViewParser{
         $c = null;
        
         if(!in_array($from, array_keys($this->vars))){
-            throw new FW_Exception("no variable to replace (" . $from . ")");
+            $this->log->addLog("no variable to replace (" . $from . ")", $this->class);
         }
         
-        $value = $this->vars[$from];
+        if(!in_array($from, array_keys($this->vars))){
+            $value = $this->vars[$from];
+            $tmp = $result[3];
+        }else{
+            $this->log->addLog("Can't find source of the replacement (" . $from . ")"))
+        }
+        
         $tmp = $result[3];
         
         if(is_array($value)){
