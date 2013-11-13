@@ -127,12 +127,8 @@ class FW_Bootstrap{
 
 	private function callControllerMethod(){
 		if(strtolower($this->url[0]) === 'acp'){
-			unset($this->url[0]);
+			array_shift($this->url);
 		}
-
-		echo '<pre>';
-			print_r($this->url);
-		echo '</pre>';
 
 		if(isset($this->url[1])){
             if(method_exists($this->controller, $this->url[1])){

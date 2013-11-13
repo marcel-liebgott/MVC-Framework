@@ -49,7 +49,7 @@ class FW_View extends FW_ViewParser{
             $dir = VIEW_DIR;
         }
 
-        $this->templateFile = 'views/' . $name . '.php';
+        $this->templateFile = $dir . $name . '.php';
         
         if(!file_exists($this->templateFile)){
             throw new FW_Exception("template file dosn't exists");
@@ -253,7 +253,7 @@ class FW_View extends FW_ViewParser{
             $value = $this->vars[$from];
             $tmp = $result[3];
         }else{
-            $this->log->addLog("Can't find source of the replacement (" . $from . ")"));
+            $this->log->addLog("Can't find source of the replacement (" . $from . ")");
         }
 
         $tmp = $result[3];

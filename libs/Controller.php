@@ -76,6 +76,14 @@ class FW_Controller{
 	protected $special;
 
 	/**
+	  * HTML elements
+	  *
+	  * @access protected
+	  * @var FW_HTML
+	  */
+	protected $html;
+
+	/**
 	 * constructor
 	 *
 	 * @access public
@@ -86,6 +94,7 @@ class FW_Controller{
 		$this->db = FW_Registry::getInstance()->getDatabase();
 		$this->log = FW_Registry::getInstance()->getLogger();
 		$this->breadcrumb = FW_Breadcrumb::getInstance();
+		$this->html = new FW_HTML();
 		// $this->resolver = $resolver;
 		$this->preFilter = new FW_FilterChain();
 		$this->postFilter = new FW_FilterChain();
@@ -133,7 +142,6 @@ class FW_Controller{
 	 * @param string
 	 */
 	public function loadModel($name, $modelPath){
-		echo "loadmodel(" . $modelPath . ")<br>";
 		$path = $modelPath . $name . '_model.php';
 
 		if(file_exists($path)){
