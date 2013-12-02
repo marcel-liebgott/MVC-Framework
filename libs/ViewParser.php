@@ -20,10 +20,27 @@ class FW_ViewParser{
     protected $msg;
     protected $lang;
     protected $vars = array();
+
+    const BEGIN_DELIMITER = '{';
+    const END_DELIMITER = '}';
+    const VARIABLE_IDENT = '$';
     
     public function __construct(){
         $this->msg = FW_Messages::getInstance();
         $this->lang = FW_Language::getInstance();
+    }
+
+    /**
+     * replace a string in a string
+     * 
+     * @access private
+     * @param string $search
+     * @param string $replace
+     * @param string $subject
+     * @return string
+     */
+    protected function replace($search, $replace, $subject){        
+        return str_replace($search, $replace, $subject);
     }
     
     /**
@@ -50,8 +67,17 @@ class FW_ViewParser{
             return;
         }
         
-        return file_get_contents($templateFile);
-    }
+        $content = file_get_contents($templateFile);
+
+        if(isset($result[3])){
+            foreach($this->vars[$result[3]] as $key => $value){
+                $content = $this->replace(self::BEGIN_DELIMITER . self::VARIABLE_IDENT . $key . self::END_DELIMITER, $value, $content);
+            }
+        }else{
+            echo "nicht da";
+        }
+        
+        return $content;
     
     /**
      * replace an language ident

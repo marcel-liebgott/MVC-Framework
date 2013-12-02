@@ -23,14 +23,10 @@ class FW_View extends FW_ViewParser{
     private $footerFile;
     private $msgFile;
     
-    const BEGIN_DELIMITER = '{';
-    const END_DELIMITER = '}';
-    const VARIABLE_IDENT = '$';
-    
     private $if_regex = '#\{if\s+(.+?)\}\s*(.+?)\s*(?:\{else\}\s*(.+?))?\s*\{endif\}#s';
     private $for_regex = '#\{for\s+key=(.+?)\s+from=(.+?)\}\s*(.+?)\s*\{endfor\}#s';
     private $lang_regex = '#\{lang\s+(.+?)\s*\}#s';
-    private $include_regex = '#\{include\s*(.+)\s*\"(.+)\"\}#s';
+    private $include_regex = '#\{include\s*(.+)\s*\"(.+)\"\s*(?:\s*(.+?))?\}#s';
     private $bbcode_regex = '#\{bbcode\}\s*(.+?)\s*\{endbbcode\}#s';
     
     public function __construct($class){
@@ -130,19 +126,6 @@ class FW_View extends FW_ViewParser{
                 }
             }
         }
-    }
-    
-    /**
-     * replace a string in a string
-     * 
-     * @access private
-     * @param string $search
-     * @param string $replace
-     * @param string $subject
-     * @return string
-     */
-    private function replace($search, $replace, $subject){        
-        return str_replace($search, $replace, $subject);
     }
     
     /**
