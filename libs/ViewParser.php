@@ -73,8 +73,6 @@ class FW_ViewParser{
             foreach($this->vars[$result[3]] as $key => $value){
                 $content = $this->replace(self::BEGIN_DELIMITER . self::VARIABLE_IDENT . $key . self::END_DELIMITER, $value, $content);
             }
-        }else{
-            echo "nicht da";
         }
         
         return $content;
