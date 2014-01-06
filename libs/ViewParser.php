@@ -76,6 +76,7 @@ class FW_ViewParser{
         }
         
         return $content;
+    }
     
     /**
      * replace an language ident
