@@ -225,7 +225,7 @@ class FW_Cookie{
      * @return boolean
      */
     public function existsCookie($name){
-        if(isset($_COOKIE[$name])){
+        if(isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && $_COOKIE[$name]){
             return true;
         }else{
             return false;
