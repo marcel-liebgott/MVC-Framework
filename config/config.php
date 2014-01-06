@@ -74,5 +74,5 @@ define('TYPE',				'mysql');
 define('HOST',				'localhost');
 define('USER',				'root');
 define('PASS',				'');
-define('DATA',				'webseite');
+define('DATA',				'');
 ?>
