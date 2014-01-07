@@ -226,7 +226,8 @@ class FW_Request{
      * @return mixed
      */
     public function getPost($key){
-        $key = strtolower($key);
+        $key = FW_Stringhelper::strtolower($key);
+        
         
         if($this->issetPost($key)){
             return $this->post[$key];
@@ -256,7 +257,7 @@ class FW_Request{
      * @return array
      */
     public function getFile($key){
-        $key = strtolower($key);
+        $key = FW_Stringhelper::strtolower($key);
         
         if($this->issetFile($key)){
             return $this->file[$key];

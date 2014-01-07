@@ -44,7 +44,7 @@ class FW_Validate{
      * @return boolean 
      */
     public function minLength($data, $arg){ 
-        if(strlen($data) < $arg){ 
+        if(FW_Stringhelper::strlen($data) < $arg){ 
             $this->msg->setMessage($this->lang->getLangValue('min_length') . ' (' . $arg . ')', FW_Messages::_E_WARNING); 
             return false; 
         } 
@@ -61,7 +61,7 @@ class FW_Validate{
      * @return boolean 
      */
     public function maxLength($data, $arg){ 
-        if(strlen($data) > $arg){ 
+        if(FW_Stringhelper::strlen($data) > $arg){ 
             $this->msg->setMessage($this->lang->getLangValue('max_length') . ' (' . $arg . ')', FW_Messages::_E_WARNING); 
             return false; 
         } 
@@ -78,7 +78,7 @@ class FW_Validate{
      * @return boolean 
      */
     public function isLength($data, $arg){ 
-        if(strlen($data) !== $arg){ 
+        if(FW_Stringhelper::strlen($data) !== $arg){ 
             $this->msg->setMessage($this->lang->getLangValue('must_be_long') . ' (' . $arg . ')', FW_Messages::_E_WARNING); 
             return false; 
         } 
@@ -214,7 +214,7 @@ class FW_Validate{
      * @return boolean 
      */
     public function isValidMail($data){ 
-        if(!filter_var($data, FILTER_VALIDATE_EMAIL)){ 
+        if(!FW_Stringhelper::isValidMail($data)){ 
             $this->msg->setMessage($this->lang->getLangValue('mail_not_valid'), FW_Messages::_E_WARNING); 
               
             return false; 
@@ -224,7 +224,7 @@ class FW_Validate{
     } 
       
     public function isValidUrl($data){ 
-        if(!filter_var($data, FILTER_VALIDATE_URL)){ 
+        if(!FW_Stringhelper::isValidUrl($data)){ 
             $this->msg->setMessage($this->lang->getLangValue('url_not_valide'), FW_Messages::_E_WARNING); 
             return false; 
         } 
