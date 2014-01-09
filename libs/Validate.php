@@ -174,7 +174,7 @@ class FW_Validate{
      * @return boolean 
      */
     public function isArray($data){ 
-        if(!is_array($data)){ 
+        if(!is_array($data)){
             $this->msg->setMessage($this->lang->getLangValue('must_be_a_array'), FW_Messages::_E_WARNING); 
             return false; 
         } 
@@ -188,8 +188,8 @@ class FW_Validate{
      * @access public 
      * @param mixed $data 
      */
-    public function isMixed($data){ 
-        if(!ctype_alnum($data)){ 
+    public function isMixed($data){
+        if(!preg_match('/^[a-z0-9 ]+$/i', $data)){
             $this->msg->setMessage($this->lang->getLangValue('must_be_mixed'), FW_Messages::_E_WARNING); 
             return false; 
         } 
@@ -232,8 +232,41 @@ class FW_Validate{
         return true; 
     } 
       
-    public function __call($name, $arg){ 
-    } 
+    public function isValidDate($date){
+        if(!preg_match('/^\d{2}\.\d{2}\.\d{4}$/', $date)){
+            $this->msg->setMessage($this->lang->getLangValue('not_valid_date'), FW_Messages::_E_WARNING);
+            return false;
+        }
+
+        $daysPerMonth = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+
+        preg_match('/^(.*?)\.(.*?)\.(.*?)$/', $date, $match);
+
+        if(count($match) == 4){
+            $day = $match[1];
+            $month = $match[2];
+            $year = $match[3];
+
+            // valid parts of this date
+            if($day == 0 || $month == 0){
+                $this->msg->setMessage($this->lang->getLangValue('not_valid_date'), FW_Messages::_E_WARNING);
+                return false;
+            }
+
+            // is year an leap year
+            if(($year % 400) == 0 || (($year % 4) == 0 && ($year % 100) !== 0)){
+                $daysPerMonth[2] = 29;
+            }
+
+            // check days in this month
+            if($daysPerMonth[$month] < $day){
+                $this->msg->setMessage($this->lang->getLangValue('not_valid_date'), FW_Messages::_E_WARNING);
+                return false;
+            }
+
+            return true;
+        }
+    }
 } 
   
 ?>
