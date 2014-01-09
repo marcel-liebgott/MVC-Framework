@@ -1,0 +1,390 @@
+<?php
+if(!defined('PATH')){
+	die("no direct script access allowed");
+}
+
+abstract class FW_Html_Element{
+	/**
+	 * id of this element
+	 * for css, javascript, jquery, ...
+	 *
+	 * @access private
+	 * @var string
+	 */
+	private $id;
+
+	/**
+	 * name of this element
+	 *
+	 * @access private
+	 * @var string
+	 */
+	private $name;
+
+	/**
+	 * style of this element
+	 *
+	 * @access private
+	 * @var array
+	 */
+	private $style;
+
+	/**
+	 * class of this element
+	 *
+	 * @access private
+	 * @var string
+	 */
+	private $class;
+
+	/**
+	 * default value of this element
+	 *
+	 * @access private
+	 * @var mixed
+	 */
+	private $default;
+
+	/**
+	 * if this element required
+	 *
+	 * @access private
+	 * @var boolean
+	 */
+	private $required = false;
+
+	/**
+	 * autofocus this element
+	 *
+	 * @access private
+	 * @var boolean
+	 */
+	private $autofocus = false;
+
+	/**
+	 * autocomplete this element
+	 *
+	 * @access private
+	 * @var boolean
+	 */
+	private $autocomplete = true;
+
+	/**
+	 * disable this element
+	 *
+	 * @access private
+	 * @var mixed
+	 */
+	private $disabled = null;
+
+	/**
+	 * pattern value of this element
+	 *
+	 * @access private
+	 * @var mixed
+	 */
+	private $pattern = null;
+
+	/**
+	 * validation
+	 *
+	 * @access protected
+	 * @var FW_Validate
+	 */
+	protected $validate;
+
+	/**
+	 * constructor
+	 *
+	 * @access public
+	 * @param string
+	 * @param string
+	 * @param string
+	 * @param string
+	 * @param string
+	 */
+	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
+		$this->validate = new FW_Validate();
+
+		$this->setName($name);
+		$this->setId($id);
+		$this->setClass($class);
+		$this->setDefault($default);
+	}
+
+	/**
+	 * set name of this element
+	 *
+	 * @access public
+	 * @param string 
+	 */
+	public final function setName($name){
+		if($this->validate->isString($name)){
+			$this->name = $name;
+		}
+	}
+
+	/**
+	 * return the name of this element
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public final function getName(){
+		return $this->name;
+	}
+
+	/**
+	 * set id of this element
+	 *
+	 * @access public
+	 * @param string 
+	 */
+	public final function setId($id){
+		if($this->validate->isString($id)){
+			$this->id = $id;
+		}
+	}
+
+	/**
+	 * return the id of this element
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public final function getId(){
+		return $this->id;
+	}
+
+	/**
+	 * set class of this element
+	 *
+	 * @access public
+	 * @param string 
+	 */
+	public final function setClass($class){
+		if($this->validate->isString($class)){
+			$this->class = $class;
+		}
+	}
+
+	/**
+	 * return the class of this element
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public final function getClass(){
+		return $this->class;
+	}
+
+	/**
+	 * set default of this element
+	 *
+	 * @access public
+	 * @param string 
+	 */
+	public final function setDefault($default){
+		if($this->validate->isString($default)){
+			$this->default = $default;
+		}
+	}
+
+	/**
+	 * return the default of this element
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public final function getDefault(){
+		return $this->default;
+	}
+
+	/**
+	 * set style property of this element
+	 *
+	 * @access public
+	 * @param string
+	 * @param string 
+	 */
+	public final function setStyle($key, $value){
+		if($this->validate->isString($key) && $this->validate->isString($value)){
+			$this->style[$key] = $value;
+		}
+	}
+
+	/**
+	 * get style
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public final function getStyle(){
+		return $this->style;
+	}
+
+	/**
+	 * set autocomplete property of this element
+	 *
+	 * @access public
+	 * @var boolean
+	 */
+	public final function setAutocomplete($complete){
+		if($this->validate->isBool($complete)){
+			$this->autocomplete = $complete;
+		}
+	}
+
+	/**
+	 * get autocomplete
+	 *
+	 * @access public
+	 * @return boolean
+	 */
+	public final function getAutocomplete(){
+		return $this->autocomplete;
+	}
+
+	/**
+	 * get required
+	 *
+	 * @access public
+	 * @return boolean
+	 */
+	public final function getRequired(){
+		return $this->required;
+	}
+
+	/**
+	 * set autofocus property of this element
+	 *
+	 * @access public
+	 * @param boolean
+	 */
+	public final function setAutofocus($focus){
+		if($this->validate->isBool($focus)){
+			$this->autofocus = $focus;
+		}
+	}
+
+	/**
+	 * get autofocus
+	 *
+	 * @access public
+	 * @return boolean
+	 */
+	public final function getAutofocus(){
+		return $this->autofocus;
+	}
+
+	/**
+	 * set disabled property of this element
+	 * isn't the value of param empty, so we would be disabled this element
+	 * disabled value="{@param value}"
+	 *
+	 * @access public
+	 * @param mixed
+	 */
+	public final function setDisabled($value){
+		if($this->validate->isMixed($value)){
+			$this->disabled = $value;
+		}
+	}
+
+	/**
+	 * return disabled
+	 *
+	 * @access public
+	 * @return mixed
+	 */
+	public final function getDisabled(){
+		return $this->disabled;
+	}
+
+	/**
+	 * set the pattern property of this element
+	 *
+	 * @access public
+	 * @param mixed
+	 */
+	public final function setPattern($pattern){
+		if($this->validate->isMixed($pattern)){
+			$this->pattern = $pattern;
+		}
+	}
+
+	/**
+	 * get pattern
+	 *
+	 * @access public
+	 * @return mixed
+	 */
+	public final function getPattern(){
+		return $this->pattern;
+	}
+
+	/**
+	 * generate the html code of this element
+	 *
+	 * @access public
+	 * @return mixed
+	 */
+	public abstract function toString();
+
+	/**
+	 * generate basic property of this element
+	 *
+	 * @access protected
+	 * @return mixed
+	 */
+	protected function generateBasicProperty(){
+		$html = ' name="' . $this->name . '"';
+
+		if(!empty($this->id)){
+			$html .= ' id="' . $this->id . '"';
+		}
+
+		if(!empty($this->class)){
+			$html .= ' class="' . $this->class . '"';
+		}
+
+		$html .= ' autocomplete="';
+		if($this->autocomplete){
+			$html .= 'on"';
+		}else{
+			$html .= 'off"';
+		}
+
+		if(count($this->style) > 0){
+			$html .= ' style="';
+
+			foreach($this->style as $key => $value){
+				$html .= $key . ': ' . $value . '; ';
+			}
+
+			$html .= '"';
+		}
+
+		if(!empty($this->disabled)){
+			$html .= ' disabled value="' . $this->disabled . '"';
+		}
+
+		if(!empty($this->pattern)){
+			$html .= ' pattern="' . $this->pattern . '"';
+		}
+
+		if($this->required){
+			$html .= ' required';
+		}
+
+		$html .= ' autofocus="';
+		if($this->autofocus){
+			$html .= 'on"';
+		}else{
+			$html .= 'off"';
+		}
+
+		return $html;
+	}
+}
+?>
