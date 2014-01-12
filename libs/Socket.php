@@ -240,9 +240,7 @@ class FW_Socket{
 			$ret .= fgets($this->con, 128);
 		}
 
-		echo '<pre>return:';
-			print_r($ret);
-		echo '</pre>';
+		return $ret;
 
 		$this->closeConnection();
 	}
