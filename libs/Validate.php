@@ -13,40 +13,19 @@ if(!defined('PATH')){
  * @subpackage libs 
  */
   
-class FW_Validate{ 
-    /** 
-     * handle system messages 
-     *  
-     * @access private 
-     * @var FW_Messages 
-     */
-    private $msg; 
-      
-    /** 
-     * load language values 
-     *  
-     * @access private 
-     * @var FW_Language 
-     */
-    private $lang; 
-      
-    public function __construct(){ 
-        $this->msg = FW_Registry::getInstance()->getMessages(); 
-        $this->lang = FW_Registry::getInstance()->getLanguage(); 
-    } 
-      
+final class FW_Validate{      
     /** 
      * check the min length of an string 
      *  
-     * @access public 
+     * @access public
+     * @static
      * @param string $data 
      * @param int $arg 
-     * @return boolean 
+     * @return boolean|array if failed
      */
-    public function minLength($data, $arg){ 
-        if(FW_Stringhelper::strlen($data) < $arg){ 
-            $this->msg->setMessage($this->lang->getLangValue('min_length') . ' (' . $arg . ')', FW_Messages::_E_WARNING); 
-            return false; 
+    public static function minLength($data, $arg){ 
+        if(FW_String::strlen($data) < $arg){
+            throw new FW_Exception_WrongParameter(array('message' => 'min_length', 'arg' => $arg));
         } 
           
         return true; 
@@ -56,14 +35,14 @@ class FW_Validate{
      * check the max length of an string 
      *  
      * @access public 
+     * @static
      * @param string $data 
      * @param int $arg 
-     * @return boolean 
+     * @return boolean|array if failed
      */
-    public function maxLength($data, $arg){ 
-        if(FW_Stringhelper::strlen($data) > $arg){ 
-            $this->msg->setMessage($this->lang->getLangValue('max_length') . ' (' . $arg . ')', FW_Messages::_E_WARNING); 
-            return false; 
+    public static function maxLength($data, $arg){ 
+        if(FW_String::strlen($data) > $arg){
+            throw new FW_Exception_WrongParameter(array('message' => 'max_length', 'arg' => $arg)); 
         } 
           
         return true; 
@@ -73,14 +52,14 @@ class FW_Validate{
      * check the data of his length 
      *  
      * @access public 
+     * @static
      * @param string $data 
      * @param int $arg 
-     * @return boolean 
+     * @return boolean|array if failed
      */
-    public function isLength($data, $arg){ 
-        if(FW_Stringhelper::strlen($data) !== $arg){ 
-            $this->msg->setMessage($this->lang->getLangValue('must_be_long') . ' (' . $arg . ')', FW_Messages::_E_WARNING); 
-            return false; 
+    public static function isLength($data, $arg){ 
+        if(FW_String::strlen($data) !== $arg){
+            throw new FW_Exception_WrongParameter(array('message' => 'must_be_long', 'arg' => $arg));
         } 
           
         return true; 
@@ -90,29 +69,50 @@ class FW_Validate{
      * check if input is an int 
      *  
      * @access public 
+     * @static
      * @param string $data 
-     * @return boolean 
+     * @return boolean|string if failed
      */
-    public function isInteger($data){ 
-        if(!is_integer($data)){ 
-            $this->msg->setMessage($this->lang->getLangValue('must_be_a_integer'), FW_Messages::_E_WARNING); 
-            return false; 
+    public static function isInteger($data){ 
+        if(!is_integer($data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_integer'));
         } 
           
         return true; 
     } 
+
+    /**
+     * check if integerin range
+     *
+     * @access public
+     * @static
+     * @param int
+     * @param int
+     * @param int
+     * @return boolean|string is failed
+     */
+    public static function inRange($min, $max, $value){
+        if($this->isInteger($value) && $this->isInteger($min) && $this->isInteger($max)){
+            if($value >= $min && $value <= $max){
+                return true;
+            }else{
+                throw new FW_Exception_WrongParameter(array('message' => 'not_in_range'));
+            }
+        }
+    }
       
     /** 
      * check if input is an string 
      *  
      * @access public 
+     * @static
      * @param string $data 
-     * @return boolean 
+     * @return boolean|string is failed
      */
-    public function isString($data){ 
-        if(!ctype_alpha($data)){ 
-            $this->msg->setMessage($this->lang->getLangValue('must_be_a_string'), FW_Messages::_E_WARNING); 
-            return false; 
+    public static function isString($data){
+        echo $data;
+        if(!ctype_alpha($data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_string'));
         } 
           
         return true; 
@@ -122,13 +122,13 @@ class FW_Validate{
      * check if input is an numeric 
      *  
      * @access public 
+     * @static
      * @param string $data 
-     * @return boolean 
+     * @return boolean|string is failed
      */
-    public function isNumeric($data){ 
-        if(!is_numeric($data)){ 
-            $this->msg->setMessage($this->lang->getLangValue('must_be_a_numberic'), FW_Messages::_E_WARNING); 
-            return false; 
+    public static function isNumeric($data){ 
+        if(!is_numeric($data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_numberic'));
         } 
           
         return true; 
@@ -138,13 +138,13 @@ class FW_Validate{
      * check if input is an float 
      *  
      * @access public 
+     * @static
      * @param string $data 
-     * @return boolean 
+     * @return boolean|string is failed
      */
-    public function isFloat($data){ 
-        if(!is_float($data)){ 
-            $this->msg->setMessage($this->lang->getLangValue('must_be_a_float'), FW_Messages::_E_WARNING); 
-            return false; 
+    public static function isFloat($data){ 
+        if(!is_float($data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_float'));
         } 
           
         return true; 
@@ -154,13 +154,13 @@ class FW_Validate{
      * check if input is an bool 
      *  
      * @access public 
+     * @static
      * @param string $data 
-     * @return boolean 
+     * @return boolean|string is failed
      */
-    public function isBool($data){ 
-        if(!is_bool($data)){ 
-            $this->msg->setMessage($this->lang->getLangValue('must_be_boolean'), FW_Messages::_E_WARNING); 
-            return false; 
+    public static function isBool($data){ 
+        if(!is_bool($data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_boolean'));
         } 
           
         return true; 
@@ -170,13 +170,17 @@ class FW_Validate{
      * check if input is an array 
      *  
      * @access public 
+     * @static
      * @param array $data 
-     * @return boolean 
+     * @return boolean|string is failed
      */
-    public function isArray($data){ 
+    public static function isArray($data, $throws = true){
         if(!is_array($data)){
-            $this->msg->setMessage($this->lang->getLangValue('must_be_a_array'), FW_Messages::_E_WARNING); 
-            return false; 
+            if($throws){
+                throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_array'));
+            }else{
+                return false;
+            }
         } 
           
         return true; 
@@ -186,56 +190,61 @@ class FW_Validate{
      * checked if the input has an mixed value 
      *  
      * @access public 
+     * @static
      * @param mixed $data 
+     * @return boolean|string is failed
      */
-    public function isMixed($data){
-        if(!preg_match('/^[a-z0-9 ]+$/i', $data)){
-            $this->msg->setMessage($this->lang->getLangValue('must_be_mixed'), FW_Messages::_E_WARNING); 
-            return false; 
+    public static function isMixed($data){
+        if(!preg_match('/[a-zA-Z0-9\.+\- ]/i', $data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_mixed'));
         } 
           
         return true; 
-    } 
+    }
       
     /** 
-     * delete all html and php entries in the string 
+     * check the value of a valid e-mail adress
      *  
-     * @access public 
-     * @param string $string 
-     * @return boolean 
-     */
-    public function filterHtmlInString($string){ 
-        return strip_tags($string); 
-    } 
-      
-    /** 
-     *  
+     * @access public
+     * @static
      * @param type $data 
-     * @return boolean 
+     * @return boolean|string is failed
      */
-    public function isValidMail($data){ 
-        if(!FW_Stringhelper::isValidMail($data)){ 
-            $this->msg->setMessage($this->lang->getLangValue('mail_not_valid'), FW_Messages::_E_WARNING); 
-              
-            return false; 
+    public static function isValidMail($data){ 
+        if(!FW_Stringhelper::isValidMail($data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'mail_not_valid'));
         } 
           
         return true; 
     } 
       
-    public function isValidUrl($data){ 
-        if(!FW_Stringhelper::isValidUrl($data)){ 
-            $this->msg->setMessage($this->lang->getLangValue('url_not_valide'), FW_Messages::_E_WARNING); 
-            return false; 
+    /**
+     * check the value of a valid url
+     *
+     * @access public
+     * @static
+     * @param string $data
+     * @return boolean|string is failed
+     */
+    public static function isValidUrl($data){ 
+        if(!FW_Stringhelper::isValidUrl($data)){
+            throw new FW_Exception_WrongParameter(array('message' => 'url_not_valid'));
         } 
           
         return true; 
     } 
-      
-    public function isValidDate($date){
+    
+    /**
+     * check the value of a valid date
+     *
+     * @access public
+     * @static
+     * @param string date
+     * @return boolean|string is failed
+     */
+    public static function isValidDate($date){
         if(!preg_match('/^\d{2}\.\d{2}\.\d{4}$/', $date)){
-            $this->msg->setMessage($this->lang->getLangValue('not_valid_date'), FW_Messages::_E_WARNING);
-            return false;
+            throw new FW_Exception_WrongParameter(array('message' => 'not_valid_date'));
         }
 
         $daysPerMonth = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
@@ -249,8 +258,7 @@ class FW_Validate{
 
             // valid parts of this date
             if($day == 0 || $month == 0){
-                $this->msg->setMessage($this->lang->getLangValue('not_valid_date'), FW_Messages::_E_WARNING);
-                return false;
+                throw new FW_Exception_WrongParameter(array('message' => 'not_valid_date'));
             }
 
             // is year an leap year
@@ -260,8 +268,7 @@ class FW_Validate{
 
             // check days in this month
             if($daysPerMonth[$month] < $day){
-                $this->msg->setMessage($this->lang->getLangValue('not_valid_date'), FW_Messages::_E_WARNING);
-                return false;
+                throw new FW_Exception_WrongParameter(array('message' => 'not_valid_date'));
             }
 
             return true;

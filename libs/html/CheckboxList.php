@@ -42,7 +42,7 @@ final class FW_Html_CheckboxList extends FW_Html_List{
 	 * @param string
 	 */
 	public final function setDeletimiter($delimiter){
-		if($this->validate->isMixed($delimiter)){
+		if(FW_Validate::isMixed($delimiter)){
 			$this->delimiter = $delimiter;
 		}
 	}
@@ -64,7 +64,7 @@ final class FW_Html_CheckboxList extends FW_Html_List{
 	 * @param string
 	 */
 	public final function setChecked($checked){
-		if($this->validate->isMixed($checked)){
+		if(FW_Validate::isMixed($checked)){
 			$this->checked[$checked];
 		}
 	}

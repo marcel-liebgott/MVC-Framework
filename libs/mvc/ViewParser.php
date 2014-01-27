@@ -12,7 +12,7 @@ if(!defined('PATH')){
  * @package mvc
  * @subpackage libs
  */
-class FW_ViewParser{
+class FW_Mvc_ViewParser{
     private $enableKindsOfIncludes = array('template' => 'views/');
     private $enableKindsOfElements = array('session:' => 'FW_Session', 'cookie:' => 'FW_Cookie');
     private $enableOperations = array('==', '>', '<', '>=', '<=', '!=');
@@ -26,7 +26,6 @@ class FW_ViewParser{
     const VARIABLE_IDENT = '$';
     
     public function __construct(){
-        $this->msg = FW_Messages::getInstance();
         $this->lang = FW_Language::getInstance();
     }
 
@@ -39,7 +38,7 @@ class FW_ViewParser{
      * @param string $subject
      * @return string
      */
-    protected function replace($search, $replace, $subject){        
+    protected function replace($search, $replace, $subject){
         return str_replace($search, $replace, $subject);
     }
     
@@ -66,7 +65,7 @@ class FW_ViewParser{
             $this->msg->setMessage("can't find template file<br>" . $templateFile, FW_Messages::_E_ERROR);
             return;
         }
-        
+
         $content = file_get_contents($templateFile);
 
         if(isset($result[3])){

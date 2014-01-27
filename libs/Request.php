@@ -8,7 +8,6 @@ if(!defined('PATH')){
  * 
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @since 1.00
- * @category Marcel Liebgott
  */
 class FW_Request{
 	/**
@@ -71,6 +70,7 @@ class FW_Request{
 	 * obkject instance
 	 *
 	 * @access private
+     * @static
 	 * @var instance
 	 */
 	private static $instance = null;
@@ -79,7 +79,8 @@ class FW_Request{
 	 * return the singleton instance of this class
 	 * 
 	 * @access public
-	 * @return instance
+     * @static
+	 * @return resource
 	 */
 	public static function getInstance(){
 		if(self::$instance == null){
@@ -102,9 +103,9 @@ class FW_Request{
 
 		// search HTTP information
 		foreach($_SERVER as $key => $value){
-            if(substr($key,0, 5) == "HTTP_"){
-                $key = strtolower($key);
-                $this->header[substr($key, 5)] = $value;
+            if(FW_String::substr($key,0, 5) == "HTTP_"){
+                $key = FW_String::strtolower($key);
+                $this->header[FW_String::substr($key, 5)] = $value;
             }
 
             if($key == "HTTP_REFERER"){
@@ -166,7 +167,7 @@ class FW_Request{
      * @return mixed
      */
     public function getHeader($key){
-        $key = strtolower($key);
+        $key = FW_String::strtolower($key);
         
         if($this->getHeader($key)){
             return $this->header[$key];
@@ -196,7 +197,7 @@ class FW_Request{
      * @return mixed
      */
     public function getGet($key){
-        $key = strtolower($key);
+        $key = FW_String::strtolower($key);
         
         if($this->issetGet($key)){
             return $this->get[$key];
@@ -223,14 +224,22 @@ class FW_Request{
      * return a $_POST information, if they exists
      *
      * @access public
+     * @param string $key
+     * @param boolean $secure
      * @return mixed
      */
-    public function getPost($key){
-        $key = FW_Stringhelper::strtolower($key);
-        
+    public function getPost($key, $secure = true){
+        $key = FW_String::strtolower($key);
         
         if($this->issetPost($key)){
-            return $this->post[$key];
+            $value = $this->post[$key];
+
+            if($secure){
+                $value = FW_Security::checkXSS($value);
+                //$value = FW_Security::striptags($value);
+            }
+
+            return $value;
         }
         
         return null;
@@ -257,7 +266,7 @@ class FW_Request{
      * @return array
      */
     public function getFile($key){
-        $key = FW_Stringhelper::strtolower($key);
+        $key = FW_String::strtolower($key);
         
         if($this->issetFile($key)){
             return $this->file[$key];
@@ -296,6 +305,7 @@ class FW_Request{
         $url = $_GET;
         $url = isset($_GET['url']) ? $_GET['url'] : null;
         $url = rtrim($url, '/');
+        $url = FW_Security::cleanUrl($url);
         $url = filter_var($url, FILTER_SANITIZE_URL);
         
         $url = explode('/', $url);

@@ -13,10 +13,9 @@ if(!defined('PATH')){
  * @subpackage libs
  */
 
-class FW_View extends FW_ViewParser{
+class FW_Mvc_View extends FW_Mvc_ViewParser{
     private $template;
     private $class;
-    private $log;
     
     private $templateFile;
     private $headerFile;
@@ -26,12 +25,12 @@ class FW_View extends FW_ViewParser{
     private $if_regex = '#\{if\s+(.+?)\}\s*(.+?)\s*(?:\{else\}\s*(.+?))?\s*\{endif\}#s';
     private $for_regex = '#\{for\s+key=(.+?)\s+from=(.+?)\}\s*(.+?)\s*\{endfor\}#s';
     private $lang_regex = '#\{lang\s+(.+?)\s*\}#s';
-    private $include_regex = '#\{include\s*(.+)\s*\"(.+)\"\s*(?:\s*(.+?))?\}#s';
+    private $include_regex = '#\{include\s*(.+)\s*\"(.+)\"\}#s';
+    //private $include_regex = '#\{include\s*(.+)\s*\"(.+)\"\s*(?:\s*(.+?))?\}#s';
     private $bbcode_regex = '#\{bbcode\}\s*(.+?)\s*\{endbbcode\}#s';
     
     public function __construct($class){
         $this->class = $class;
-        $this->log = FW_Registry::getInstance()->getLogger();
         parent::__construct();
     }
     
@@ -56,13 +55,18 @@ class FW_View extends FW_ViewParser{
         $this->msgFile = $dir . 'inc/msg.php';
         
         $this->template = file_get_contents($this->headerFile);
+
+        if(in_array('headline', $this->vars) && $this->vars['headline'] == true){
+            $this->template .= file_get_contents($dir . 'inc/headline.php');
+        }
+
         $this->template .= file_get_contents($this->templateFile);
         $this->template .= file_get_contents($this->footerFile);
         
+        $this->renderInformation();
         $this->renderStatements();
         $this->assignVariables();
         $this->renderConst();
-        $this->renderInformation();
         
         if($noInclude == true){
             require_once 'views/' . $name . '.php';
@@ -70,13 +74,24 @@ class FW_View extends FW_ViewParser{
             echo $this->template;
         }
     }
+
+    private function highlight_php($matches){
+        $php = highlight_string($matches[0], true);
+
+        //strip out the phptags
+        $php = preg_replace("#(\[php\]|\[/php\])#i", "", $php);
+
+        $php = '<div class="code">' . $php . '</div>';
+
+        return $php;
+    }
     
     /**
      * prerender all supported stuff
      * 
      * @access private
      */
-    private function renderStatements(){        
+    private function renderStatements(){
         // if
         $this->template = preg_replace_callback($this->if_regex, array(&$this, 'parseIfElse'), $this->template);
         
@@ -91,9 +106,6 @@ class FW_View extends FW_ViewParser{
         
         // for
         $this->template = preg_replace_callback($this->for_regex, array(&$this, 'parseFor'), $this->template);
-        
-        // bbcode
-        $this->template = preg_replace_callback($this->bbcode_regex, array(&$this, 'parseBBCode'), $this->template);
     }
     
     /**
@@ -103,8 +115,8 @@ class FW_View extends FW_ViewParser{
      */
     private function assignVariables(){
         if(count($this->vars) > 0){
-            foreach($this->vars as $ident => $replace){                
-                if(is_array($replace)){
+            foreach($this->vars as $ident => $replace){
+                if(FW_Validate::isArray($replace, false)){
                     foreach($replace as $key => $value){
                         $v = null;
                         
@@ -134,11 +146,14 @@ class FW_View extends FW_ViewParser{
      * @access private
      */
     private function renderInformation(){
-        $footerInformation = base64_decode('JmNvcHk7IDIwMTMgTWFyY2VsIExpZWJnb3R0==');
+        $fw_info = FW_VERSION . ' {lang ' . FW_VERSION_STATE . '}';
+        $footerInformation = '&copy; ' . date('Y') . ' Marcel Liebgott, Powered by <a href="http://www.mliebgott.de" target="_self">mliebgott.de</a> - Version: ' . $fw_info;
+
+        $version = FW_VERSION . ' ' . FW_VERSION_STATE;
 
         $r_array = array(
             'fw_info' => $footerInformation,
-            'version_info' => VERSION
+            'version_info' => $version
         );
 
         foreach($r_array as $ident => $replace){
@@ -153,7 +168,6 @@ class FW_View extends FW_ViewParser{
      * @access private
      */
     private function renderConst(){
-        $breakcrumb = FW_Breadcrumb::getInstance();
         $db = FW_Registry::getInstance()->getDatabase();
         $lang = FW_Registry::getInstance()->getLanguage();
         
@@ -170,7 +184,6 @@ class FW_View extends FW_ViewParser{
         }
 
         $const = array(
-            'breadcrumb' => $breakcrumb->getBreadcrumb(),
             'url' => PATH,
             'msg' => $this->generateMessageArea(),
             'pagetitle' => $pagetitle
@@ -189,9 +202,7 @@ class FW_View extends FW_ViewParser{
      * @return mixed
      */
     private function generateMessageArea(){
-        $msg = FW_Registry::getInstance()->getMessages();
-        $msg = $msg->getMessage();
-        
+        $msg = null;        
         if(count($msg) > 0){
             $lang = FW_Registry::getInstance()->getLanguage();
             $msg_level = strtolower($msg[0]);
@@ -219,27 +230,17 @@ class FW_View extends FW_ViewParser{
      * @return string
      * @throws FW_Exception
      */
-    private function parseFor($result){
-        if(count($result) != 4){
-            $this->log->addLog("somethink wrong with your for-statement (for)", $this->class);
-        }
-        
+    private function parseFor($result){        
         $key = $result[1];
         $from = $result[2];
         $c = null;
-       
-        if(!in_array($from, array_keys($this->vars))){
-            $this->log->addLog("no variable to replace (" . $from . ")", $this->class);
-        }
+        $value = null;
+        $tmp = null;
         
-        if(!in_array($from, array_keys($this->vars))){
+        if(in_array($from, array_keys($this->vars))){
             $value = $this->vars[$from];
             $tmp = $result[3];
-        }else{
-            $this->log->addLog("Can't find source of the replacement (" . $from . ")");
         }
-
-        $tmp = $result[3];
         
         if(is_array($value)){
             foreach($this->vars[$from] as $ident => $value){
@@ -268,50 +269,6 @@ class FW_View extends FW_ViewParser{
      */
     private function parseLang($result){
         return $this->replace($result[0], $this->lang->getLangValue($result[1]), $result[0]);
-    }
-    
-    /**
-     * parse all smileys in a {bbcode}...{endbbcode} area
-     * 
-     * @access private
-     * @param array $result
-     * @return string
-     */
-    private function parseBBCode($result){
-        $str = $result[1];
-        
-        $quote_tag = '<div style="border: solid 1px black; margin-left: 5px; margin-right: 5px;"><div style="background: #ccc"><b>Zitat</b></div>
-            <div style="width:100%;">$1</div></div>';
-        
-        $str = preg_replace('/\[b\]\s*(.+)\[\/b\]/iUs', '<b>$1</b>', $str);
-        $str = preg_replace('/\[k\]\s*(.+)\[\/k\]/iUs', '<i>$1</i>', $str);
-        $str = preg_replace('/\[u\]\s*(.+)\[\/u\]/iUs', '<i>$1</i>', $str);
-        $str = preg_replace('/\[left\]\s*(.+)\[\/left\]/iUs', '<div align="left" id="bbcode_left">$1</div>', $str);
-        $str = preg_replace('/\[left\]\s*(.+)\[\/left\]/iUs', '<div align="center" id="bbcode_center">$1</div>', $str);
-        $str = preg_replace('/\[left\]\s*(.+)\[\/left\]/iUs', '<div align="right" id="bbcode_right">$1</div>', $str);
-        $str = preg_replace('/\[quote\](.*)\[\/quote\]/iUs', $quote_tag, $str);
-        $str = preg_replace('/\[img\]\s*(.+)\[\/img\]/iUs', '<img src="$1">', $str);
-        $str = preg_replace('/\[url\s*(.+)\]\s*(.+)\[\/url\]/iUs', '<a href="$1">$2</a>', $str);
-        $str = preg_replace('/\[mail\s*(.+)\]\s*(.+)\[\/mail\]/iUs', '<a href="mailto:$1">$2</a>', $str);
-        
-        $str = preg_replace('/\s*:-D\s*/iUs', '<img src="public/images/smileys/bigsmile.png">', $str);
-        $str = preg_replace('/\s*%\)\s*/iUs', '<img src="public/images/smileys/confused.png">', $str);
-        $str = preg_replace('/\s*8-\)\s*/iUs', '<img src="public/images/smileys/cool.png">', $str);
-        $str = preg_replace('/\s*:\'\(\s*/iUs', '<img src="public/images/smileys/crying.png">', $str);//
-        $str = preg_replace('/\s*:-\(\s*/iUs', '<img src="public/images/smileys/frown.png">', $str);
-        $str = preg_replace('/\s*:-p\s*/iUs', '<img src="public/images/smileys/tongue.png">', $str);
-        $str = preg_replace('/\s*;-\)\s*/iUs', '<img src="public/images/smileys/wink.png">', $str);
-        $str = preg_replace('/\s*:-0\s*/iUs', '<img src="public/images/smileys/biggrin.png">', $str);
-        $str = preg_replace('/\s*:-o\s*/iUs', '<img src="public/images/smileys/eek.png">', $str);
-        $str = preg_replace('/\s*:evil:\s*/iUs', '<img src="public/images/smileys/evil.png">', $str);
-        $str = preg_replace('/\s*0:-\)\s*/iUs', '<img src="public/images/smileys/happy.png">', $str);
-        $str = preg_replace('/\s*=\)\s*/iUs', '<img src="public/images/smileys/holy.png">', $str);
-        $str = preg_replace('/\s*:ops:\s*/iUs', '<img src="public/images/smileys/oops.png">', $str);
-        $str = preg_replace('/\s*:roll:\s*/iUs', '<img src="public/images/smileys/rolleyes.png">', $str);
-        $str = preg_replace('/\s*oO\)\s*/iUs', '<img src="public/images/smileys/shock.png">', $str);
-        $str = preg_replace('/\s*:-\/\s*/iUs', '<img src="public/images/smileys/unsure.png">', $str);
-        
-        return $str;
     }
 }
 

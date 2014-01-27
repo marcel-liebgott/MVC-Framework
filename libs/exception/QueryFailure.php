@@ -3,7 +3,7 @@ if(!defined('PATH')){
 	die("no direct script access allowed");
 }
 
-final class FW_Exception_QueryFailure extends FW_Excpetion{
+final class FW_Exception_QueryFailure extends FW_Excpetion_Critical{
 	/**
 	 * constructor
 	 *

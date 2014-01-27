@@ -57,7 +57,7 @@ final class FW_Html_Week extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setValue($week, $year){
-		if($this->validate->isInteger($week) && $this->validate->isInteger($year)){
+		if(FW_Validate::isInteger($week) && FW_Validate::isInteger($year)){
 			$this->value = $year . '-W' . $week;
 		}
 	}
@@ -79,7 +79,7 @@ final class FW_Html_Week extends FW_Html_Element{
 	 * @param string
 	 */
 	public final function setMin($week, $year){
-		if($this->validate->isInteger($week) && $this->validate->isInteger($year)){
+		if(FW_Validate::isInteger($week) && FW_Validate::isInteger($year)){
 			$this->setValue($week, $year);
 			$this->min = $year . '-W' . $week;
 		}
@@ -103,7 +103,7 @@ final class FW_Html_Week extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setMax($week, $year){
-		if($this->validate->isInteger($week) && $this->validate->isInteger($year)){
+		if(FW_Validate::isInteger($week) && FW_Validate::isInteger($year)){
 			$this->max = $year . '-W' . $week;
 		}
 	}

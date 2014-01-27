@@ -111,7 +111,7 @@ abstract class FW_Html_List{
 	 * @param string 
 	 */
 	public final function setName($name){
-		if($this->validate->isString($name)){
+		if(FW_Validate::FW_Validate::isString($name)){
 			$this->name = $name;
 		}
 	}
@@ -133,7 +133,7 @@ abstract class FW_Html_List{
 	 * @param string 
 	 */
 	public final function setId($id){
-		if($this->validate->isString($id)){
+		if(FW_Validate::isString($id)){
 			$this->id = $id;
 		}
 	}
@@ -155,7 +155,7 @@ abstract class FW_Html_List{
 	 * @param string 
 	 */
 	public final function setClass($class){
-		if($this->validate->isString($class)){
+		if(FW_Validate::isString($class)){
 			$this->class = $class;
 		}
 	}
@@ -177,7 +177,7 @@ abstract class FW_Html_List{
 	 * @param string 
 	 */
 	public final function setDefault($default){
-		if($this->validate->isString($default)){
+		if(FW_Validate::isString($default)){
 			$this->default = $default;
 		}
 	}
@@ -200,7 +200,7 @@ abstract class FW_Html_List{
 	 * @param string 
 	 */
 	public final function setStyle($key, $value){
-		if($this->validate->isString($key) && $this->validate->isString($value)){
+		if(FW_Validate::isString($key) && FW_Validate::isString($value)){
 			$this->style[$key] = $value;
 		}
 	}
@@ -232,7 +232,7 @@ abstract class FW_Html_List{
 	 * @param boolean
 	 */
 	public final function setAutofocus($focus){
-		if($this->validate->isBool($focus)){
+		if(FW_Validate::isBool($focus)){
 			$this->autofocus = $focus;
 		}
 	}
@@ -256,7 +256,7 @@ abstract class FW_Html_List{
 	 * @param mixed
 	 */
 	public final function setDisabled($value){
-		if($this->validate->isMixed($value)){
+		if(FW_Validate::isMixed($value)){
 			$this->disabled = $value;
 		}
 	}
@@ -278,7 +278,7 @@ abstract class FW_Html_List{
 	 * @param array
 	 */
 	public final function setOptions($options){
-		if($this->validate->isArray($options)){
+		if(FW_Validate::isArray($options)){
 			$this->options = $options;
 		}
 	}
@@ -301,7 +301,7 @@ abstract class FW_Html_List{
 	 * @param string
 	 */
 	public final function addOption($value, $desc){
-		if($this->validate->isMixed($value) && $this->validate->isMixed($desc)){
+		if(FW_Validate::isMixed($value) && FW_Validate::isMixed($desc)){
 			$this->options[$value] = $desc;
 		}
 	}

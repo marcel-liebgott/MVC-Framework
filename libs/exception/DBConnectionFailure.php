@@ -3,7 +3,7 @@ if(!defined('PATH')){
 	die("no direct script access allowed");
 }
 
-final class FW_Exception_DBConnectionFailure extends FW_Exception{
+final class FW_Exception_DBConnectionFailure extends FW_Exception_ConnectionFailure{
 	public function __construct($message, $number){
 		$msg = 'Could not connect to Database';
 

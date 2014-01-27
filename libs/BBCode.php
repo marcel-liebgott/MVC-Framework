@@ -11,6 +11,7 @@ class FW_BBCode{
 	 * @var instance
 	 */
 	private static $instance = null;
+
 	/**
 	 * enable BBCode Tags
 	 *
@@ -20,6 +21,14 @@ class FW_BBCode{
 	private $enableTags;
 
 	/**
+	 * enable Smileys
+	 *
+	 * @access private
+	 * @var array
+	 */
+	private $enableSmileys;	
+
+	/**
 	 * string
 	 *
 	 * @access private
@@ -27,7 +36,21 @@ class FW_BBCode{
 	 */
 	private $string;
 
+	/**
+	 * regex for BBCode-Tag
+	 *
+	 * @access private
+	 * @var string
+	 */
 	private $tagRegex = '#\[(.*?)\](.*?)\[/(.*?)\]#s';
+
+	/**
+	 * number of different characters between BBCode-Tag and replaced text
+	 *
+	 * @access private
+	 * @var int
+	 */
+	private $charDiff = 0;
 
 	public function __construct(){
 
@@ -66,6 +89,35 @@ class FW_BBCode{
 				$regex = $xmlContent->Tag[$i]->Regex;
 
 				$this->enableTags[(string)$shortcut] = array(
+					'img' => (string)$img,
+					'desc' => (string)$desc,
+					'shortcut' => (string)$shortcut,
+					'replace' => (string)$replace,
+					'regex' => (string)$regex
+				);
+			}
+		}
+	}
+
+	/**
+	 * read Smiley XML file
+	 *
+	 * @access public
+	 * @param file
+	 */
+	public function readSmileyXML($xmlFile){
+		if(file_exists($xmlFile)){
+			$xmlContent = simplexml_load_file($xmlFile);
+
+			for($i = 0; $i < count($xmlContent); $i++){
+				$id = $xmlContent->Item[$i]->Id;
+				$img = $xmlContent->Item[$i]->Img;
+				$desc = $xmlContent->Item[$i]->Description;
+				$shortcut = $xmlContent->Item[$i]->Shortcut;
+				$replace = $xmlContent->Item[$i]->Replace;
+				$regex = $xmlContent->Item[$i]->Regex;
+
+				$this->enableSmileys[(string)$shortcut] = array(
 					'img' => (string)$img,
 					'desc' => (string)$desc,
 					'shortcut' => (string)$shortcut,
@@ -141,12 +193,27 @@ class FW_BBCode{
 	}
 
 	/**
+	 * convert smiley
+	 *
+	 * @access public
+	 */
+	public function convertSmiley(){
+		foreach($this->enableSmileys as $smiley){
+			$this->string = preg_replace($smiley['regex'], $smiley['replace'], $this->string);
+		}
+	}
+
+	/**
 	 * convert BBCode entries
 	 *
 	 * @access public
 	 * @param string
 	 */
 	public function convertBBCode(){
+		// find link
+		$this->string = preg_replace('/\[url=(.*?)\](.*?)\[\/url\]/s', '<a href="http://$1">$2</a>', $this->string);
+		$this->string = preg_replace('/\[url\](.*?)\[\/url\]/s', '<a href="http://$1">$1</a>', $this->string);
+
 		preg_match_all(
         	'/(.*?)(\[(\/?[a-z]+)(=?[^\]\[]*\]))|(.*?)$/si', $this->string, $tags, PREG_OFFSET_CAPTURE
         );
@@ -189,14 +256,17 @@ class FW_BBCode{
 						$lenght_ending_tag = strlen($end_tag_name);
 						$idx_ending_tag = $this->getIndexofEndingTag($end_tag_name, $tags);
 
+						$start_pos = $pos + $this->charDiff;
+
 						// BBCode tag without parameter
 						if(count($match) == 2){
 							if($idx_ending_tag !== -1){
-								$substr = substr($this->string, $pos, ($idx_ending_tag + $lenght_ending_tag) - $pos);
+								$substr = substr($this->string, $start_pos, ($idx_ending_tag + $lenght_ending_tag + $this->charDiff) - ($pos));
 
 								$enableTag = $this->enableTags[$tag_name];
 
 								$replacedString = preg_replace($enableTag["regex"], $enableTag['replace'], $substr);
+								$this->charDiff += FW_String::strlen($replacedString) - FW_String::strlen($substr);
 
 								$this->string = str_replace($substr, $replacedString, $this->string);
 							}
@@ -230,15 +300,11 @@ class FW_BBCode{
 	 * @access private
 	 * @return int
 	 */
-	private function getIndexOfEndingTag($end_tag_name, $array){
-		if(is_array($array)){
-			foreach($array as $subarray){
-				if($subarray[0] === $end_tag_name){
-					return $subarray[1];
-				}
+	private function getIndexOfEndingTag($end_tag_name, array $array){
+		foreach($array as $subarray){
+			if($subarray[0] === $end_tag_name){
+				return $subarray[1];
 			}
-
-			return -1;
 		}
 	}
 

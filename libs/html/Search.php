@@ -35,7 +35,7 @@ final class FW_Html_Search extends FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setPlaceholder($placeholder){
-		if($this->validate->isString($placeholder)){
+		if(FW_Validate::isString($placeholder)){
 			$this->placeholder = $placeholder;
 		}
 	}

@@ -7,72 +7,126 @@ if(!defined('PATH')){
  * Bootstrap
  * 
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @version 1.00
  * @since 1.00
- * @category Marcel Liebgott
  */
 class FW_Bootstrap{
 	/**
-	 * object instance
+	 * registry instance
 	 *
 	 * @access private
+	 * @static
 	 * @var instance
 	 */
 	private static $registry = null;
+
+	/**
+	 * instance
+	 *
+	 * @access private
+	 * @var resource
+	 */
+	private static $instance = null;
+
+	/**
+	 * actually controller
+	 *
+	 * @access private
+	 * @var resource
+	 */
 	private $controller = null;
 
-	private $request;
-	private $response;
-	private $db;
-	private $lang;
-	private $msg;
-	private $log;
-	private $config;
-
+	/**
+	 * current URL
+	 *
+	 * @access private
+	 * @var array
+	 */
 	private $url;
 
-	public function __construct(){
+	/**
+	 * request
+	 *
+	 * @aacess private
+	 * @var resource
+	 */
+	private $request;
+
+	public static function getInstance(){
+		if(self::$instance === null){
+			self::$instance = new FW_Bootstrap();
+		}
+
+		return self::$instance;
 	}
 
-	public function setRegistry($path = null){
-        if(self::$registry == null){
-            self::$registry = new FW_Registry();
+	private function __construct(){
+		if(self::$registry == null){
+            self::$registry = FW_Registry::getInstance();
         }
-        
-        $this->initRegistry($path);
+	}
+
+	/**
+	 * set all needed registry properties
+	 *
+	 * @access public
+	 */
+	public function setRegistry(){
     }
 
+    /**
+     * get current url
+     *
+     * @access private
+     */
 	private function getUrl(){
 		$this->url = $this->request->getUrl();
 	}
 
+	/**
+	 * initialise the registry
+	 *
+	 * @access private
+	 */
 	private function initRegistry(){
+		FW_Session::set('lang', DEFAULT_LANG);
+
+		$lang = FW_Language::getInstance();
+		self::$registry->setLanguage($lang);
+
 		$this->request = FW_Request::getInstance();
 		self::$registry->setRequest($this->request);
 
-		$this->response = FW_Response::getInstance();
-		self::$registry->setResponse($this->response);
+		$response = FW_Response::getInstance();
+		self::$registry->setResponse($response);
 
-		$this->db = FW_Database::getInstance();
-		self::$registry->setDatabase($this->db);
+		$config = FW_Configuration::getInstance();
+		$config->readIni(CONFIG_DIR . CONFIG_FILE);
+		self::$registry->setConfiguration($config);
 
-		$this->lang = FW_Language::getInstance();
-		self::$registry->setLanguage($this->lang);
+		$db = FW_Database::getInstance();
+		self::$registry->setDatabase($db);
 
-		$this->msg = FW_Messages::getInstance();
-		self::$registry->setMessages($this->msg);
-
-		$this->config = FW_Configuration::getInstance();
-		$this->config->readIni(CONFIG_DIR . CONFIG_FILE);
-		self::$registry->setConfiguration($this->config);
-
-		$this->log = FW_Logger::getInstance();
-		self::$registry->setLogger($this->log);		
+		$bbcode = FW_BBCode::getInstance();
+		$bbcode->readBBCodeXML('public/editor/bbcode.xml');
+		$bbcode->readSmileyXML('public/editor/smiley.xml');
+		self::$registry->set('bbcode', $bbcode);
 	}
 
+	/**
+	 * init all stuff
+	 *
+	 * @access public
+	 */
 	public function init(){
-		$this->setRegistry();
+		$this->initRegistry();
 
 		$this->getUrl();
+
+		if($this->url[0] == ACP_IDENT && empty($this->url[1])){
+			$this->loadDefaultAdminController();
+			return false;
+		}
 
 		if(empty($this->url[0])){
 			$this->loadDefaultController();
@@ -84,6 +138,11 @@ class FW_Bootstrap{
 		}
 	}
 
+	/**
+	 * load default controller if nothing are called
+	 *
+	 * @access private
+	 */
 	private function loadDefaultController(){
 		require_once CONTROLLER_DIR . 'index.php';
 		$this->controller = new index();
@@ -91,13 +150,32 @@ class FW_Bootstrap{
 		$this->controller->index();
 	}
 
-	private function existsController($file){
-		echo "existsController(" . $file . ")<br>";
-		return file_exists($file)  ? true : false;
+	private function loadDefaultAdminController(){
+		require_once CONTROLLER_DIR . ACP_DIR . ACP_DEFAULT_CTR . '.php';
+		$class = ACP_DEFAULT_CTR;
+		$this->controller = new $class();
+		$this->controller->loadModel($class, MODEL_DIR);
+		$this->controller->index();
 	}
 
+	/**
+	 * checked if controller existst;
+	 *
+	 * @access private
+	 * @return boolean
+	 */
+	private function existsController($file){
+		return file_exists($file) ? true : false;
+	}
+
+	/**
+	 * if controller exists, load them
+	 *
+	 * @access private
+	 * @param string $controller
+	 */
 	private function loadExistingController($controller = null){
-		if(strtolower($this->url[0]) === 'acp' && isset($this->url[1])){
+		if(FW_String::strtolower($this->url[0]) === 'acp' && isset($this->url[1])){
 			$com = $this->url[1];
 			$controller_dir = CONTROLLER_DIR . ACP_DIR;
 			$model_dir = MODEL_DIR . ACP_DIR;
@@ -125,8 +203,13 @@ class FW_Bootstrap{
 		}
 	}
 
+	/**
+	 * call a method
+	 *
+	 * @access private
+	 */
 	private function callControllerMethod(){
-		if(strtolower($this->url[0]) === 'acp'){
+		if(FW_String::strtolower($this->url[0]) === 'acp'){
 			array_shift($this->url);
 		}
 
@@ -149,8 +232,7 @@ class FW_Bootstrap{
                     }
                 }
             }else{
-                echo "error 404";
-                die();
+            	throw new FW_Exception_UnsupportedMethod($this->url[1] . " dosn't exists in " . get_class($this->controller));
             }
         }else{
             $this->controller->index();

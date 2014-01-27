@@ -1,5 +1,15 @@
 <?php
 /**
+ * admin-modul indentificator
+ */
+define('ACP_IDENT',			'acp');
+
+/**
+ * default admin controller
+ */
+define('ACP_DEFAULT_CTR', 	'index');
+
+/**
  * defined the library directory
  */
 define('LIBS',				'libs/');
@@ -66,6 +76,12 @@ define('HASH_PASSWORD_KEY',     'aL4X1oO3atpcx9qL2TGTtmOn74D4dQ4OCg4qbwcNqNwm9gr
 // version
 define('VERSION_ID',        '100');
 define('VERSION',           '');
+
+// default lang
+define('DEFAULT_LANG',		'de');
+
+// download dir
+define('DOWNLOAD_DIR',		'download/');
 
 /**
  * database authetification

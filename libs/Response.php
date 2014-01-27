@@ -115,22 +115,13 @@ class FW_Response{
      */
     public function redirectUrl($url, $immediately = false){
         //$url = trim('/', $url);
-        $url = URL . $url;
+        $url = PATH . $url;
+        $url = FW_Security::cleanUrl($url);
         $this->addHeader("Location", $url);
         
         if($immediately == true){
             $this->send();
         }
-    }
-    
-    /**
-     * set an new cookie
-     * 
-     * @access public
-     * @param FW_Cookie $cookie
-     */
-    public function setCookie(FW_Cookie $cookie){
-        $_COOKIE[$cookie];
     }
 }
 

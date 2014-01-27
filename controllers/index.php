@@ -1,5 +1,5 @@
 <?php
-class index extends FW_Controller{
+class index extends FW_Mvc_Controller{
 	public function __construct(){
 		parent::__construct();
 

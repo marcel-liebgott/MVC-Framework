@@ -50,7 +50,7 @@ final class FW_Html_SelectList extends FW_Html_List{
 	 * @param boolean
 	 */
 	public final function setMultiple($multiple){
-		if($this->validate->isBool($multiple)){
+		if(FW_Validate::isBool($multiple)){
 			$this->multiple = $multiple;
 		}
 	}
@@ -72,7 +72,7 @@ final class FW_Html_SelectList extends FW_Html_List{
 	 * @param int
 	 */
 	public final function setSize($size){
-		if($this->validate->isInteger($size)){
+		if(FW_Validate::isInteger($size)){
 			$this->size = $size;
 		}
 	}
@@ -94,7 +94,7 @@ final class FW_Html_SelectList extends FW_Html_List{
 	 * @param string
 	 */
 	public final function setSelected($selected){
-		if($this->validate->isMixed($selected)){
+		if(FW_Validate::isMixed($selected)){
 			if($this->multiple){
 				$this->selected[$selected];
 			}elseif(!$this->multiple && count($this->selected) == 0){

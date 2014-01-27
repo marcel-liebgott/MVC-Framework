@@ -53,7 +53,7 @@ final class FW_Html_Time extends FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setValue($value){
-		if($this->validate->isInteger($value)){
+		if(FW_Validate::isInteger($value)){
 			$this->value = $value;
 		}
 	}
@@ -75,7 +75,7 @@ final class FW_Html_Time extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setMin($min){
-		if($this->validate->isInteger($min)){
+		if(FW_Validate::isInteger($min)){
 			$this->setvalue($min);
 			$this->min = $min;
 		}

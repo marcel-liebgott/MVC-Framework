@@ -57,7 +57,7 @@ final class FW_Html_Month extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setValue($month, $year){
-		if($this->validate->isInteger($month) && $this->validate->isInteger($year)){
+		if(FW_Validate::isInteger($month) && FW_Validate::isInteger($year)){
 			$this->value = $year . '-' . $month;
 		}
 	}
@@ -79,7 +79,7 @@ final class FW_Html_Month extends FW_Html_Element{
 	 * @param string
 	 */
 	public final function setMin($month, $year){
-		if($this->validate->isInteger($month) && $this->validate->isInteger($year)){
+		if(FW_Validate::isInteger($month) && FW_Validate::isInteger($year)){
 			$this->setValue($month, $year);
 			$this->min = $year . '-' . $month;
 		}
@@ -103,7 +103,7 @@ final class FW_Html_Month extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setMax($month, $year){
-		if($this->validate->isInteger($month) && $this->validate->isInteger($year)){
+		if(FW_Validate::isInteger($month) && FW_Validate::isInteger($year)){
 			$this->max = $year . '-' . $month;
 		}
 	}

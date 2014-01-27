@@ -36,14 +36,6 @@ class FW_Socket{
 	private $port;
 
 	/**
-	 * validate
-	 * 
-	 * @access private
-	 * @var FW_Validate
-	 */
-	private $validate;
-
-	/**
 	 * error number
 	 *
 	 * @access private
@@ -83,8 +75,6 @@ class FW_Socket{
 	 * @param int $port
 	 */
 	public function __construct($host, $port = 80, $timeout = 30){
-		$this->validate = new FW_Validate();
-
 		$this->setHost($host);
 		$this->setPort($port);
 		$this->setTimeout($timeout);
@@ -97,7 +87,7 @@ class FW_Socket{
 	 * @param string $host
 	 */
 	public function setHost($host){
-		if($this->validate->isValidUrl($host)){
+		if(FW_Validate::isValidUrl($host)){
 			$this->host = $host;
 		}
 	}
@@ -119,7 +109,7 @@ class FW_Socket{
 	 * @param int $port
 	 */
 	public function setPort($port){
-		if($this->validate->isInteger($port)){
+		if(FW_Validate::isInteger($port)){
 			$this->port = $port;
 		}
 	}
@@ -141,7 +131,7 @@ class FW_Socket{
 	 * @param int $timeout
 	 */
 	public function setTimeout($timeout){
-		if($this->validate->isInteger($timeout)){
+		if(FW_Validate::isInteger($timeout)){
 			$this->timeout = $timeout;
 		}
 	}
@@ -191,7 +181,7 @@ class FW_Socket{
 		$request .= $this->getSocketLine('Connection', 'close' . "\r\n");
 		$request .= $data;
 
-		$this->sendRequest($request);
+		return $this->sendRequest($request);
 	}
 
 	/**
@@ -205,7 +195,7 @@ class FW_Socket{
 		$request .= $this->getSocketLine('Host', $this->host);
 		$request .= $this->getSocketLine('Connection', 'close' . self::$lineEnd);
 
-		$this->sendRequest($request);
+		return $this->sendRequest($request);
 	}
 
 	/**
@@ -240,9 +230,9 @@ class FW_Socket{
 			$ret .= fgets($this->con, 128);
 		}
 
-		return $ret;
-
 		$this->closeConnection();
+
+		return $this->getContent($ret);
 	}
 
 	/**
@@ -252,6 +242,19 @@ class FW_Socket{
 	 */
 	private function closeConnection(){
 		fclose($this->con);
+	}
+
+	/**
+	 * get content
+	 *
+	 * @access private
+	 * @param array $data
+	 * @return string
+	 */
+	private function getContent($data){
+		$pos = FW_String::strpos($data, "\r\n\r\n");
+
+		return FW_String::substr($data, $pos);
 	}
 }
 ?>

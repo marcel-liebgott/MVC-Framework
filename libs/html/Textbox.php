@@ -57,7 +57,7 @@ final class FW_Html_Textbox extends FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setValue($value){
-		if($this->validate->isString($value)){
+		if(FW_Validate::isMixed($value)){
 			$this->value = $value;
 		}
 	}
@@ -79,7 +79,7 @@ final class FW_Html_Textbox extends FW_Html_Element{
 	 * @param string
 	 */
 	public final function setPlaceholder($placeholder){
-		if($this->validate->isString($placeholder)){
+		if(FW_Validate::isMixed($placeholder)){
 			$this->placeholder = $placeholder;
 		}
 	}
@@ -101,7 +101,7 @@ final class FW_Html_Textbox extends FW_Html_Element{
 	 * @var boolean
 	 */
 	public final function setRequired($required){
-		if($this->validate->isBool($required)){
+		if(FW_Validate::isBool($required)){
 			$this->required = $required;
 		}
 	}
@@ -113,7 +113,7 @@ final class FW_Html_Textbox extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setMaxlenght($len){
-		if($this->validate->isInteger($len) && $len < 0){
+		if(FW_Validate::isInteger($len) && $len < 0){
 			$this->maxlenght = $len;
 		}
 	}

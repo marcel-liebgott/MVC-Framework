@@ -76,7 +76,7 @@ final class FW_Html_Textarea extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setCols($cols){
-		if($this->validate->isInteger($cols)){
+		if(FW_Validate::isInteger($cols)){
 			$this->cols = $cols;
 		}
 	}
@@ -98,7 +98,7 @@ final class FW_Html_Textarea extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setRows($rows){
-		if($this->validate->isInteger($rows)){
+		if(FW_Validate::isInteger($rows)){
 			$this->rows = $rows;
 		}
 	}
@@ -120,7 +120,7 @@ final class FW_Html_Textarea extends FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setValue($value){
-		if($this->validate->isString($value)){
+		if(FW_Validate::isString($value)){
 			$this->value = $value;
 		}
 	}
@@ -142,7 +142,7 @@ final class FW_Html_Textarea extends FW_Html_Element{
 	 * @param boolean
 	 */
 	public final function setVerticalResize($resize){
-		if($this->validate->isBool($resize)){
+		if(FW_Validate::isBool($resize)){
 			$this->verticalResize = $resize;
 		}
 	}
@@ -164,7 +164,7 @@ final class FW_Html_Textarea extends FW_Html_Element{
 	 * @param boolean
 	 */
 	public final function setHorizontalResize($resize){
-		if($this->validate->isBool($resize)){
+		if(FW_Validate::isBool($resize)){
 			$this->horizontalResize = $resize;
 		}
 	}
@@ -186,7 +186,7 @@ final class FW_Html_Textarea extends FW_Html_Element{
 	 * @param string
 	 */
 	public final function setPlaceholder($placeholder){
-		if($this->validate->isString($placeholder)){
+		if(FW_Validate::isString($placeholder)){
 			$this->placeholder = $placeholder;
 		}
 	}

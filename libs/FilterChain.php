@@ -25,7 +25,7 @@ class FW_FilterChain{
 	 * @access public
 	 * @param FW_Filter
 	 */
-	public function addFilters(FW_Filter $filter){
+	public function addFilters(FW_Interface_Filter $filter){
 		$this->filters[] = $filter;
 	}
 

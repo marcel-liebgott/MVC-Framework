@@ -103,7 +103,7 @@ final class FW_String{
 	 * @param int
 	 * @return string
 	 */
-	public static function substr($string, $startPos, $lenght){
+	public static function substr($string, $startPos, $lenght = 0){
 		if(self::$use_mb){
 			if($lenght > 0){
 				return mb_substr($string, $startPos, $length);
@@ -140,7 +140,7 @@ final class FW_String{
 	 * @access public 
 	 * @param string
 	 */
-	public function strtolower($string){
+	public static function strtolower($string){
 		if(self::$use_mb){
 			return mb_strtolower($string);
 		}else{
@@ -156,7 +156,9 @@ final class FW_String{
 	 */
 	public static function strtoupper($string){
 		if(self::$use_mb){
-			return 
+			return mb_strtoupper($string);
+		}else{
+			return strtoupper($string);
 		}
 	}
 

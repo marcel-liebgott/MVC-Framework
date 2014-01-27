@@ -54,7 +54,7 @@ class FW_Html_Range extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setMin($min){
-		if($this->validate->isInteger($min)){
+		if(FW_Validate::isInteger($min)){
 			$this->min = $min;
 		}
 	}
@@ -76,7 +76,7 @@ class FW_Html_Range extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setMax($max){
-		if($this->validate->isInteger($max)){
+		if(FW_Validate::isInteger($max)){
 			$this->max = $max;
 		}
 	}
@@ -98,7 +98,7 @@ class FW_Html_Range extends FW_Html_Element{
 	 * @param int
 	 */
 	public final function setStep($step){
-		if($this->validate->isInteger($step)){
+		if(FW_Validate::isInteger($step)){
 			$this->step = $step;
 		}
 	}

@@ -86,14 +86,6 @@ abstract class FW_Html_Element{
 	private $pattern = null;
 
 	/**
-	 * validation
-	 *
-	 * @access protected
-	 * @var FW_Validate
-	 */
-	protected $validate;
-
-	/**
 	 * constructor
 	 *
 	 * @access public
@@ -104,8 +96,6 @@ abstract class FW_Html_Element{
 	 * @param string
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
-		$this->validate = new FW_Validate();
-
 		$this->setName($name);
 		$this->setId($id);
 		$this->setClass($class);
@@ -119,7 +109,7 @@ abstract class FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setName($name){
-		if($this->validate->isString($name)){
+		if(FW_Validate::isMixed($name)){
 			$this->name = $name;
 		}
 	}
@@ -141,7 +131,7 @@ abstract class FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setId($id){
-		if($this->validate->isString($id)){
+		if(FW_Validate::isString($id)){
 			$this->id = $id;
 		}
 	}
@@ -163,7 +153,7 @@ abstract class FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setClass($class){
-		if($this->validate->isString($class)){
+		if(FW_Validate::isMixed($class)){
 			$this->class = $class;
 		}
 	}
@@ -185,7 +175,7 @@ abstract class FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setDefault($default){
-		if($this->validate->isString($default)){
+		if(FW_Validate::isMixed($default)){
 			$this->default = $default;
 		}
 	}
@@ -208,7 +198,7 @@ abstract class FW_Html_Element{
 	 * @param string 
 	 */
 	public final function setStyle($key, $value){
-		if($this->validate->isString($key) && $this->validate->isString($value)){
+		if(FW_Validate::isString($key) && FW_Validate::isString($value)){
 			$this->style[$key] = $value;
 		}
 	}
@@ -230,7 +220,7 @@ abstract class FW_Html_Element{
 	 * @var boolean
 	 */
 	public final function setAutocomplete($complete){
-		if($this->validate->isBool($complete)){
+		if(FW_Validate::isBool($complete)){
 			$this->autocomplete = $complete;
 		}
 	}
@@ -262,7 +252,7 @@ abstract class FW_Html_Element{
 	 * @param boolean
 	 */
 	public final function setAutofocus($focus){
-		if($this->validate->isBool($focus)){
+		if(FW_Validate::isBool($focus)){
 			$this->autofocus = $focus;
 		}
 	}
@@ -286,7 +276,7 @@ abstract class FW_Html_Element{
 	 * @param mixed
 	 */
 	public final function setDisabled($value){
-		if($this->validate->isMixed($value)){
+		if(FW_Validate::isMixed($value)){
 			$this->disabled = $value;
 		}
 	}
@@ -308,7 +298,7 @@ abstract class FW_Html_Element{
 	 * @param mixed
 	 */
 	public final function setPattern($pattern){
-		if($this->validate->isMixed($pattern)){
+		if(FW_Validate::isMixed($pattern)){
 			$this->pattern = $pattern;
 		}
 	}

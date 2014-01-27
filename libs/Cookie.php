@@ -1,5 +1,4 @@
 <?php
-
 if(!defined('PATH')){
     die("No direct script access allowed");
 }
@@ -12,13 +11,62 @@ if(!defined('PATH')){
  * @package nvc
  * @subpackage libs
  */
-class FW_Cookie{    
+class FW_Cookie{
+    /**
+     * name of the cookie
+     *
+     * @access private
+     * @var string
+     */   
     private $name;
+
+    /**
+     * lifetime of the cookie
+     *
+     * @access private
+     * @var int
+     */
     private $lifetime;
+
+    /**
+     * value of the cookie
+     *
+     * @access private
+     * @var string
+     */
     private $value;
+
+    /**
+     * path of the cookie
+     *
+     *
+     * @access private
+     * @var string
+     */
     private $path;
+
+    /**
+     * domain of the cookie
+     *
+     * @access private
+     * @var string
+     */
     private $domain;
+
+    /**
+     * use ssl secure
+     *
+     * @access private
+     * @var boolean
+     */
     private $secure;
+
+    /**
+     * use http only
+     *
+     * @access private
+     * @var boolean
+     */
     private $httponly = true;
     
     const KEY_ONE_HOUR = 3600;
@@ -26,28 +74,37 @@ class FW_Cookie{
     const KEY_ONE_WEEK = 604800;
     const KEY_ONE_MONTH = 2592000;
     const KEY_ONE_YEAR = 31536000;
-    
-    public function setCookie($name, $value, $lifetime, $path = null, $domain = null, $secure = false, $httponly = true){
-        $val = new FW_Validate();
-        $check = true;
-        
-        if($val->isString($name) == false || $val->isMixed($value) == false){
-            $check = false;
+
+    public function __construct($name, $value, $lifetime, $path = null, $domain = null, $secure = false, $httponly = true){
+        if(FW_Validate::isString($name)){
+            $this->setName($name);
         }
-        
-        $lifet = $lifetime + time();
-        
-        $this->setName($name);
-        $this->setValue($value);
-        $this->setLifetime($lifet);
-        $this->setPath($path);
-        $this->setDomain($domain);
-        $this->setSecure($secure);
-        $this->setHttpOnly($httponly);
-        
-        if($check == true){
-            return setcookie($name, $value, $lifet, $path, $domain, $secure, $httponly);
+
+        if(FW_Validate::isMixed($value)){
+            $this->setValue($value);
         }
+
+        if(FW_Validate::isInteger($lifetime)){
+            $this->setLifetime($lifetime);
+        }
+
+        if($path !== null && FW_Validate::isString($path)){
+            $this->setPath($path);
+        }
+
+        if($domain !== null && FW_Validate::isString($domain)){
+            $this->seDomain($domain);
+        }
+
+        if(FW_Validate::isBool($secure)){
+            $this->setSecure($secure);
+        }
+
+        if(FW_Validate::isBool($httponly)){
+            $this->setHttpOnly($httponly);
+        }
+
+        return setcookie($name, $value, $lifet, $path, $domain, $secure, $httponly);
     }
     
     /**
@@ -93,10 +150,10 @@ class FW_Cookie{
      * @throws FW_Exception
      */
     public function setLifetime($lifetime = self::KEY_ONE_YEAR){
-        if(ctype_digit($lifetime)){
+        if(FW_Security::isInteger($lifetime)){
             $this->lifetime = (int) $lifetime;
         }else{
-            throw new FW_Exception("lifetime for cookie isn't valide");
+            throw new FW_Exception_Exception("lifetime for cookie isn't valide");
         }
     }
     
@@ -119,11 +176,10 @@ class FW_Cookie{
      * @throws FW_Exception
      */
     private function setDomain($domain){
-        if($domain !== null)
-        if(filter_var($domain, FILTER_VALIDATE_URL)){
+        if(FW_Validate::isValidUrl($domain){
             $this->domain = $domain;
         }else{
-            throw new FW_Exception("domain for cookie isn't valide");
+            throw new FW_Exception_Exception("domain for cookie isn't valide");
         }
     }
     
@@ -221,10 +277,11 @@ class FW_Cookie{
      * check if exists an cookie
      * 
      * @access public
+     * @static
      * @param string $name
      * @return boolean
      */
-    public function existsCookie($name){
+    public static function existsCookie($name){
         if(isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && $_COOKIE[$name]){
             return true;
         }else{

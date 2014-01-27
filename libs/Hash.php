@@ -4,12 +4,12 @@ if(!defined('PATH')){
     die("No direct script access allowed");
 }
 
-class FW_Hash{
-    public function __construct(){
-    }
-
+final class FW_Hash{
     /**
+     * create a new hast
      * 
+     * @access public
+     * @static
      * @param string $algo algorithm (md5, sha1, wirlpool, ...)
      * @param string $data data to encode
      * @param string $salt salt

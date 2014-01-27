@@ -8,16 +8,44 @@ if(!defined('PATH')){
  * Description of FW_Language
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @version 1.00
  * @since 1.00
  * @package mvc
  * @subpackage libs
  */
-
 class FW_Language{
+    /**
+     * instance
+     *
+     * @access private
+     * @static
+     * @var resource
+     */
     private static $instance = null;
+
+    /**
+     * lang ini file
+     *
+     * @access private
+     * @var string
+     */
     private $langFile;
+
+    /**
+     * all lang keys with his value
+     *
+     * @access private
+     * @var array
+     */
     private $langValues = array();
     
+    /**
+     * get instance
+     *
+     * @access public
+     * @static
+     * @return resource
+     */
     public static function getInstance(){
         if(self::$instance == null){
             self::$instance = new FW_Language();
@@ -26,9 +54,12 @@ class FW_Language{
         return self::$instance;
     }
     
-    public function __construct(){
-        //$config = FW_Registry::getInstance()->getConfiguration();
-        
+    /**
+     * constructor
+     *
+     * @access public
+     */
+    public function __construct(){        
         $lang = FW_Session::get('lang');
         
         $file = LANG_DIR . $lang . '.ini';
@@ -92,8 +123,8 @@ class FW_Language{
      * @param array $array
      * @return array
      */
-    public function convertKeyToLanuage($array){
-        if(is_array($array)){
+    public function convertKeyToLanguage($array){
+        if(FW_Validate::isArray($array)){
             $arr = array();
             
             for($i = 0; $i < count($array); $i++){
