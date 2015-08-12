@@ -12,21 +12,12 @@ $protocol = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == '1' || strtolower
 
 define('PATH', $protocol . '://' . $_SERVER['SERVER_NAME'] . '/' . basename(realpath('.')) . '/');
 
-function __autoload($class){
-	if(substr($class, 0, 3) == "FW_"){
-        $class = substr($class, 3);
-        
-        $class_arr = explode('_', $class);
-
-        $path = implode('/', $class_arr) . '.php';
-
-        require_once LIBS . $path;
-    }else{
-        die("Class '" . $class . "' doesn't a enabled framework class " . __CLASS__);
-    }
-}
+require_once 'libs/Autoload.php';
 
 try{
+	$autoloader = new FW_Autoload("FW_");
+	$autoloader->register();
+	
 	$loader = FW_Bootstrap::getInstance();
 	$loader->init();
 }catch(FW_Exception_Exception $e){
