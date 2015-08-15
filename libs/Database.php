@@ -4,15 +4,8 @@ if(!defined('PATH')){
     die("No direct script access allowed");
 }
 
-class FW_Database extends PDO{
-    /**
-     * instance
-     *
-     * @access private
-     * @var ressource
-     */
-    private static $instance = null;
-
+class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
+	private static $pdo = PDO;
     /**
      * use transaction
      *
@@ -28,11 +21,7 @@ class FW_Database extends PDO{
      * @return ressource
      */
     public static function getInstance(){
-        if(self::$instance === null){
-            self::$instance = new FW_Database(TYPE, HOST, USER, PASS, DATA);
-        }
-
-        return self::$instance;
+        return parent::_getInstance(get_class());
     }
 
     /**

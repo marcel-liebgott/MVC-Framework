@@ -10,16 +10,7 @@ if(!defined('PATH')){
  * @version 1.00
  * @since 1.00
  */
-class FW_Configuration{
-    /**
-     * instance
-     *
-     * @access private
-     * @static
-     * @var resource
-     */
-    private static $instance = null;
-
+class FW_Configuration extends FW_Singleton{
     /**
      * a array with all application configuration
      *
@@ -35,12 +26,8 @@ class FW_Configuration{
      * @static
      * @return resource
      */
-    public static function getInstance(){
-        if(self::$instance === null){
-            self::$instance = new FW_Configuration();
-        }
-        
-        return self::$instance;
+    public static function getInstance(){        
+        return parent::_getInstance(get_class());
     }
     
     /**

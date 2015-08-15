@@ -5,8 +5,7 @@ if(!defined('PATH')){
 }
 
 class FW_Auth{
-    public function __construct() {
-    }
+    public function __construct(){}
 
     public static function handleLogin(){
         FW_Session::init();

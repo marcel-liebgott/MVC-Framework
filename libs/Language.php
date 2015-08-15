@@ -13,15 +13,7 @@ if(!defined('PATH')){
  * @package mvc
  * @subpackage libs
  */
-class FW_Language{
-    /**
-     * instance
-     *
-     * @access private
-     * @static
-     * @var resource
-     */
-    private static $instance = null;
+class FW_Language extends FW_Singleton{
 
     /**
      * lang ini file
@@ -46,20 +38,19 @@ class FW_Language{
      * @static
      * @return resource
      */
-    public static function getInstance(){
-        if(self::$instance == null){
-            self::$instance = new FW_Language();
-        }
-        
-        return self::$instance;
+	public static function getInstance(){
+        return parent::_getInstance(get_class());
     }
+    
     
     /**
      * constructor
      *
      * @access public
      */
-    public function __construct(){        
+    public function __construct(){
+    	parent::__construct();
+    	
         $lang = FW_Session::get('lang');
         
         $file = LANG_DIR . $lang . '.ini';

@@ -3,16 +3,7 @@ if(!defined('PATH')){
 	die("no direct script access allowed");
 }
 
-class FW_Registry{
-    /**
-     * instance
-     *
-     * @access private
-     * @static
-     * @var resource
-     */
-	private static $instance = null;
-
+class FW_Registry extends FW_Singleton{
     /**
      * array of saved instances
      *
@@ -36,19 +27,15 @@ class FW_Registry{
      * @return resource
      */
     public static function getInstance(){
-        if(self::$instance === null){
-            self::$instance = new FW_Registry();
-        }
-        
-        return self::$instance;
+       return parent::_getInstance(get_class());
     }
 
     /**
      * constructor
      *
-     * @access private
+     * @access public
      */
-    private function __construct(){}
+    public function __construct(){}
     
     /**
      * copy

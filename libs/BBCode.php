@@ -3,14 +3,7 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-class FW_BBCode{
-	/**
-	 * instance
-	 *
-	 * @access private
-	 * @var instance
-	 */
-	private static $instance = null;
+class FW_BBCode extends FW_Singleton{
 
 	/**
 	 * enable BBCode Tags
@@ -63,11 +56,7 @@ class FW_BBCode{
 	 * @return static instance
 	 */
 	public static function getInstance(){
-		if(self::$instance === null){
-			self::$instance = new FW_BBCode();
-		}
-
-		return self::$instance;
+		return parent::_getInstance(get_class());
 	}
 
 	/**

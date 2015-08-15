@@ -10,7 +10,7 @@ if(!defined('PATH')){
  * @version 1.00
  * @since 1.00
  */
-class FW_Bootstrap{
+class FW_Bootstrap extends FW_Singleton{
 	/**
 	 * registry instance
 	 *
@@ -19,14 +19,6 @@ class FW_Bootstrap{
 	 * @var instance
 	 */
 	private static $registry = null;
-
-	/**
-	 * instance
-	 *
-	 * @access private
-	 * @var resource
-	 */
-	private static $instance = null;
 
 	/**
 	 * actually controller
@@ -53,17 +45,13 @@ class FW_Bootstrap{
 	private $request;
 
 	public static function getInstance(){
-		if(self::$instance === null){
-			self::$instance = new FW_Bootstrap();
-		}
-
-		return self::$instance;
+		return parent::_getInstance(get_class());
 	}
 
-	private function __construct(){
+	public function __construct(){
 		if(self::$registry == null){
-            self::$registry = FW_Registry::getInstance();
-        }
+			self::$registry = FW_Registry::getInstance();
+		}
 	}
 
 	/**

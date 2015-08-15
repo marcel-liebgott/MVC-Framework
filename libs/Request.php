@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @since 1.00
  */
-class FW_Request{
+class FW_Request extends FW_Singleton{
 	/**
 	 * post request
 	 *
@@ -67,15 +67,6 @@ class FW_Request{
     private $referer;
 
 	/**
-	 * obkject instance
-	 *
-	 * @access private
-     * @static
-	 * @var instance
-	 */
-	private static $instance = null;
-
-	/**
 	 * return the singleton instance of this class
 	 * 
 	 * @access public
@@ -83,11 +74,7 @@ class FW_Request{
 	 * @return resource
 	 */
 	public static function getInstance(){
-		if(self::$instance == null){
-			self::$instance = new FW_Request();
-		}
-
-		return self::$instance;
+		return parent::_getInstance(get_class());
 	}
 
 	/**
