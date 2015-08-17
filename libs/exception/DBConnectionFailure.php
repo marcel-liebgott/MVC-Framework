@@ -5,7 +5,7 @@ if(!defined('PATH')){
 
 final class FW_Exception_DBConnectionFailure extends FW_Exception_ConnectionFailure{
 	public function __construct($message, $number){
-		$msg = 'Could not connect to Database';
+		$msg = 'Could not connect to Database <br>';
 
 		if($message){
 			if($number > 0){
@@ -15,7 +15,7 @@ final class FW_Exception_DBConnectionFailure extends FW_Exception_ConnectionFail
 			$msg .= $message;
 		}
 
-		$msg .= '\n' . 'Please check your connection settings!';
+		$msg .= '<br> Please check your connection settings!';
 
 		parent::__construct($msg, $number);
 	}

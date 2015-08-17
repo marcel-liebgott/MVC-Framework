@@ -3,7 +3,7 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-class FW_Exception_ConntectionFailure extends FW_Exception_Critical{
+class FW_Exception_ConnectionFailure extends FW_Exception_Critical{
 	/**
 	 * constructor
 	 *

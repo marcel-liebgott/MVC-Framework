@@ -5,7 +5,15 @@ if(!defined('PATH')){
 }
 
 class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
-	private static $pdo = PDO;
+	/**
+	 * pdo database instance
+	 * 
+	 * @access private
+	 * @static
+	 * @var PDO instance
+	 */
+	private static $pdo = null;
+	
     /**
      * use transaction
      *
@@ -21,26 +29,51 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return ressource
      */
     public static function getInstance(){
-        return parent::_getInstance(get_class());
+        return parent::__getInstance(get_class());
     }
 
     /**
      * constructer
      *
      * @access public
-     * @param string
-     * @param string
-     * @param string
-     * @param string
-     * @param string
      */
-    public function __construct($type, $host, $user, $pass, $data){
-        try{
-            parent::__construct($type . ':host=' . $host. ';dbname=' . $data , $user, $pass);    
-            
-            parent::setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }catch(PDOException $e){
-            throw new FW_Exception_DBConnectionFailure(PDO::errorInfo(), PDO::errorCode());
+    public function __construct(){
+    	$config = FW_Registry::getInstance()->get(FW_Registry::KEY_CONFIGURATION);
+    	 
+    	if($config->getConfig(new FW_String("use_database")) == true){
+    		try{
+	        	$type = null;
+	        	$host = null;
+	        	$data = null;
+	        	$user = null;
+	        	$pass = null;
+	        	
+	        	if(defined(TYPE)){
+	        		$type = TYPE;
+	        	}
+	        	
+	        	if(defined(HOST)){
+	        		$host = HOST;
+	        	}
+	        	
+	        	if(defined(DATA)){
+	        		$data = DATA;
+	        	}
+	        	
+	        	if(defined(USER)){
+	        		$user = USER;
+	        	}
+	        	
+	        	if(defined(PASS)){
+	        		$pass = PASS;
+	        	}
+	        	
+	            self::$pdo = new PDO($type . ':host=' . $host. ':8889;dbname=' . $data , $user, $pass);
+	            
+	            self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	        }catch(PDOException $e){
+	            throw new FW_Exception_DBConnectionFailure($e->getMessage(), $e->getCode());
+	        }
         }
     }
 
