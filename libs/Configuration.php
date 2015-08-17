@@ -54,7 +54,7 @@ class FW_Configuration extends FW_Singleton{
      * @param string $value
      */
     public function setConfig($key, $value){
-        if(FW_Validate::isMixed($key) && FW_Validate::isMixed($value)){
+        if($key !== null && $value !== null){
             $key = FW_String::strtolower($key);
             $this->config[$key] = $value;
         }

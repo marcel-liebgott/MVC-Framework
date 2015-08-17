@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * this class work with much of string function in your selected encoding
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @version 1.00
  */ 
 final class FW_String{
 	/**
@@ -24,6 +25,36 @@ final class FW_String{
 	 * @var boolean
 	 */
 	private static $use_mb;
+	
+	/**
+	 * string value
+	 * 
+	 * @access private
+	 * @var String
+	 */
+	private $value;
+	
+	/**
+	 * constructor
+	 * 
+	 * @access public
+	 * @param unknown $string
+	 * @since 1.01
+	 */
+	public function __construct($string){
+		$this->value = $string;
+	}
+	
+	/**
+	 * method to define the output stream of this object
+	 * 
+	 * @access public
+	 * @since
+	 * @return String
+	 */
+	public function __toString(){
+		return $this->value;
+	}
 
 	/**
 	 * set the boolean value for using mb function
