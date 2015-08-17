@@ -3,15 +3,7 @@ if(!defined('PATH')){
 	die("no direct script access allowed test");
 }
 
-class FW_Special{
-	/**
-	 * static instance of this class
-	 *
-	 * @access private
-	 * @var instance
-	 */
-	private static $instance = null;
-
+class FW_Special extends FW_Singleton{
 	/**
 	 * database
 	 *
@@ -23,21 +15,20 @@ class FW_Special{
 	/**
 	 * singleton instance
 	 *
-	 * @access public
+	 * @access public#
+	 * @return object
 	 */
 	public static function getInstance(){
-		if(self::$instance === null){
-			self::$instance = new FW_Special();
-		}
-
-		return self::$instance;
+		return parent::_getInstance(get_class());
 	}
 
-	private function __construct(){
+	/**
+	 * constrcutor
+	 * 
+	 * @access public
+	 */
+	public function __construct(){
 		$this->db = FW_Registry::getInstance()->getDatabase();
-	}
-
-	private function __clone(){
 	}
 }
 ?>

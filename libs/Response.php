@@ -11,12 +11,30 @@ if(!defined('PATH')){
  * @since 1.00
  * @category Marcel Liebgott
  */
-class FW_Response{
+class FW_Response extends FW_Singleton{
+	/**
+	 * header array
+	 * 
+	 * @access private
+	 * @var array
+	 */
     private $headers = array();
-    private $content = '';
-    private $status = "200 OK";
     
-    private static $instance = null;
+    /**
+     * response content
+     * 
+     * @access private
+     * @var String
+     */
+    private $content = '';
+    
+    /**
+     * HTTP status
+     * 
+     * @access private
+     * @var String
+     */
+    private $status = "200 OK";
     
     /**
      * return the instance, because is an singleton class
@@ -25,17 +43,7 @@ class FW_Response{
      * @return type $instace
      */
     public static function getInstance(){
-        if(self::$instance == null){
-            self::$instance = new FW_Response();
-        }
-        
-        return self::$instance;
-    }
-    
-    public function __construct(){
-    }
-
-    public function __clone(){
+        return parent::_getInstance(get_class());
     }
     
     /**
