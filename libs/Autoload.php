@@ -51,6 +51,10 @@ class FW_Autoload{
 			$class = substr($class, 3);
 		
 			$class_arr = explode('_', $class);
+			
+			for($i = 0; $i < count($class_arr) - 1; $i++){
+				$class_arr[$i] = strtolower($class_arr[$i]);
+			}
 		
 			$path = implode('/', $class_arr) . '.php';
 		
