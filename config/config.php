@@ -15,6 +15,11 @@ define('ACP_DEFAULT_CTR', 	'index');
 define('LIBS',				'libs/');
 
 /**
+ * defined the tests directory
+ */
+define('TESTS',				'tests/');
+
+/**
  * directory for admin
  */
 define('ACP_DIR',			'admin/');
