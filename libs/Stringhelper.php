@@ -49,7 +49,7 @@ final class FW_Stringhelper{
 	 */
 	public static function isValidUrl($url){
 		// has url an protocol (http or https)
-		if(substr($url, 0, 7) !== 'http://' || substr($url, 0, 8) !== 'https://'){
+		if(FW_String::substr($url, 0, 7) !== 'http://' || FW_String::substr($url, 0, 8) !== 'https://' || FW_String::substr($url, 0, 6) !== "ftp://"){
 			$url = 'http://' . $url;
 		}
 

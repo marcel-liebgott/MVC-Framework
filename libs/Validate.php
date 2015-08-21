@@ -1,5 +1,4 @@
-<?php 
-  
+<?php   
 if(!defined('PATH')){ 
     die("No direct script access allowed"); 
 } 

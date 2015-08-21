@@ -104,7 +104,7 @@ class FW_Language extends FW_Singleton{
             return $this->langValues[$ident];
         }
         
-        return null;
+        return "";
     }
     
     /**

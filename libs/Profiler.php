@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could measure the time and memory usage
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @version 1.00
  */
 final class FW_Profiler{
 	/**
@@ -24,6 +25,8 @@ final class FW_Profiler{
 
 	/**
 	 * constructer
+	 * 
+	 * @access public
 	 */
 	public function __construct(){
 		$this->start_time = 0;
@@ -34,6 +37,7 @@ final class FW_Profiler{
 	 * start profiling
 	 *
 	 * @access public
+	 * @since 1.00
 	 */
 	public function start(){
 		$this->start_time = explode(' ', microtime());
@@ -44,6 +48,7 @@ final class FW_Profiler{
 	 * get needed time between begin until now
 	 * 
 	 * @access public
+	 * @since 1.00
 	 * @return float
 	 */
 	public function getTime(){
@@ -58,6 +63,7 @@ final class FW_Profiler{
 	 * get needed memory between begin until now
 	 *
 	 * @access public
+	 * @since 1.00
 	 * @return int
 	 */
 	public function getMemory(){

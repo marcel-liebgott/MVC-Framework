@@ -77,10 +77,10 @@ class FW_Ftp{
 	 * @param int $timeout
 	 */
 	public function __construct($host, $port = 21, $user, $pass, $timeout = 90){
-		$this->setHost($host);
+		$this->setHost(new FW_String($host));
 		$this->setPort($port);
-		$this->setUser($user);
-		$this->setPass($pass);
+		$this->setUser(new FW_String($user));
+		$this->setPass(new FW_String($pass));
 		$this->setTimeout($timeout);
 	}
 
@@ -135,7 +135,7 @@ class FW_Ftp{
 	 * @param string $user
 	 */
 	public function setUser($user){
-		if(FW_Validate::isMixed($user)){
+		if(FW_Validate::isString($user)){
 			$this->user = $user;
 		}
 	}
@@ -203,7 +203,7 @@ class FW_Ftp{
 		$this->con = ftp_connect($this->host, $this->port, $this->timeout);
 
 		if(!$this->con){
-			throw new FW_Exception_ConntectionFailure("Can't connect to FTP-Server: " . $this->host) ;
+			throw new FW_Exception_ConnectionFailure("Can't connect to FTP-Server: " . $this->host) ;
 		}
 
 		$this->login();
@@ -226,7 +226,7 @@ class FW_Ftp{
 	 */
 	public function login(){
 		if(!ftp_login($this->con, $this->user, $this->pass)){
-			throw new FW_Exception_ConntectionFailure("Can't login on FTP-Server: " . $this->host . "\n"."Please check your FTP-Settings");
+			throw new FW_Exception_ConnectionFailure("Can't login on FTP-Server: " . $this->host . "\n"."Please check your FTP-Settings");
 		}
 	}
 
