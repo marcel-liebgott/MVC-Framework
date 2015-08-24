@@ -176,7 +176,7 @@ class FW_Cookie{
      * @throws FW_Exception
      */
     private function setDomain($domain){
-        if(FW_Validate::isValidUrl($domain){
+        if(FW_Validate::isValidUrl($domain)){
             $this->domain = $domain;
         }else{
             throw new FW_Exception_Exception("domain for cookie isn't valide");

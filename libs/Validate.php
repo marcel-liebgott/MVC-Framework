@@ -109,7 +109,7 @@ final class FW_Validate{
      * @return boolean|string is failed
      */
     public static function isString($data){
-        if(!ctype_alpha($data) && get_class($data) !== FW_String::class){
+        if(!ctype_alpha($data) && !is_string($data) && !($data instanceof FW_String)){
             throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_string'));
         } 
           

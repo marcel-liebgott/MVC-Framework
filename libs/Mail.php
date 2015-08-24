@@ -256,12 +256,12 @@ class FW_Mail{
 		if(count($this->attachment) > 0){
 			// prepare e-mail body
 			$prepare = '--' . self::$delimiter . '\r\n';
-			$prepare .= 'Content-Type: ' : $this->contentType . '; charset=' . $this->charset . '\r\n';
+			$prepare .= 'Content-Type: ' . $this->contentType . '; charset=' . $this->charset . '\r\n';
 			$prepare .= 'Content-Transfer-Encoding: UTF-8\r\n';
 
 			// attach attachment
 			$attach = '--' . self::$delimiter . '\r\n';
-			$attach .= 'Content-Type: ' : $this->attachment['type'] . '; name="' . $this->attachment['name'] . '"\r\n';
+			$attach .= 'Content-Type: ' . $this->attachment['type'] . '; name="' . $this->attachment['name'] . '"\r\n';
 			$attach .= 'Content-Transfer-Encoding: base64\r\n';
 			$attach .= chunk_split(base64_encode(file_get_contents($this->attachment['tmp_name'])));
 			$attach .= '\n';

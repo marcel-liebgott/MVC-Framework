@@ -154,7 +154,7 @@ final class FW_Mail_SMTP extends FW_Mail_Base implements FW_Interface_Mail{
 			echo "can't connect to " . $this->host . ":" . $this->port;
 		}
 
-		$this->sendCommand('EHLO')
+		$this->sendCommand('EHLO');
 	}
 
 	/**

@@ -31,22 +31,6 @@ class FW_Configuration extends FW_Singleton{
     }
     
     /**
-     * constructor
-     *
-     * @access public
-     */
-    public function __construct(){
-    }
-    
-    /**
-     * copy
-     *
-     * @access public
-     */
-    public function __clone(){
-    }
-    
-    /**
      * set a new config value
      *
      * @access public
@@ -108,7 +92,7 @@ class FW_Configuration extends FW_Singleton{
                 $this->setConfig($key, $value);
             }
         }else{
-            throw new FW_Exception_MissingData("can't find ini file");
+            throw new FW_Exception_MissingData("can't find ini file (" . $path . ")");
         }
     }
 }
