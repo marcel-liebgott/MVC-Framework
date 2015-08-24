@@ -26,6 +26,14 @@ try{
 	$string = new FW_Test_StringTest();
 	$string->run();
 	$string->printResult();
+	
+	$feed = new FW_Test_FeedTest();
+	$feed->run();
+	$feed->printResult();
+	
+	$array = new FW_Test_ArrayTest();
+	$array->run();
+	$array->printResult();
 }catch(Exception $e){
 	echo "Exception caught: " . $e->getMessage() . '<br>';
 	echo "Line: " . $e->getLine() . '<br>';
