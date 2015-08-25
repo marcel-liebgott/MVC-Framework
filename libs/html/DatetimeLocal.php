@@ -3,8 +3,13 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-final class FW_Html_DatetimeLocal extends FW_Html_Element{
-		/**
+/**
+ * with this class you could be generate an html datepicker - based on html5
+ *
+ * @author Marcel Liebgott <Marcel@mliebgott.de>
+ */
+final class FW_Html_DatetimeLocal extends FW_Abstract_HtmlElement{
+	/**
 	 * min property of this element
 	 *
 	 * @access private

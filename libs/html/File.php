@@ -8,7 +8,7 @@ if(!defined('PATH')){
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  */
-final class FW_Html_File extends FW_Html_Element{
+final class FW_Html_File extends FW_Abstract_HtmlElement{
 	/**
 	 * placeholder of this element
 	 *

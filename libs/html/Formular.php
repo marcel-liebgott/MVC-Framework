@@ -3,7 +3,12 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-final class FW_Html_Formular extends FW_Html_Element{
+/**
+ * with this class you could be generate an html formular - based on html5
+ *
+ * @author Marcel Liebgott <Marcel@mliebgott.de>
+ */
+final class FW_Html_Formular extends FW_Abstract_HtmlElement{
 	/**
 	 * constructor
 	 *

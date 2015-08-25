@@ -8,7 +8,7 @@ if(!defined('PATH')){
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  */
-final class FW_Html_Button extends FW_Html_Element{
+final class FW_Html_Button extends FW_Abstract_HtmlElement{
 	/**
 	 * value of this element
 	 *

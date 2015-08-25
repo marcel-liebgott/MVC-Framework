@@ -3,7 +3,13 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-abstract class FW_Html_List{
+/**
+ * basic class for HTML list elements
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
+abstract class FW_Abstract_HtmlList{
 	/**
 	 * id of this element
 	 * for css, javascript, jquery, ...
@@ -111,7 +117,7 @@ abstract class FW_Html_List{
 	 * @param string 
 	 */
 	public final function setName($name){
-		if(FW_Validate::FW_Validate::isString($name)){
+		if(FW_Validate::isString($name)){
 			$this->name = $name;
 		}
 	}

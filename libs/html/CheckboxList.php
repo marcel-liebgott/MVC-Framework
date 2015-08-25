@@ -3,7 +3,12 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-final class FW_Html_CheckboxList extends FW_Html_List{
+/**
+ * with this class you could be generate an html list of checkboxes - based on html5
+ *
+ * @author Marcel Liebgott <Marcel@mliebgott.de>
+ */
+final class FW_Html_CheckboxList extends FW_Abstract_HtmlElement{
 	/**
 	 * delimiter to display each item
 	 *

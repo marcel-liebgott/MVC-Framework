@@ -3,7 +3,12 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-final class FW_Html_Search extends FW_Html_Element{
+/**
+ * with this class you could be generate an html search element - based on html5
+ *
+ * @author Marcel Liebgott <Marcel@mliebgott.de>
+ */
+final class FW_Html_Search extends FW_Abstract_HtmlElement{
 	/**
 	 * placeholder property of this element
 	 *
@@ -11,6 +16,7 @@ final class FW_Html_Search extends FW_Html_Element{
 	 * @var string
 	 */
 	private $placeholder;
+	
 	/**
 	 * constructor
 	 *

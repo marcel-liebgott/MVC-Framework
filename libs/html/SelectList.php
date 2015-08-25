@@ -3,7 +3,12 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-final class FW_Html_SelectList extends FW_Html_List{
+/**
+ * with this class you could be generate a list of html dropdown element - based on html5
+ *
+ * @author Marcel Liebgott <Marcel@mliebgott.de>
+ */
+final class FW_Html_SelectList extends FW_Abstract_HtmlList{
 	/**
 	 * multiple property of this element
 	 *

@@ -3,7 +3,13 @@ if(!defined('PATH')){
 	die("no direct script access allowed");
 }
 
-abstract class FW_Html_Element{
+/**
+ * basic class for html input elements
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @verion 1.00
+ */
+abstract class FW_Abstract_HtmlElement{
 	/**
 	 * id of this element
 	 * for css, javascript, jquery, ...
