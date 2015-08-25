@@ -1,9 +1,14 @@
 <?php
-
 if(!defined('PATH')){
     die("No direct script access allowed");
 }
 
+/**
+ * class to generate a hash string
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
 final class FW_Hash{
     /**
      * create a new hast

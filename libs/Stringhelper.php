@@ -8,12 +8,14 @@ if(!defined('PATH')){
  * they will be checked or manipulated it
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @version 1.00
  */
 final class FW_Stringhelper{
 	/**
 	 * return a cleaned date value in format DD.MM.YYY
 	 * 
 	 * @access public
+	 * @since 1.00
 	 * @param string
 	 * @return string
 	 */
@@ -29,6 +31,7 @@ final class FW_Stringhelper{
 	 * checked if the e-mail adress is valid
 	 *
 	 * @access public
+	 * @since 1.00
 	 * @param string
 	 * @return string
 	 */
@@ -44,6 +47,7 @@ final class FW_Stringhelper{
 	 * checked if the url is valid
 	 *
 	 * @access public
+	 * @since 1.00
 	 * @param string
 	 * @return string
 	 */
@@ -64,6 +68,7 @@ final class FW_Stringhelper{
 	 * get the size in a human format
 	 *
 	 * @access public
+	 * @since 1.00
 	 * @param flaot
 	 * @param int
 	 * @return string

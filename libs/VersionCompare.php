@@ -3,11 +3,18 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
+/**
+ * comparison to check if a new Version exists
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
 final class FW_VersionCompare{
 	/**
 	 * check for new update
 	 *
 	 * @access public
+	 * @since 1.00
 	 * @static
 	 * @return boolean
 	 */

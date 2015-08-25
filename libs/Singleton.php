@@ -46,7 +46,7 @@ abstract class FW_Singleton{
 	 */
 	public function __construct(){
 		if(self::$_locked){
-			echo "Exception";
+			throw new FW_Exception("Called class is a singleton class");
 		}
 	}
 

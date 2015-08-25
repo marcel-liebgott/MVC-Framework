@@ -1,5 +1,4 @@
 <?php
-
 if(!defined('PATH')){
     die("No direct script access allowed");
 }
@@ -8,9 +7,7 @@ if(!defined('PATH')){
  * Description of FW_ViewParser
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
- * @since 1.00
- * @package mvc
- * @subpackage libs
+ * @version 1.00
  */
 class FW_Mvc_ViewParser{
     private $enableKindsOfIncludes = array('template' => 'views/');

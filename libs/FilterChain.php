@@ -7,7 +7,7 @@ if(!defined('PATH')){
  * FilterChain
  * 
  * @author Marcel Liebgott <Marcel@mliebgott.de>
- * @since 1.00
+ * @version 1.00
  * @category Marcel Liebgott
  */
 class FW_FilterChain{

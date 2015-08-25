@@ -4,6 +4,12 @@ if(!defined('PATH')){
     die("No direct script access allowed");
 }
 
+/**
+ * class to work with databases
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
 class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 	/**
 	 * pdo database instance
@@ -77,9 +83,6 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
         }
     }
 
-    public function __clone(){
-    }
-
     /**
      * execute database query
      *
@@ -113,14 +116,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             }
             
             $this->execute($sth);
-
-            /*echo '<pre>';
-                print_r($sth);
-            echo '</pre>';*/
             
             return $sth->fetchAll($fetchMode);
         }catch(PDOException $e){
-            throw new FW_ExceptionQueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }
     }
     
@@ -144,15 +143,11 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
                 $sth->bindValue(":$key", $value);
             }
             
-            /*echo '<pre>';
-                print_r($sth);
-            echo '</pre>';*/
-            
             $this->execute($sth);
 
             return $this->lastInsertId();
         }catch(PDOException $e){
-            throw new FW_ExceptionQueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }
     }
     
@@ -168,7 +163,8 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
         try{
             ksort($data);
             
-            $fieldDetails = '';        
+            $fieldDetails = '';
+            
             foreach($data as $key => $value){
                 $fieldDetails .= "`" . $key . "` = :" . $key . ",";
             }
@@ -180,14 +176,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             foreach($data as $key => $value){
                 $sth->bindValue(":$key", $value);
             }
-
-            /*echo '<pre>';
-                print_r($sth);
-            echo '</pre>';*/
             
             $this->execute($sth);
         }catch(PDOException $e){
-            throw new FW_ExceptionQueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }
     }
     
@@ -207,7 +199,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 
             return $sth;
         }catch(PDOException $e){
-            throw new FW_ExceptionQueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }
     }
     

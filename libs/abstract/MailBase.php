@@ -3,7 +3,13 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-abstract class FW_Mail_Base{
+/**
+ * basic class for mail
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
+abstract class FW_Abstract_MailBase{
 	/**
 	 * e-mail from
 	 *
@@ -123,7 +129,6 @@ abstract class FW_Mail_Base{
 	 * constructor
 	 */
 	public function __construct(){
-
 		self::$delimiter = md5(time());
 	}
 
@@ -135,6 +140,7 @@ abstract class FW_Mail_Base{
 	 */
 	public function setFrom($from){
 		$from = trim($from);
+		
 		if(FW_Validate::isValidMail($from)){
 			$this->from = $from;
 		}
@@ -158,6 +164,7 @@ abstract class FW_Mail_Base{
 	 */
 	public function setReceiver($receiver){
 		$receiver = trim($receiver);
+		
 		if(FW_Validate::isValidMail($receiver)){
 			$this->receiver = $receiver;
 		}

@@ -53,6 +53,12 @@ class FW_Language extends FW_Singleton{
     	
         $lang = FW_Session::get('lang');
         
+        if($lang == null || $lang == ""){
+        	$config = FW_Registry::getInstance()->getConfiguration();
+        	
+        	$lang = $config->getConfig('default_lang');
+        }
+        
         $file = LANG_DIR . $lang . '.ini';
         
         if(file_exists($file)){
@@ -60,7 +66,7 @@ class FW_Language extends FW_Singleton{
             
             $this->loadLangIni();
         }else{
-            //throw new FW_Exception("language file (" . $file . $lang . ") dosn't exists");
+            throw new FW_Exception("language file (" . $file . ") dosn't exists");
         }
     }
     

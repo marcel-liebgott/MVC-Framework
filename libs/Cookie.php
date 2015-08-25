@@ -7,9 +7,7 @@ if(!defined('PATH')){
  * Description of Cookie
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
- * @since 1.00
- * @package nvc
- * @subpackage libs
+ * @version 1.00
  */
 class FW_Cookie{
     /**
@@ -150,10 +148,10 @@ class FW_Cookie{
      * @throws FW_Exception
      */
     public function setLifetime($lifetime = self::KEY_ONE_YEAR){
-        if(FW_Security::isInteger($lifetime)){
+        if(FW_Validate::isInteger($lifetime)){
             $this->lifetime = (int) $lifetime;
         }else{
-            throw new FW_Exception_Exception("lifetime for cookie isn't valide");
+            throw new FW_Exception("lifetime for cookie isn't valide");
         }
     }
     
@@ -179,7 +177,7 @@ class FW_Cookie{
         if(FW_Validate::isValidUrl($domain)){
             $this->domain = $domain;
         }else{
-            throw new FW_Exception_Exception("domain for cookie isn't valide");
+            throw new FW_Exception("domain for cookie isn't valide");
         }
     }
     

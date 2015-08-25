@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @todo some default stuff
  *		subject
  */
-final class FW_Mail_Php extends FW_Mail_Base implements FW_Interface_Mail{
+final class FW_Mail_Php extends FW_Abstract_MailBase implements FW_Interface_Mail{
 	/**
 	 * constructor
 	 */

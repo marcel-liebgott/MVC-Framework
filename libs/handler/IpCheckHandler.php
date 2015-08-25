@@ -7,7 +7,7 @@ class FW_Handler_IpCheckHandler implements FW_Interface_EventHandler{
 	protected $blockedIps;
 
 	public function __construct($blockedIps){
-		$this->blockedIps = $blocked
+		$this->blockedIps = $blockedIps;
 	}
 
 	public function listen(FW_Event $event){

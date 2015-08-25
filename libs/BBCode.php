@@ -3,6 +3,12 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
+/**
+ * class to convert bbcode tags into string to html entities
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
 class FW_BBCode extends FW_Singleton{
 
 	/**
@@ -46,7 +52,6 @@ class FW_BBCode extends FW_Singleton{
 	private $charDiff = 0;
 
 	public function __construct(){
-
 	}
 
 	/**

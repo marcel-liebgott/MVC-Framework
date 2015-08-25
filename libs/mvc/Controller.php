@@ -7,8 +7,7 @@ if(!defined('PATH')){
  * Controller
  * 
  * @author Marcel Liebgott <Marcel@mliebgott.de>
- * @since 1.00
- * @category Marcel Liebgott
+ * @version 1.00
  */
 class FW_Mvc_Controller{
 	/**

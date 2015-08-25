@@ -3,7 +3,13 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
-final class FW_Mail_SMTP extends FW_Mail_Base implements FW_Interface_Mail{
+/**
+ * class to send mail via SMTP Server
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
+final class FW_Mail_SMTP extends FW_Abstract_MailBase implements FW_Interface_Mail{
 	/**
 	 * smtp host
 	 *

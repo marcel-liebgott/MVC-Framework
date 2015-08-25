@@ -8,7 +8,6 @@ if(!defined('PATH')){
  * 
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @version 1.00
- * @since 1.00
  */
 class FW_Mvc_ACPController extends FW_Mvc_Controller{
 	/**

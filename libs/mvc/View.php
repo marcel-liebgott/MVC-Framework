@@ -9,8 +9,6 @@ if(!defined('PATH')){
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @since 1.00
- * @package mvc
- * @subpackage libs
  */
 
 class FW_Mvc_View extends FW_Mvc_ViewParser{

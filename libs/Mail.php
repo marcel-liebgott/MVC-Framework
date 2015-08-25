@@ -88,21 +88,13 @@ class FW_Mail{
 	 * @access private
 	 * @var string
 	 */
-	private static $delimiter = md5(time());
-
-	/**
-	 * validation
-	 *
-	 * @access private
-	 * @var FW_Validate
-	 */
-	private $validate;
+	private static $delimiter;
 
 	/**
 	 * constructor
 	 */
 	public function __construct(){
-		$this->validate = new FW_Validate();
+		self::$delimiter = md5(time());
 	}
 
 	/**

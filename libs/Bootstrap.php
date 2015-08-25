@@ -8,7 +8,6 @@ if(!defined('PATH')){
  * 
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @version 1.00
- * @since 1.00
  */
 class FW_Bootstrap extends FW_Singleton{
 	/**
@@ -138,6 +137,11 @@ class FW_Bootstrap extends FW_Singleton{
 		$this->controller->index();
 	}
 
+	/**
+	 * load default admin controller
+	 * 
+	 * @access private
+	 */
 	private function loadDefaultAdminController(){
 		require_once CONTROLLER_DIR . ACP_DIR . ACP_DEFAULT_CTR . '.php';
 		$class = ACP_DEFAULT_CTR;

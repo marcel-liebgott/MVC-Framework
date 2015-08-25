@@ -7,7 +7,7 @@ if(!defined('PATH')){
  * Description of Validate 
  * 
  * @author Marcel Liebgott <Marcel@mliebgott.de> 
- * @since 1.00 
+ * @version 1.00 
  * @package mvc 
  * @subpackage libs 
  */
@@ -17,6 +17,7 @@ final class FW_Validate{
      * check the min length of an string 
      *  
      * @access public
+     * @since 1.00
      * @static
      * @param string $data 
      * @param int $arg 
@@ -33,7 +34,8 @@ final class FW_Validate{
     /** 
      * check the max length of an string 
      *  
-     * @access public 
+     * @access public
+     * @since 1.00 
      * @static
      * @param string $data 
      * @param int $arg 
@@ -51,6 +53,7 @@ final class FW_Validate{
      * check the data of his length 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param string $data 
      * @param int $arg 
@@ -68,6 +71,7 @@ final class FW_Validate{
      * check if input is an int 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param string $data 
      * @return boolean|string if failed
@@ -84,6 +88,7 @@ final class FW_Validate{
      * check if integerin range
      *
      * @access public
+     * @since 1.00
      * @static
      * @param int
      * @param int
@@ -104,6 +109,7 @@ final class FW_Validate{
      * check if input is an string 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param string $data 
      * @return boolean|string is failed
@@ -120,6 +126,7 @@ final class FW_Validate{
      * check if input is an numeric 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param string $data 
      * @return boolean|string is failed
@@ -136,6 +143,7 @@ final class FW_Validate{
      * check if input is an float 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param string $data 
      * @return boolean|string is failed
@@ -152,6 +160,7 @@ final class FW_Validate{
      * check if input is an bool 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param string $data 
      * @return boolean|string is failed
@@ -168,6 +177,7 @@ final class FW_Validate{
      * check if input is an array 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param array $data 
      * @return boolean|string is failed
@@ -188,6 +198,7 @@ final class FW_Validate{
      * checked if the input has an mixed value 
      *  
      * @access public 
+     * @since 1.00
      * @static
      * @param mixed $data 
      * @return boolean|string is failed
@@ -204,6 +215,7 @@ final class FW_Validate{
      * check the value of a valid e-mail adress
      *  
      * @access public
+     * @since 1.00
      * @static
      * @param type $data 
      * @return boolean|string is failed
@@ -220,6 +232,7 @@ final class FW_Validate{
      * check the value of a valid url
      *
      * @access public
+     * @since 1.00
      * @static
      * @param string $data
      * @return boolean|string is failed
@@ -236,6 +249,7 @@ final class FW_Validate{
      * check the value of a valid date
      *
      * @access public
+     * @since 1.00
      * @static
      * @param string date
      * @return boolean|string is failed

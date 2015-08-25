@@ -8,9 +8,7 @@ if(!defined('PATH')){
  * Description of Breadcrumb
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
- * @since 1.00
- * @package mvc
- * @subpackage libs
+ * @version 1.00
  */
 class FW_Breadcrumb{
     private static $instance = null;

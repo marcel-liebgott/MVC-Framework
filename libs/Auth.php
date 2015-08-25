@@ -1,12 +1,30 @@
 <?php
-
 if(!defined('PATH')){
     die("No direct script access allowed");
 }
 
+/**
+ * authenticaion class
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
+ */
 class FW_Auth{
-    public function __construct(){}
+	/**
+	 * constructor
+	 * 
+	 * @access public
+	 */
+    public function __construct(){
+    	// nothing to do yet
+    }
 
+    /**
+     * handle login request
+     * 
+     * @access public
+     * @static
+     */
     public static function handleLogin(){
         FW_Session::init();
         $logged = FW_Session::get('sessionId');
