@@ -33,13 +33,13 @@ final class FW_Stringhelper{
 	 * @access public
 	 * @since 1.00
 	 * @param string
-	 * @return string
+	 * @return boolean
 	 */
 	public static function isValidMail($mail){
-		if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
-			return $mail;
+		if(filter_var($mail, FILTER_VALIDATE_EMAIL) === true){
+			return true;
 		}else{
-			return '';
+			return false;
 		}
 	}
 
@@ -49,7 +49,7 @@ final class FW_Stringhelper{
 	 * @access public
 	 * @since 1.00
 	 * @param string
-	 * @return string
+	 * @return boolean
 	 */
 	public static function isValidUrl($url){
 		// has url an protocol (http or https)
@@ -58,9 +58,9 @@ final class FW_Stringhelper{
 		}
 
 		if(filter_var($url, FILTER_VALIDATE_URL)){
-			return $url;
+			return true;
 		}else{
-			return '';
+			return false;
 		}
 	}
 

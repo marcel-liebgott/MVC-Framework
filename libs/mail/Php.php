@@ -20,11 +20,14 @@ final class FW_Mail_Php extends FW_Abstract_MailBase implements FW_Interface_Mai
 	 * @see FW_Interface_Mail::send()
 	 */
 	public final function send(){
-		$res = mail($this->getReceiver(), $this->getSubject(), $this->getBody(), $this->getHeader());
+		$res = @mail($this->getReceiver(), $this->getSubject(), $this->getBody(), $this->getHeader());
 
 		if(!$res){
 			echo "some error with mail send";
+			return false;
 		}
+		
+		return true;
 	}
 }
 ?>

@@ -220,8 +220,8 @@ final class FW_Validate{
      * @param type $data 
      * @return boolean|string is failed
      */
-    public static function isValidMail($data){ 
-        if(!FW_Stringhelper::isValidMail($data)){
+    public static function isValidMail($data){
+        if(FW_Stringhelper::isValidMail($data) == true){
             throw new FW_Exception_WrongParameter(array('message' => 'mail_not_valid'));
         } 
           
