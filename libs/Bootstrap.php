@@ -43,10 +43,21 @@ class FW_Bootstrap extends FW_Singleton{
 	 */
 	private $request;
 
+	/**
+	 * return singleton instance
+	 * 
+	 * @access public
+	 * @since 1.00
+	 */
 	public static function getInstance(){
 		return parent::_getInstance(get_class());
 	}
 
+	/**
+	 * constructor
+	 * 
+	 * @access public
+	 */
 	public function __construct(){
 		if(self::$registry == null){
 			self::$registry = FW_Registry::getInstance();
