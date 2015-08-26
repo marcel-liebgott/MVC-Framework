@@ -34,6 +34,10 @@ try{
 	$array = new FW_Test_ArrayTest();
 	$array->run();
 	$array->printResult();
+	
+	$mail = new FW_Test_MailTest("marcel.liebgott@googlemail.com");
+	$mail->run();
+	$mail->printResult();
 }catch(Exception $e){
 	echo "Exception caught: " . $e->getMessage() . '<br>';
 	echo "Line: " . $e->getLine() . '<br>';
