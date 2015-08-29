@@ -2,12 +2,11 @@
 class index extends FW_Mvc_Controller{
 	public function __construct(){
 		parent::__construct();
-
-		echo "__construct-Funktion<br>";
+		
+		$this->addPostFilter(new FW_Filter_HttpAuthFilter(array('admin' => "admin")));
 	}
 
 	public function index(){
-		echo "index-Funktion<br>";
 		$this->view->render('index/index');
 	}
 }
