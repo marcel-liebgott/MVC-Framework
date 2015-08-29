@@ -30,10 +30,12 @@ class FW_Test_MailTest extends FW_Test_BasicTestModul implements FW_Test_BasicTe
 		parent::startProfiler();
 		
 		$mail = new FW_Mail_Php();
-		$mail->setFrom("Framework Test");
+		$mail->setFrom("Framework@mliebgott.de");
 		$mail->setReceiver($this->_receiver);
 		$mail->setReceiverName("Max Mustermann");
 		$mail->setSubject("Subject of Framework-Test");
+		$mail->setMailBody("<html></head></head><body><h1>This is a test headline</h1><p>This is a test
+				HTML-Mail from my MVC-Framework</p></html>");
 		
 		if($mail->send()){
 			$this->_result = true;
