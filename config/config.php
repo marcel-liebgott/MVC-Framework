@@ -79,7 +79,7 @@ define('HASH_GENERAL_KEY',      'o0G11X7qLqCQZbXS7aRil39sZH6Zm8glE0ZFcvWKTdTGGQF
 define('HASH_PASSWORD_KEY',     'aL4X1oO3atpcx9qL2TGTtmOn74D4dQ4OCg4qbwcNqNwm9grTzVVd4o7TDYKj');
 
 // version
-define('VERSION_ID',        '100');
+define('VERSION_ID',        '101');
 define('VERSION',           '');
 
 // default lang
