@@ -3,7 +3,13 @@ if(!defined('PATH')){
 	die("no direct script access allowed");
 }
 
-class FW_Filter_HttpAuthFilter implements FW_Filter{
+/**
+ * a http based authentification filter
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.01
+ */
+class FW_Filter_HttpAuthFilter implements FW_Interface_Filter{
 	/**
 	 * authentification data
 	 *
@@ -22,29 +28,39 @@ class FW_Filter_HttpAuthFilter implements FW_Filter{
 		$this->authData = $authData;
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see FW_Interface_Filter::execute()
+	 */
 	public function execute(FW_Request $request, FW_Response $response){
-		$authData = $request->getAuthorization();
+		$authData = $request->getAuthData();
 
 		if($authData == null){
 			$this->sendAuthRequest($response);
 		}
-
-		$username = $authData[0];
-		$password = $authData[1];
+		
+		$username = $authData['user'];
+		$password = $authData['password'];
 
 		if(!isset($this->authData[$username]) || $this->authData[$password] !== $password){
 			FW_EventDispatcher::getInstance()->triggerEvent('onInvalidLogin', $this, $authData);
-			$this->sendAuthData($response);
+			$this->sendAuthRequest($response);
 		}
 
 		$event = FW_EventDispatcher::getInstance()->triggerEvent('onLogin', $this, $authData);
 
-		if($event->isCancelled()){
+		if($event->isCanceled()){
 			$this->sendAuthRequest($response);
 		}
 	}
 
-	private function sendAuthData(FW_Response $response){
+	/**
+	 * send authorization request
+	 * 
+	 * @access private
+	 * @param FW_Response $response
+	 */
+	private function sendAuthRequest(FW_Response $response){
 		$response->setStatus('401 Unauthorized');
 		$response->addHeader('WWW-Authenticate', 'Basic realm="Test"');
 		$response->send();
