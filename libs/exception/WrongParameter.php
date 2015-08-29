@@ -5,6 +5,7 @@ if(!defined('PATH')){
 
 final class FW_Exception_WrongParameter extends FW_Exception_Critical{
 	public function __construct($data, $code = 0){
+		print_r($data);
 		$message = $data['message'];
 		$arg = '';
 

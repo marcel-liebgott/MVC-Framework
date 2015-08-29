@@ -57,4 +57,4 @@ abstract class FW_Singleton{
 	 */
 	public function __clone(){}
 }
-?>gi
+?>

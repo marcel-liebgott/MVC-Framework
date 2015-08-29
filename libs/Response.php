@@ -109,8 +109,6 @@ class FW_Response extends FW_Singleton{
             header($name . ": " . $content);
         }
         
-        echo $this->content;
-        
         $this->content = "";
         $this->headers = null;
     }

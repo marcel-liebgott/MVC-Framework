@@ -130,7 +130,11 @@ class FW_Request extends FW_Singleton{
      * @return array
      */
     public function getAuthData(){
-        return $this->auth;
+        if(!isset($_SERVER['PHP_AUTH_USER'])) {
+            return null;
+        }
+        
+        return array('user' => $_SERVER['PHP_AUTH_USER'], 'password' => $_SERVER['PHP_AUTH_PW']);
     }
     
     /**
@@ -223,7 +227,6 @@ class FW_Request extends FW_Singleton{
 
             if($secure){
                 $value = FW_Security::checkXSS($value);
-                //$value = FW_Security::striptags($value);
             }
 
             return $value;
@@ -322,6 +325,16 @@ class FW_Request extends FW_Singleton{
      */
     public function getReferer(){
         return $this->referer;
+    }
+    
+    /**
+     * return the remote address
+     * 
+     * @access public
+     * @return String
+     */
+    public function getRemoteAddr(){
+    	return $_SERVER['REMOTE_ADDR'];
     }
 }
 ?>

@@ -20,7 +20,7 @@ try{
 	
 	$loader = FW_Bootstrap::getInstance();
 	$loader->init();
-}catch(FW_Exception_Exception $e){
+}catch(FW_Exception $e){
 	echo "Exception caught: " . $e->getMessage() . '<br>';
     echo "Line: " . $e->getLine() . '<br>';
     echo "File: " . $e->getFile();

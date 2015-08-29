@@ -39,9 +39,17 @@ class FW_Bootstrap extends FW_Singleton{
 	 * request
 	 *
 	 * @aacess private
-	 * @var resource
+	 * @var FW_Request
 	 */
 	private $request;
+	
+	/**
+	 * response
+	 * 
+	 * @access private
+	 * @var FW_Response
+	 */
+	private $response;
 
 	/**
 	 * return singleton instance
@@ -95,8 +103,8 @@ class FW_Bootstrap extends FW_Singleton{
 		$this->request = FW_Request::getInstance();
 		self::$registry->setRequest($this->request);
 
-		$response = FW_Response::getInstance();
-		self::$registry->setResponse($response);
+		$this->response = FW_Response::getInstance();
+		self::$registry->setResponse($this->response);
 
 		$config = FW_Configuration::getInstance();
 		$config->readIni(CONFIG_DIR . CONFIG_FILE);
@@ -144,6 +152,7 @@ class FW_Bootstrap extends FW_Singleton{
 	private function loadDefaultController(){
 		require_once CONTROLLER_DIR . 'index.php';
 		$this->controller = new index();
+		$this->controller->handleRequest($this->request, $this->response);
 		$this->controller->loadModel('index', MODEL_DIR);
 		$this->controller->index();
 	}
@@ -157,6 +166,7 @@ class FW_Bootstrap extends FW_Singleton{
 		require_once CONTROLLER_DIR . ACP_DIR . ACP_DEFAULT_CTR . '.php';
 		$class = ACP_DEFAULT_CTR;
 		$this->controller = new $class();
+		$this->controller->handleRequest($this->request, $this->response);
 		$this->controller->loadModel($class, MODEL_DIR);
 		$this->controller->index();
 	}
