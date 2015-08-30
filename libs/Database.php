@@ -210,7 +210,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return array
      */
     public function showTables(){
-        $sth = $this->prepare("SHOW TABLES");
+        $sth = self::$pdo->prepare("SHOW TABLES");
         
         $this->execute($sth);
         
@@ -224,7 +224,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @param string
      */
     public function setNames($name){
-        $sth = $this->prepare("SET NAMES " . $name);
+        $sth = self::$pdo->prepare("SET NAMES " . $name);
         
         $this->execute($sth);
     }
@@ -290,6 +290,15 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function getLastInsertedId(){
         return $this->lastInsertId();
+    }
+    
+    public function getTableInfos($table){
+    	$sth = self::$pdo->prepare("DESCRIPE " . $table);
+    	
+    	$this->execute($sth);
+    	$fields = $sth->fetchAll(PDO::FETCH_COLUMN);
+    	
+    	return $fields;
     }
 }
 ?>

@@ -15,6 +15,11 @@ define('ACP_DEFAULT_CTR', 	'index');
 define('LIBS',				'libs/');
 
 /**
+ * defined the DaO directory
+ */
+define('DAO',				'dao/');
+
+/**
  * defined the tests directory
  */
 define('TESTS',				'tests/');
@@ -68,6 +73,11 @@ define('CONFIG_FILE',		'config.ini');
  * database file
  */
 define('SQL_FILE',			'sql.php');
+
+/**
+ * define database prefix
+ */
+define('DB_PREFIX',			'FW_');
 
 /**
  * application information

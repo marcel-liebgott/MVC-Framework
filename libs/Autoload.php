@@ -57,8 +57,12 @@ class FW_Autoload{
 			}
 		
 			$path = implode('/', $class_arr) . '.php';
-		
-			require_once LIBS . $path;
+			
+			if(strtolower($class_arr[0]) === 'dao' && strtolower($class_arr[count($class_arr) - 1]) !== 'dao'){
+				require_once $path;
+			}else{
+				require_once LIBS . $path;
+			}
 		}else{
 			die("Class '" . $class . "' doesn't a enabled framework class " . __CLASS__);
 		}
