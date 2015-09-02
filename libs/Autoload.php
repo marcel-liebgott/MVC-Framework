@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.01
  */
-class FW_Autoload{
+class FW_Autoload implements FW_Interface_Autoload{
 	/**
 	 * class prefix
 	 * 
