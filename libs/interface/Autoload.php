@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.02
  */
-interface FW_Interface{
+interface FW_Interface_Autoload{
   /**
    * register an autoloader
    *
