@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.01
  */
-class FW_Autoload implements FW_Interface_Autoload{
+class FW_Autoload extends FW_Singleton implements FW_Interface_Autoload{
 	/**
 	 * class prefix
 	 * 
@@ -19,14 +19,16 @@ class FW_Autoload implements FW_Interface_Autoload{
 	private $_prefix;
 	
 	/**
-	 * constructor
+	 * get instance
 	 * 
 	 * @access public
+	 * @static
 	 * @since 1.01
 	 * @param String $prefix
 	 */
-	public function __construct($prefix){
+	public static function getInstance($prefix){
 		$this->_prefix = $prefix;
+		return parent::_getInstance(get_class($this));
 	}
 	
 	/**
