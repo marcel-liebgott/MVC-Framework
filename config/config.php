@@ -77,7 +77,7 @@ define('SQL_FILE',			'sql.php');
 /**
  * define database prefix
  */
-define('DB_PREFIX',			'FW_');
+define('DB_PREFIX',			'fw_');
 
 /**
  * application information
@@ -104,6 +104,6 @@ define('DOWNLOAD_DIR',		'download/');
 define('TYPE',				'mysql');
 define('HOST',				'localhost');
 define('USER',				'root');
-define('PASS',				'');
-define('DATA',				'');
+define('PASS',				'root');
+define('DATA',				'mvc_fw');
 ?>
