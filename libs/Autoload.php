@@ -3,13 +3,16 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
+require_once 'interface/Autoload.php';
+
 /**
  * autoload class
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.01
+ * @version 1.02
+ * @since 1.01
  */
-class FW_Autoload extends FW_Singleton implements FW_Interface_Autoload{
+class FW_Autoload implements FW_Interface_Autoload{
 	/**
 	 * class prefix
 	 * 
@@ -19,16 +22,53 @@ class FW_Autoload extends FW_Singleton implements FW_Interface_Autoload{
 	private $_prefix;
 	
 	/**
-	 * get instance
+	 * instance
+	 * 
+	 * @access private
+	 * @static
+	 * @var FW_Autoload
+	 */
+	private static $_instance = null;
+	
+	/**
+	 * get singleton instance
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.01
+	 * @return FW_Autoload
+	 */
+	public static function getInstance(){
+		if(self::$_instance == null){
+			self::$_instance = new FW_Autoload();
+		}
+		
+		return self::$_instance;
+	}
+	
+	/**
+	 * constructor
+	 * 
+	 * @access private
+	 * @since 1.02
+	 */
+	private function __construct(){}
+	
+	/**
+	 * copy constructor
+	 * 
+	 * @access private
+	 * @since 1.02
+	 */
+	private function __copy(){}
+	
+	/**
+	 * set class prefix
+	 * 
+	 * @access public
 	 * @param String $prefix
 	 */
-	public static function getInstance($prefix){
+	public function setPrefix($prefix){
 		$this->_prefix = $prefix;
-		return parent::_getInstance(get_class($this));
 	}
 	
 	/**
@@ -48,7 +88,7 @@ class FW_Autoload extends FW_Singleton implements FW_Interface_Autoload{
 	 * @since 1.01
 	 * @param String $class
 	 */
-	private function autoload($class){
+	public function autoload($class){
 		if(substr($class, 0, 3) == $this->_prefix){
 			$class = substr($class, 3);
 		
