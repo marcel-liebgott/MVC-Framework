@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @version 1.00
  */
-class FW_Mvc_Controller{
+class FW_Mvc_Controller implements FW_Interface_Controller{
 	/**
 	 * filter to precess befor script running
 	 *
