@@ -112,6 +112,9 @@ class FW_Bootstrap extends FW_Singleton{
 
 		$db = FW_Database::getInstance();
 		self::$registry->setDatabase($db);
+		
+		$cookies = new FW_Cookie();
+		self::$registry->set('cookies', $cookies);
 
 		$bbcode = FW_BBCode::getInstance();
 		$bbcode->readBBCodeXML('public/editor/bbcode.xml');
