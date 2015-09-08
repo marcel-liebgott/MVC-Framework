@@ -87,12 +87,55 @@ final class FW_Array{
 	 * @return mixed
 	 */
 	public function get($key){
+		$this->_iterator->rewind();
+		
 		while($this->_iterator->valid()){
 			if($this->_iterator->key() === $key){
 				return $this->_iterator->current();
 			}
 			
 			$this->_iterator->next();
+		}
+	}
+	
+	/**
+	 * check if key exists
+	 * 
+	 * @access public
+	 * @since 1.02
+	 * @param Mixed $key
+	 * @return boolean
+	 */
+	public function exists($key){
+		$this->_iterator->rewind();
+		
+		while($this->_iterator->valid()){
+			if($this->_iterator->key() === $key){
+				return true;
+			}
+			
+			$this->_iterator->next();
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * remove an array element by given key
+	 * 
+	 * @access public
+	 * @since 1.01
+	 * @param Mixed $key
+	 */
+	public function remove($key){
+		$this->_iterator->rewind();
+		
+		while($this->_iterator->valid()){
+			if($this->_iterator->key() === $key){
+				$this->_iterator->offsetUnset($key);
+				
+				continue;
+			}
 		}
 	}
 }
