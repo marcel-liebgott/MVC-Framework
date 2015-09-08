@@ -66,6 +66,18 @@ class FW_Session{
     public static function destroy(){
         session_destroy();
     }
+    
+    /**
+     * remove a session by given name
+     * 
+     * @access public
+     * @static
+     * @since 1.02
+     * @param String $name
+     */
+    public static function remove($name){
+    	unset($_SESSION[$name]);
+    }
 }
 
 ?>
