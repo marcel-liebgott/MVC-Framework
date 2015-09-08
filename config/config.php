@@ -106,4 +106,8 @@ define('HOST',				'localhost');
 define('USER',				'root');
 define('PASS',				'root');
 define('DATA',				'mvc_fw');
+
+// use cookies
+define('USE_COOKIES',		true);
+define('COOKIE_PREFIX',		'FW_');
 ?>
