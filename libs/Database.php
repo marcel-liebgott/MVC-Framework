@@ -96,6 +96,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @param string
      * @param array
      * @param int
+     * @return FW_Array
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
         try{
@@ -107,7 +108,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             
             $this->execute($sth);
             
-            return $sth->fetchAll($fetchMode);
+            return new FW_Array($sth->fetchAll($fetchMode));
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }
@@ -197,14 +198,14 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * get all tables
      *
      * @access public
-     * @return array
+     * @return FW_Array
      */
     public function showTables(){
         $sth = $this->pdo->prepare("SHOW TABLES");
         
         $this->execute($sth);
         
-        return $sth->fetchAll();
+        return new FW_Array($sth->fetchAll());
     }
     
     /**
