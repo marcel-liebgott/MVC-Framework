@@ -106,4 +106,18 @@ define('DATA',				'mvc_fw');
 // use cookies
 define('USE_COOKIES',		true);
 define('COOKIE_PREFIX',		'FW_');
+
+
+// user
+define('CURRENT_SESSION_USER',		'fw_curr_user');
+
+// user group
+define('GUEST_GROUP_GID',			0);
+define('GUEST_GROUP_UID',			0);
+
+define('FW_USER_GROUP_ADMIN_ID',	1);
+
+// defined application pages
+define('FW_PAGE_404',				"error");
+define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_404);
 ?>
