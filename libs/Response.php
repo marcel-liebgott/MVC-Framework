@@ -120,7 +120,6 @@ class FW_Response extends FW_Singleton{
      * @param boolean $immediately - redirect know
      */
     public function redirectUrl($url, $immediately = false){
-        //$url = trim('/', $url);
         $url = PATH . $url;
         $url = FW_Security::cleanUrl($url);
         $this->addHeader("Location", $url);

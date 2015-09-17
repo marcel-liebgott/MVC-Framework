@@ -72,14 +72,6 @@ class FW_Bootstrap extends FW_Singleton{
 		}
 	}
 
-	/**
-	 * set all needed registry properties
-	 *
-	 * @access public
-	 */
-	public function setRegistry(){
-    }
-
     /**
      * get current url
      *
@@ -120,6 +112,15 @@ class FW_Bootstrap extends FW_Singleton{
 		$bbcode->readBBCodeXML('public/editor/bbcode.xml');
 		$bbcode->readSmileyXML('public/editor/smiley.xml');
 		self::$registry->set('bbcode', $bbcode);
+		
+		// init current user
+		$user = FW_Session::get(CURRENT_SESSION_USER);
+		
+		if(!isset($user) && $user == null){
+			$user = new FW_User_Data();
+				
+			FW_Session::set(CURRENT_SESSION_USER, $user);
+		}
 	}
 
 	/**
@@ -153,11 +154,25 @@ class FW_Bootstrap extends FW_Singleton{
 	 * @access private
 	 */
 	private function loadDefaultController(){
-		require_once CONTROLLER_DIR . 'index.php';
-		$this->controller = new index();
-		$this->controller->handleRequest($this->request, $this->response);
-		$this->controller->loadModel('index', MODEL_DIR);
-		$this->controller->index();
+		$path = CONTROLLER_DIR . 'index.php';
+		
+		if(file_exists($path)){
+			require_once CONTROLLER_DIR . 'index.php';
+			
+			$this->instanziateController('index');
+			
+			//$this->controller = new FW_Front_index();
+			
+			if($this->checkControllerAccess()){
+				$this->controller->handleRequest($this->request, $this->response);
+				$this->controller->loadModel('index', MODEL_DIR);
+				$this->controller->index();
+			}else{
+				$this->response->redirectUrl(FW_ACCESS_DENIED_PAGE, true);
+			}
+		}else{
+			throw new FW_Exception("The requested file does not exists (" . $path . ")");
+		}
 	}
 
 	/**
@@ -210,9 +225,13 @@ class FW_Bootstrap extends FW_Singleton{
 
 		if($this->existsController($file)){
 			require_once $file;
-
-			$this->controller = new $com;
-			$this->controller->loadModel($com, $model_dir);
+			$this->instanziateController($com);
+			
+			if($this->checkControllerAccess()){
+				$this->controller->loadModel($com, $model_dir);
+			}else{
+				// user has no access
+			}
 		}else{
 			echo "Error 404";
 			die();
@@ -253,6 +272,29 @@ class FW_Bootstrap extends FW_Singleton{
         }else{
             $this->controller->index();
         }
+	}
+	
+	/**
+	 * check if the current user has access to the requestes controller
+	 * 
+	 * @access private
+	 * @since 1.10
+	 * @return boolean
+	 */
+	private function checkControllerAccess(){
+		// check if called constructor have access for the current user
+		$user = FW_Session::get(CURRENT_SESSION_USER);
+			
+		if(!$this->controller->_guestAccess && $user->getGroup() !== GUEST_GROUP_GID){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	private function instanziateController($name){
+		$controller = 'FW_Front_' . $name;
+		$this->controller = new $controller();
 	}
 }
 ?>

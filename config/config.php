@@ -118,6 +118,6 @@ define('GUEST_GROUP_UID',			0);
 define('FW_USER_GROUP_ADMIN_ID',	1);
 
 // defined application pages
-define('FW_PAGE_404',				"error");
+define('FW_PAGE_404',				"error/accessDenied");
 define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_404);
 ?>

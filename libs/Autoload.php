@@ -100,14 +100,28 @@ class FW_Autoload implements FW_Interface_Autoload{
 		
 			$path = implode('/', $class_arr) . '.php';
 			
-			if(strtolower($class_arr[0]) === 'dao' && strtolower($class_arr[count($class_arr) - 1]) !== 'dao'){
+			if(strtolower($class_arr[0]) === 'front'){
+				require_once CONTROLLER_DIR . $path;
+			}elseif(strtolower($class_arr[0]) === 'dao' && strtolower($class_arr[count($class_arr) - 1]) !== 'dao'){
 				require_once $path;
 			}else{
 				require_once LIBS . $path;
 			}
 		}else{
-			die("Class '" . $class . "' doesn't a enabled framework class " . __CLASS__);
+			die("Class '" . $class . "' doesn't a enabled framework class");
 		}
+	}
+	
+	/**
+	 * return the current class prefix
+	 * 
+	 * @access public
+	 * @static
+	 * @since 1.02
+	 * @return String
+	 */
+	public static function getPrefix(){
+		return $this->_prefix;
 	}
 }
 ?>
