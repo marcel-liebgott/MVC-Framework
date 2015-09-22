@@ -8,6 +8,7 @@ if(!defined('PATH')){
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.00
+ * @todo testen
  */
 final class FW_VersionCompare{
 	/**
@@ -26,18 +27,23 @@ final class FW_VersionCompare{
 
 		$version = $data_arr[0];
 		$state = $data_arr[1];
+		
+		echo "Version: " . $version . " State: " . $state . "<br>";
+		echo "FWVersion: " . FW_Version::getVersionId();
 
-		if(FW_VERSION_ID < $version){
+		if(FW_Version::getVersionId() < $version){
 			return true;
 		}else{
-			if(FW_VERSION_ID == $version){
+			if(FW_Version::getVersionId() == $version){
 				$version_id = constant('STATE_' . FW_String::strtoupper($state));
 
-				if(FW_VERSION_STATE < $version_id){
+				if(FW_String::strtoupper(FW_Version::getVersionState()) < $version_id){
 					return true;
 				}
 			}
 		}
+		
+		return false;
 	}
 }
 ?>

@@ -18,7 +18,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 	 * @static
 	 * @var PDO instance
 	 */
-	private static $pdo = null;
+	private $pdo = null;
 	
     /**
      * use transaction
@@ -27,6 +27,15 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @var boolean
      */
     private $use_transaction = false;
+    
+    /**
+     * use database
+     * 
+     * @access private
+     * @static
+     * @var boolean
+     */
+    private static $_use_db = false;
 
     /**
      * get instance of this class - singleton
@@ -45,38 +54,13 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function __construct(){
     	$config = FW_Registry::getInstance()->get(FW_Registry::KEY_CONFIGURATION);
+    	self::$_use_db = $config->getConfig(new FW_String("use_database"));
     	 
-    	if($config->getConfig(new FW_String("use_database")) == true){
+    	if(self::$_use_db == true){
     		try{
-	        	$type = null;
-	        	$host = null;
-	        	$data = null;
-	        	$user = null;
-	        	$pass = null;
-	        	
-	        	if(defined(TYPE)){
-	        		$type = TYPE;
-	        	}
-	        	
-	        	if(defined(HOST)){
-	        		$host = HOST;
-	        	}
-	        	
-	        	if(defined(DATA)){
-	        		$data = DATA;
-	        	}
-	        	
-	        	if(defined(USER)){
-	        		$user = USER;
-	        	}
-	        	
-	        	if(defined(PASS)){
-	        		$pass = PASS;
-	        	}
-	        	
-	            self::$pdo = new PDO($type . ':host=' . $host. ':8889;dbname=' . $data , $user, $pass);
+	            $this->pdo = new PDO(TYPE . ':host=' . HOST. ';dbname=' . DATA , USER, PASS);
 	            
-	            self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	        }catch(PDOException $e){
 	            throw new FW_Exception_DBConnectionFailure($e->getMessage(), $e->getCode());
 	        }
@@ -90,13 +74,19 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @param ressouce
      */
     public function execute($sth){
-        $profiler = new FW_Profiler();
-
-        $profiler->start();
-        
-        $sth->execute();
-
-        $profiler->getTime();
+    	try{
+	    	if(self::$_use_db){
+		        $profiler = new FW_Profiler();
+		
+		        $profiler->start();
+		        
+		        $sth->execute();
+		
+		        $profiler->getTime();
+	    	}
+    	}catch(PDOException $e){
+    		throw new FW_Exception_DBFailure($e->getMessage(), $e->getCode());
+    	}
     }
     
     /**
@@ -106,10 +96,11 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @param string
      * @param array
      * @param int
+     * @return FW_Array
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
         try{
-            $sth = $this->prepare($sql);
+            $sth = $this->pdo->prepare($sql);
 
             foreach($array as $key => &$value){
                 $sth->bindParam("$key", $value);
@@ -117,7 +108,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             
             $this->execute($sth);
             
-            return $sth->fetchAll($fetchMode);
+            return new FW_Array($sth->fetchAll($fetchMode));
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }
@@ -207,14 +198,14 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * get all tables
      *
      * @access public
-     * @return array
+     * @return FW_Array
      */
     public function showTables(){
-        $sth = self::$pdo->prepare("SHOW TABLES");
+        $sth = $this->pdo->prepare("SHOW TABLES");
         
         $this->execute($sth);
         
-        return $sth->fetchAll();
+        return new FW_Array($sth->fetchAll());
     }
     
     /**
@@ -224,7 +215,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @param string
      */
     public function setNames($name){
-        $sth = self::$pdo->prepare("SET NAMES " . $name);
+        $sth = $this->pdo->prepare("SET NAMES " . $name);
         
         $this->execute($sth);
     }
@@ -292,13 +283,27 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
         return $this->lastInsertId();
     }
     
-    public function getTableInfos($table){
-    	$sth = self::$pdo->prepare("DESCRIPE " . $table);
+    /**
+     * return all columns of a database table
+     * 
+     * @access public
+     * @since 1.02
+     * @param String $table
+     * @return array
+     */
+    public function getTableColumns($table){
+    	if(self::$_use_db){
+    		$sth = $this->pdo->prepare("SELECT * FROM " . $table);
+    		$sth->execute();
+    		$col_count = $sth->columnCount();
+    		$column = array();
+    		
+    		for($i = 0; $i < $col_count; $i++){
+    			$column[] = $sth->getColumnMeta($i)['name'];
+    		}
     	
-    	$this->execute($sth);
-    	$fields = $sth->fetchAll(PDO::FETCH_COLUMN);
-    	
-    	return $fields;
+    		return $column;
+    	}
     }
 }
 ?>

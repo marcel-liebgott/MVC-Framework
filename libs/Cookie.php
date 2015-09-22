@@ -73,36 +73,35 @@ class FW_Cookie{
     const KEY_ONE_MONTH = 2592000;
     const KEY_ONE_YEAR = 31536000;
 
-    public function __construct($name, $value, $lifetime, $path = null, $domain = null, $secure = false, $httponly = true){
-        if(FW_Validate::isString($name)){
-            $this->setName($name);
-        }
-
-        if(FW_Validate::isMixed($value)){
-            $this->setValue($value);
-        }
-
-        if(FW_Validate::isInteger($lifetime)){
-            $this->setLifetime($lifetime);
-        }
-
-        if($path !== null && FW_Validate::isString($path)){
-            $this->setPath($path);
-        }
-
-        if($domain !== null && FW_Validate::isString($domain)){
-            $this->seDomain($domain);
-        }
-
-        if(FW_Validate::isBool($secure)){
-            $this->setSecure($secure);
-        }
-
-        if(FW_Validate::isBool($httponly)){
-            $this->setHttpOnly($httponly);
-        }
-
-        return setcookie($name, $value, $lifet, $path, $domain, $secure, $httponly);
+    /**
+     * constructor
+     * 
+     * @access public
+     * @since 1.00
+     * @param string $path
+     * @param string $domain
+     * @param string $secure
+     * @param string $httponly
+     */
+    public function __construct($path = '/', $domain = '', $secure = false, $httponly = false){
+		$this->setPath($path);
+		$this->domain = $domain;
+		$this->setSecure($secure);
+		$this->setHttpOnly($httponly);
+    }
+    
+    /**
+     * create an cookie
+     * 
+     * @access public
+     * @since 1.02
+     * @param String $name
+     * @param Mixed $value
+     * @param int $lifetime
+     */
+    public function setCookie($name, $value, $lifetime = self::KEY_ONE_DAY){
+    	$lifetime = $lifetime + time();
+    	setcookie(COOKIE_PREFIX . $name, $value, $lifetime, $this->path, $this->domain, $this->secure, $this->httponly);
     }
     
     /**
@@ -280,12 +279,26 @@ class FW_Cookie{
      * @return boolean
      */
     public static function existsCookie($name){
+    	$name = COOKIE_PREFIX . $name;
+    	
         if(isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && $_COOKIE[$name]){
             return true;
         }else{
             return false;
         }
     }
+    
+    /**
+     * delete an cookie
+     * 
+     * @access public
+     * @since 1.02
+     * @param String $name
+     */
+    public function delete($name){
+    	if($this->existsCookie($name)){
+    		setcookie(COOKIE_PREFIX . $name, '', time() - 3600);
+    	}
+    }
 }
-
 ?>
