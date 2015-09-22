@@ -14,7 +14,8 @@ require_once CONFIG_DIR . SQL_FILE;
 require_once 'libs/Autoload.php';
 
 try{
-	$autoloader = new FW_Autoload("FW_");
+	$autoloader = FW_Autoload::getInstance();
+	$autoloader->setPrefix("FW_");
 	$autoloader->register();
 	
 	$loader = FW_Bootstrap::getInstance();
