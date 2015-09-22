@@ -5,7 +5,7 @@ if(!defined('PATH')){
 
 abstract class FW_Abstract_Database extends FW_Singleton{
 	public static function __getInstance($class){
-		return FW_Singleton::_getInstance($class);
+		return parent::_getInstance($class);
 	}
 }
 ?>
