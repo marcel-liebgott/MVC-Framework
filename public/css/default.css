@@ -1,0 +1,101 @@
+/**
+ * general
+ */
+a{
+    color: black;
+}
+
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+
+input, textarea{
+    font-size: 0.9em;
+}
+
+/**
+ * angepasstes Stylesheet
+ */
+
+/**
+ * footer
+ */
+#footer{
+    height: 60px;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#footer > .container .text-mutet{
+    margin: 20px 0;
+}
+
+.footer{
+    height: 40px;
+    background-color: rgb(212, 217, 219);
+}
+
+.footer-linklist{
+    position: relative;
+    height: 20px;
+    top: 10px;
+    text-align: left;
+    font-size: 0.85em;
+}
+
+.footer-social{
+    position: relative;
+    top: 4px;
+    text-align: right;
+    height: 32px;
+}
+
+.footer-social ul{
+    list-style-type: none;
+}
+
+.footer-social ul li{
+    display: inline;
+}
+
+.footer-social ul li a:hover{
+    text-decoration: none;
+}
+
+/**
+ * bbcode editor
+ */
+.bbcode-editor{
+}
+
+.bbcode-editor > .bbcode-bar{
+}
+
+.bbcode-editor > .bbcode-bar > .bbcode-bar-group{
+    display: inline;
+    margin-right: 25px;
+}
+
+.bbcode-editor > .bbcode-bar > .bbcode-bar-group:first-child{
+    margin-left: 10px;
+}
+
+.bbcode-editor > .bbcode-bar-description{
+    font-size: 0.8em;
+}
+
+.bbcode-editor > .bbcode-bar-description{
+    height: 20px;
+    margin-left: 10px;
+}
+
+/**
+ * code
+ */
+.code{
+    border: 1px solid gray;
+    padding: 20px;
+    background-color: #efefef;
+}

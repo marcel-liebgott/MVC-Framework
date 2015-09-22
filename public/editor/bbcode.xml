@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<BBCode>
+	<Tag>
+		<Id>bold</Id>
+		<Img>bold.png</Img>
+		<Description>Fett</Description>
+		<Shortcut>b</Shortcut>
+		<Regex><![CDATA[/\[b\](.*?)\[\/b\]/s]]></Regex>
+		<Replace><![CDATA[<b>$1</b>]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>italic</Id>
+		<Img>italic.png</Img>
+		<Description>Kursiv</Description>
+		<Shortcut>i</Shortcut>
+		<Regex><![CDATA[/\[i\](.*?)\[\/i\]/s]]></Regex>
+		<Replace><![CDATA[<i>$1</i>]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>underline</Id>
+		<Img>underline.png</Img>
+		<Description>Unterstreichen</Description>
+		<Shortcut>u</Shortcut>
+		<Regex><![CDATA[/\[u\](.*?)\[\/u\]/s]]></Regex>
+		<Replace><![CDATA[<u>$1</u>]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>quote</Id>
+		<Img>quote.png</Img>
+		<Description>Zitieren</Description>
+		<Shortcut>quote</Shortcut>
+		<Regex><![CDATA[/\[quote\](.*?)\[\/quote\]/s]]></Regex>
+		<Replace><![CDATA[<blockquote>$1</blockquote>]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>img</Id>
+		<Img>img.png</Img>
+		<Description>Bild</Description>
+		<Shortcut>img</Shortcut>
+		<Regex><![CDATA[/\[img\](.*?)\[\/img\]/s]]></Regex>
+		<Replace><![CDATA[<img src="$1">]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>url</Id>
+		<Img>link.png</Img>
+		<Description>Link with description</Description>
+		<Shortcut>url</Shortcut>
+		<Regex><![CDATA[/\[url=(.*?)\](.*?)\[\/url\]/s]]></Regex>
+		<Replace><![CDATA[<a href="$1">$2</a>]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>left</Id>
+		<Img>left.png</Img>
+		<Description>text align left</Description>
+		<Shortcut>left</Shortcut>
+		<Regex><![CDATA[/\[left\](.*?)\[\/left\]/s]]></Regex>
+		<Replace><![CDATA[<div align="left">$1</div>]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>center</Id>
+		<Img>center.png</Img>
+		<Description>text align center</Description>
+		<Shortcut>center</Shortcut>
+		<Regex><![CDATA[/\[center\](.*?)\[\/center\]/s]]></Regex>
+		<Replace><![CDATA[<div align="center">$1</div>]]></Replace>
+	</Tag>
+	<Tag>
+		<Id>right</Id>
+		<Img>right.png</Img>
+		<Description>text align right</Description>
+		<Shortcut>right</Shortcut>
+		<Regex><![CDATA[/\[right\](.*?)\[\/right\]/s]]></Regex>
+		<Replace><![CDATA[<div align="right;">$1</div>]]></Replace>
+	</Tag>
+</BBCode>
