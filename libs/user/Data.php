@@ -4,48 +4,78 @@ if(!defined('PATH')){
 }
 
 /**
- * class for basic user data
+ * class to get additional user information
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.10
  */
-class FW_User_Data{
-	private $_id;
-	private $_name;
-	private $_pass;
+class FW_User_Data extends FW_Singleton{
+	/**
+	 * all user data
+	 * 
+	 * @access private
+	 * @var array
+	 */
+	private $_data;
 	
-	public function __construct($id, $name, $pass){
-		$this->setId($id);
-		$this->setName($name);
-		$this->setPass($pass);
+	/**
+	 * get singleton instance
+	 * 
+	 * @access public
+	 * @static
+	 * @return FW_User_Data
+	 */
+	public static function getInstance(){
+		return parent::_getInstance(get_class($this));
 	}
 	
-	public function setId($id){
-		if(FW_Validate::isInteger($id)){
-			$this->_id = $id;
+	/**
+	 * constructor
+	 * 
+	 * @access public
+	 * @since 1.10
+	 * @param arary $data
+	 */
+	public function __construct($data){
+		foreach($data as $key => $value){
+			$this->setUserData($key, $value);
 		}
 	}
 	
-	public function getId(){
-		return $this->_id;
+	/**
+	 * return all user data
+	 * 
+	 * @access public
+	 * @since 1.10
+	 * @return array
+	 */
+	public function getUserAllData(){
+		return $this->_data;
 	}
 	
-	public function setName($name){
-		if(FW_Validate::isMixed($name)){
-			$this->_name = $name;
+	/**
+	 * set a user data
+	 * 
+	 * @access public
+	 * @since 1.10
+	 * @param String $key
+	 * @param String $value
+	 */
+	public function setUserData($key, $value){
+		$this->_data[$key] = $value;
+	}
+	
+	/**
+	 * return a property from the user data
+	 * 
+	 * @access public
+	 * @since 1.10
+	 * @param String $key
+	 */
+	public function getUserData($key){
+		if(!isset($this->_data[$key])){
+			return $this->_data[$key];
 		}
-	}
-	
-	public function getName(){
-		return $this->_name;
-	}
-	
-	public function setPass($pass){
-		$this->_pass = $pass;
-	}
-	
-	public function getPass(){
-		return $this->_pass;
 	}
 }
 ?>

@@ -77,7 +77,7 @@ define('SQL_FILE',			'sql.php');
 /**
  * define database prefix
  */
-define('DB_PREFIX',			'FW_');
+define('DB_PREFIX',			'fw_');
 
 /**
  * application information
@@ -87,10 +87,6 @@ define('HASH_GENERAL_KEY',      'o0G11X7qLqCQZbXS7aRil39sZH6Zm8glE0ZFcvWKTdTGGQF
 
 // for database passwords only
 define('HASH_PASSWORD_KEY',     'aL4X1oO3atpcx9qL2TGTtmOn74D4dQ4OCg4qbwcNqNwm9grTzVVd4o7TDYKj');
-
-// version
-define('VERSION_ID',        '101');
-define('VERSION',           '');
 
 // default lang
 define('DEFAULT_LANG',		'de');
@@ -104,6 +100,24 @@ define('DOWNLOAD_DIR',		'download/');
 define('TYPE',				'mysql');
 define('HOST',				'localhost');
 define('USER',				'root');
-define('PASS',				'');
-define('DATA',				'');
+define('PASS',				'root');
+define('DATA',				'mvc_fw');
+
+// use cookies
+define('USE_COOKIES',		true);
+define('COOKIE_PREFIX',		'FW_');
+
+
+// user
+define('CURRENT_SESSION_USER',		'fw_curr_user');
+
+// user group
+define('GUEST_GROUP_GID',			0);
+define('GUEST_GROUP_UID',			0);
+
+define('FW_USER_GROUP_ADMIN_ID',	1);
+
+// defined application pages
+define('FW_PAGE_404',				"error");
+define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_404);
 ?>
