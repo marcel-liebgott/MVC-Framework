@@ -65,6 +65,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * constructor
 	 * 
 	 * @access public
+	 * @since 1.00
 	 */
 	public function __construct(){
 		if(self::$registry == null){
@@ -72,19 +73,11 @@ class FW_Bootstrap extends FW_Singleton{
 		}
 	}
 
-    /**
-     * get current url
-     *
-     * @access private
-     */
-	private function getUrl(){
-		$this->url = $this->request->getUrl();
-	}
-
 	/**
 	 * initialise the registry
 	 *
 	 * @access private
+	 * @since 1.00
 	 */
 	private function initRegistry(){
 		FW_Session::set('lang', DEFAULT_LANG);
@@ -113,6 +106,8 @@ class FW_Bootstrap extends FW_Singleton{
 		$bbcode->readSmileyXML('public/editor/smiley.xml');
 		self::$registry->set('bbcode', $bbcode);
 		
+		$this->url = $this->request->getUrl();
+		
 		// init current user
 		$user = FW_Session::get(CURRENT_SESSION_USER);
 		
@@ -127,16 +122,10 @@ class FW_Bootstrap extends FW_Singleton{
 	 * init all stuff
 	 *
 	 * @access public
+	 * @since 1.00
 	 */
 	public function init(){
 		$this->initRegistry();
-
-		$this->getUrl();
-
-		if($this->url[0] == ACP_IDENT && empty($this->url[1])){
-			$this->loadDefaultAdminController();
-			return false;
-		}
 
 		if(empty($this->url[0])){
 			$this->loadDefaultController();
@@ -152,6 +141,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * load default controller if nothing are called
 	 *
 	 * @access private
+	 * @since 1.00
 	 */
 	private function loadDefaultController(){
 		$path = CONTROLLER_DIR . 'index.php';
@@ -160,8 +150,6 @@ class FW_Bootstrap extends FW_Singleton{
 			require_once CONTROLLER_DIR . 'index.php';
 			
 			$this->instanziateController('index');
-			
-			//$this->controller = new FW_Front_index();
 			
 			if($this->checkControllerAccess()){
 				$this->controller->handleRequest($this->request, $this->response);
@@ -176,50 +164,21 @@ class FW_Bootstrap extends FW_Singleton{
 	}
 
 	/**
-	 * load default admin controller
-	 * 
-	 * @access private
-	 */
-	private function loadDefaultAdminController(){
-		require_once CONTROLLER_DIR . ACP_DIR . ACP_DEFAULT_CTR . '.php';
-		$class = ACP_DEFAULT_CTR;
-		$this->controller = new $class();
-		$this->controller->handleRequest($this->request, $this->response);
-		$this->controller->loadModel($class, MODEL_DIR);
-		$this->controller->index();
-	}
-
-	/**
-	 * checked if controller existst;
-	 *
-	 * @access private
-	 * @return boolean
-	 */
-	private function existsController($file){
-		return file_exists($file) ? true : false;
-	}
-
-	/**
 	 * if controller exists, load them
 	 *
 	 * @access private
+	 * @since 1.00
 	 * @param string $controller
 	 */
 	private function loadExistingController($controller = null){
-		if(FW_String::strtolower($this->url[0]) === 'acp' && isset($this->url[1])){
-			$com = $this->url[1];
-			$controller_dir = CONTROLLER_DIR . ACP_DIR;
-			$model_dir = MODEL_DIR . ACP_DIR;
+		if(isset($controller)){
+			$com = $controller;
 		}else{
-			if(isset($controller)){
-				$com = $controller;
-			}else{
-				$com = $this->url[0];
-			}
-
-			$controller_dir = CONTROLLER_DIR;
-			$model_dir = MODEL_DIR;
+			$com = $this->url[0];
 		}
+
+		$controller_dir = CONTROLLER_DIR;
+		$model_dir = MODEL_DIR;
 
 		$file = $controller_dir . $com . '.php';
 
@@ -230,11 +189,12 @@ class FW_Bootstrap extends FW_Singleton{
 			if($this->checkControllerAccess()){
 				$this->controller->loadModel($com, $model_dir);
 			}else{
-				// user has no access
+				// no access
+				$this->response->redirectUrl(FW_ACCESS_DENIED_PAGE, true);
 			}
 		}else{
-			echo "Error 404";
-			die();
+			// 404
+			$this->response->redirectUrl(FW_NOT_FOUND_PAGE, true);
 		}
 	}
 
@@ -242,6 +202,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * call a method
 	 *
 	 * @access private
+	 * @since 1.00
 	 */
 	private function callControllerMethod(){
 		if(FW_String::strtolower($this->url[0]) === 'acp'){
@@ -284,17 +245,36 @@ class FW_Bootstrap extends FW_Singleton{
 	private function checkControllerAccess(){
 		// check if called constructor have access for the current user
 		$user = FW_Session::get(CURRENT_SESSION_USER);
+		$groupId = $user->getUserData(FW_DB_TBL_USER_GROUP);
 			
-		if(!$this->controller->_guestAccess && $user->getGroup() !== GUEST_GROUP_GID){
-			return false;
-		}else{
+		if(!$this->controller->hasAccess($groupId)){
 			return true;
+		}else{
+			return false;
 		}
 	}
 	
+	/**
+	 * instanziate the called controller
+	 * 
+	 * @access private
+	 * @since 1.02
+	 * @param String $name
+	 */
 	private function instanziateController($name){
 		$controller = 'FW_Front_' . $name;
 		$this->controller = new $controller();
+	}
+	
+	/**
+	 * checked if controller existst;
+	 *
+	 * @access private
+	 * @since 1.00
+	 * @return boolean
+	 */
+	private function existsController($file){
+		return file_exists($file) ? true : false;
 	}
 }
 ?>
