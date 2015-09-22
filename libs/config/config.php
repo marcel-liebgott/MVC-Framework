@@ -1,4 +1,8 @@
 <?php
+if(!defined('PATH')){
+	die('no direct script access allowed');
+}
+
 /**
  * DO NOT EDIT SOMETHINK FROM HERE
  */

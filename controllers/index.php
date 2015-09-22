@@ -5,12 +5,9 @@ class index extends FW_Mvc_Controller{
 		
 		$this->addPostFilter(new FW_Filter_HttpAuthFilter(array('admin' => "admin")));
 		
-		$user = FW_User_Repository::getInstance();
-		
-		$fields = $this->db->getTableInfos(FW_DB_TABLE_USER);
-		echo '<pre>';
-			print_r($fields);
-		echo '</pre>';
+		$user = new FW_User_Storage();
+		$user->getUserById(1);
+		$user->getUserByName('Marcel');
 	}
 
 	public function index(){
