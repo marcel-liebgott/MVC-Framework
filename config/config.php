@@ -114,10 +114,13 @@ define('CURRENT_SESSION_USER',		'fw_curr_user');
 // user group
 define('GUEST_GROUP_GID',			0);
 define('GUEST_GROUP_UID',			0);
+define('GUEST_USER_NAME',			'guest');
 
 define('FW_USER_GROUP_ADMIN_ID',	1);
 
 // defined application pages
-define('FW_PAGE_404',				"error/accessDenied");
-define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_404);
+define('FW_PAGE_404',				'error/notFound');
+define('FW_PAGE_403',				'error/accessDenied');
+define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_403);
+define('FW_NOT_FOUND_PAGE',			FW_PAGE_404);
 ?>
