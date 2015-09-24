@@ -27,9 +27,6 @@ final class FW_VersionCompare{
 
 		$version = $data_arr[0];
 		$state = $data_arr[1];
-		
-		echo "Version: " . $version . " State: " . $state . "<br>";
-		echo "FWVersion: " . FW_Version::getVersionId();
 
 		if(FW_Version::getVersionId() < $version){
 			return true;

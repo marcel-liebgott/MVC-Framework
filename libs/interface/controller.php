@@ -4,19 +4,13 @@ if(!defined('PATH')){
 }
 
 /**
-<<<<<<< HEAD
- * basic class to define controller
- *
-=======
  * interface for all controller types
- * 
->>>>>>> master
+ *
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.20
  */
 interface FW_Interface_Controller{
 	/**
-<<<<<<< HEAD
 	 * add a pre filter
 	 * 
 	 * @access public
@@ -55,13 +49,3 @@ interface FW_Interface_Controller{
 	public function loadModel($name, $modelPath);
 }
 ?>
-=======
-	 * default method after controller creation
-	 * 
-	 * @access pblic
-	 * @since 1.20
-	 */
-	public function index();
-}
-?>
->>>>>>> master

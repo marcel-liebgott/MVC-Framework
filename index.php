@@ -1,16 +1,6 @@
 <?php
 define('PATH', '');
 
-$protocol = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == '1' || strtolower($_SERVER['HTTPS'])=='on')) ? 'https' : 'http';
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-define('PATH', $protocol . '://' . $_SERVER['SERVER_NAME'] . '/' . pathinfo($_SERVER['SCRIPT_FILENAME'])['extension'] . '/' . basename(realpath('.')) . '/');
-
-=======
->>>>>>> master
-=======
->>>>>>> master
 require_once 'config/config.php';
 require_once 'libs/config/config.php';
 require_once CONFIG_DIR . SQL_FILE;

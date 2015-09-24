@@ -1,5 +1,4 @@
 <?php
-
 if(!defined('PATH')){
     die("No direct script access allowed");
 }
@@ -100,9 +99,6 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
         try{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             $sth = $this->pdo->prepare($sql);
 
             foreach($array as $key => &$value){
@@ -112,11 +108,6 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             $this->execute($sth);
             
             return new FW_Array($sth->fetchAll($fetchMode));
-=======
-=======
->>>>>>> master
-=======
->>>>>>> master
         	if(self::$_use_db){
 	            $sth = $this->pdo->prepare($sql);
 	
@@ -128,13 +119,6 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 	            
 	            return new FW_Array($sth->fetchAll($fetchMode));
         	}
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> origin/1.10-dev
-=======
->>>>>>> master
-=======
->>>>>>> master
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }

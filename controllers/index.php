@@ -6,21 +6,6 @@ if(!defined('PATH')){
 class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_Controller{
 	public function __construct(){
 		parent::__construct();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
-		$this->addPostFilter(new FW_Filter_HttpAuthFilter(array('admin' => "admin")));
-		
-		$user = new FW_User_Storage();
-		$user->getUserById(1);
-		$user->getUserByName('Marcel');
-=======
->>>>>>> origin/1.10-dev
-=======
->>>>>>> master
-=======
->>>>>>> master
 	}
 
 	public function index(){
