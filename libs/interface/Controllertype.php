@@ -9,13 +9,14 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.20
  */
-interface FW_Interface_Controller{
+interface FW_Interface_ControllerType{
+	
 	/**
-	 * default method after controller creation
+	 * define which groups has access
 	 * 
-	 * @access pblic
+	 * @access public
 	 * @since 1.20
 	 */
-	public function index();
+	public function groupAccess();
 }
 ?>

@@ -10,7 +10,7 @@ if(!defined('PATH')){
  * @abstract
  * @version 1.20
  */
-abstract class FW_MVC_Controller_Default extends FW_Abstract_Controller implements FW_Interface_Controller{
+abstract class FW_MVC_Controller_Default extends FW_Abstract_Controller implements FW_Interface_ControllerType{
 	/**
 	 * constructor
 	 * 
