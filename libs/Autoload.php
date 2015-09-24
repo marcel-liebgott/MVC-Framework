@@ -3,7 +3,11 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
+<<<<<<< HEAD
+require_once 'interface/Autoload.php';
+=======
 require_once 'interface/autoload.php';
+>>>>>>> master
 
 /**
  * autoload class
