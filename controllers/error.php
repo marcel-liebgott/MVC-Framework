@@ -38,7 +38,7 @@ class FW_Front_error extends FW_Mvc_Controller_default implements FW_Interface_C
 	 * @access public
 	 * @since 1.02
 	 */
-	public function accessDenied(){
+	public function access_denied(){
 		$this->view->render('error/403');
 	}
 	
@@ -49,7 +49,7 @@ class FW_Front_error extends FW_Mvc_Controller_default implements FW_Interface_C
 	 * @access public
 	 * @since 1.02
 	 */
-	public function notFound(){
+	public function not_found(){
 		$this->view->render('error/404');
 	}
 }
