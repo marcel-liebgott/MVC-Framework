@@ -1,4 +1,24 @@
 <?php
+if(!defined('PATH')){
+	die('no direct script access allowed');
+}
+
+$base_dir = __DIR__;
+$doc_root = preg_replace("!${_SERVER['SCRIPT_NAME']}$!", '',$_SERVER['SCRIPT_FILENAME']);
+$base_url = preg_replace("!^${doc_root}!", '', $base_dir);
+$protocol = empty($_SERVER['HTTPS']) ? 'http' : 'https';
+$port = $_SERVER['SERVER_PORT'];
+$disp_port = ($protocol == 'http' && $port == 80 || $protocol == 'https' && $port == 443) ? '' : ":$port";
+$domain = $_SERVER['SERVER_NAME'];
+$full_url = "${protocol}://${domain}${disp_port}${base_dir}";
+
+define('PATH',  $protocol . '://' . $domain . '/' . $base_url . '/');
+define('DOMAIN',	$domain);
+define('PROTOCOL',	$protocol);
+define('PORT',		$port);
+define('DOC_ROOT',	$doc_root);
+define('BASE_URL',	$base_url);
+
 /**
  * admin-modul indentificator
  */
@@ -119,8 +139,11 @@ define('GUEST_USER_NAME',			'guest');
 define('FW_USER_GROUP_ADMIN_ID',	1);
 
 // defined application pages
-define('FW_PAGE_404',				'error/notFound');
-define('FW_PAGE_403',				'error/accessDenied');
+define('FW_PAGE_404',				'error/not_found');
+define('FW_PAGE_403',				'error/access_denied');
 define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_403);
 define('FW_NOT_FOUND_PAGE',			FW_PAGE_404);
+
+// debug mode
+define('DEBUG_MODE',				true);
 ?>
