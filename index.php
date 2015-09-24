@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 $protocol = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == '1' || strtolower($_SERVER['HTTPS'])=='on')) ? 'https' : 'http';
 
-define('PATH', $protocol . '://' . $_SERVER['SERVER_NAME'] . '/' . basename(realpath('.')) . '/');
+define('PATH', $protocol . '://' . $_SERVER['SERVER_NAME'] . '/' . pathinfo($_SERVER['SCRIPT_FILENAME'])['extension'] . '/' . basename(realpath('.')) . '/');
 
 require_once 'config/config.php';
 require_once 'libs/config/config.php';

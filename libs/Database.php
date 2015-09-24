@@ -100,6 +100,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
         try{
+<<<<<<< HEAD
             $sth = $this->pdo->prepare($sql);
 
             foreach($array as $key => &$value){
@@ -109,6 +110,19 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             $this->execute($sth);
             
             return new FW_Array($sth->fetchAll($fetchMode));
+=======
+        	if(self::$_use_db){
+	            $sth = $this->pdo->prepare($sql);
+	
+	            foreach($array as $key => &$value){
+	                $sth->bindParam("$key", $value);
+	            }
+	            
+	            $this->execute($sth);
+	            
+	            return new FW_Array($sth->fetchAll($fetchMode));
+        	}
+>>>>>>> origin/1.10-dev
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }

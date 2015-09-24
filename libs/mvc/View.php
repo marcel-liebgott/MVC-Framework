@@ -144,14 +144,12 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
      * @access private
      */
     private function renderInformation(){
-        $fw_info = FW_VERSION . ' {lang ' . FW_VERSION_STATE . '}';
-        $footerInformation = '&copy; ' . date('Y') . ' Marcel Liebgott, Powered by <a href="http://www.mliebgott.de" target="_self">mliebgott.de</a> - Version: ' . $fw_info;
-
-        $version = FW_VERSION . ' ' . FW_VERSION_STATE;
+        $fw_version = FW_Version::getFull();
+        $footerInformation = '&copy; ' . date('Y') . ' Marcel Liebgott, Powered by <a href="http://www.mliebgott.de" target="_self">mliebgott.de</a> - Version: ' . $fw_version;
 
         $r_array = array(
             'fw_info' => $footerInformation,
-            'version_info' => $version
+            'version_info' => $fw_version
         );
 
         foreach($r_array as $ident => $replace){

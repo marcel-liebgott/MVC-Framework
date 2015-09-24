@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Smiley>
+	<Item>
+		<Id>:-D</Id>
+		<Img>biggrin.png</Img>
+		<Description>:-D</Description>
+		<Shortcut>:-D</Shortcut>
+		<Regex><![CDATA[/\:\-D/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/biggrin.png" alt=":-D">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:-)</Id>
+		<Img>smile.png</Img>
+		<Description>:-)</Description>
+		<Shortcut>:-)</Shortcut>
+		<Regex><![CDATA[/\:\-\)/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/smile.png" alt=":-)">]]></Replace>
+	</Item>
+	<Item>
+		<Id>;-)</Id>
+		<Img>wink.png</Img>
+		<Description>;-)</Description>
+		<Shortcut>;-)</Shortcut>
+		<Regex><![CDATA[/\;\-\)/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/wink.png" alt=";-)">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:-(</Id>
+		<Img>frown.png</Img>
+		<Description>:-(</Description>
+		<Shortcut>:-(</Shortcut>
+		<Regex><![CDATA[/\:\-\(/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/frown.png" alt=":-(">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:-p</Id>
+		<Img>tongue.png</Img>
+		<Description>:-p</Description>
+		<Shortcut>:-p</Shortcut>
+		<Regex><![CDATA[/\:\-p/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/tongue.png" alt=":-p">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:-/</Id>
+		<Img>unsure.png</Img>
+		<Description>:-/</Description>
+		<Shortcut>:-/</Shortcut>
+		<Regex><![CDATA[/\:\-\//]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/unsure.png" alt=":-/">]]></Replace>
+	</Item>
+	<Item>
+		<Id>8-)</Id>
+		<Img>cool.png</Img>
+		<Description>8-)</Description>
+		<Shortcut>8-)</Shortcut>
+		<Regex><![CDATA[/8\-\)/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/cool.png" alt="8-)">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:roll:</Id>
+		<Img>rolleyes.png</Img>
+		<Description>:roll:</Description>
+		<Shortcut>:roll:</Shortcut>
+		<Regex><![CDATA[/\:roll\:/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/rolleyes.png" alt=":roll:">]]></Replace>
+	</Item>
+	<Item>
+		<Id>%)</Id>
+		<Img>confused.png</Img>
+		<Description>%)</Description>
+		<Shortcut>%)</Shortcut>
+		<Regex><![CDATA[/\%\)/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/confused.png" alt="%)">]]></Replace>
+	</Item>
+	<Item>
+		<Id>oO)</Id>
+		<Img>shock.png</Img>
+		<Description>oO)</Description>
+		<Shortcut>oO)</Shortcut>
+		<Regex><![CDATA[/oO\)/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/shock.png" alt="oO)">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:-O</Id>
+		<Img>bigsmile.png</Img>
+		<Description>:-O</Description>
+		<Shortcut>:-O</Shortcut>
+		<Regex><![CDATA[/\:\-O/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/biggrin.png" alt=":-O">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:'(</Id>
+		<Img>crying.png</Img>
+		<Description>:'(</Description>
+		<Shortcut>:'(</Shortcut>
+		<Regex><![CDATA[/\:\'\(/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/crying.png" alt=":'(">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:-o</Id>
+		<Img>eek.png</Img>
+		<Description>:-o</Description>
+		<Shortcut>:-o</Shortcut>
+		<Regex><![CDATA[/\:\-\o/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/eek.png" alt=":'(">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:evil:</Id>
+		<Img>evil.png</Img>
+		<Description>:evil:</Description>
+		<Shortcut>:evil:</Shortcut>
+		<Regex><![CDATA[/\:evil\:/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/evil.png" alt="evil">]]></Replace>
+	</Item>
+	<Item>
+		<Id>=)</Id>
+		<Img>happy.png</Img>
+		<Description>=)</Description>
+		<Shortcut>=)</Shortcut>
+		<Regex><![CDATA[/\=\)/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/happy.png" alt="=)">]]></Replace>
+	</Item>
+	<Item>
+		<Id>:ops:</Id>
+		<Img>oops.png</Img>
+		<Description>:ops:</Description>
+		<Shortcut>:oops:</Shortcut>
+		<Regex><![CDATA[/\:ops\:/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/oops.png" alt=":ops:">]]></Replace>
+	</Item>
+	<Item>
+		<Id>0:-)</Id>
+		<Img>holy.png</Img>
+		<Description>0:-)</Description>
+		<Shortcut>0:-)</Shortcut>
+		<Regex><![CDATA[/O\-\)/]]></Regex>
+		<Replace><![CDATA[<img src="{url}/public/images/smileys/holy.png" alt="O-)">]]></Replace>
+	</Item>
+</Smiley>

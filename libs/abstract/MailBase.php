@@ -87,7 +87,7 @@ abstract class FW_Abstract_MailBase{
 	 * @access private
 	 * @var string
 	 */
-	private $charset = 'UTF-8';
+	private $charset = 'ISO-8859-1';
 
 	/**
 	 * xmailer
@@ -177,7 +177,7 @@ abstract class FW_Abstract_MailBase{
 	 * @return string
 	 */
 	public function getReceiver(){
-		return $this->receiver;
+		return $this->reveiverName . '<' . $this->receiver . '>';
 	}
 
 	/**
@@ -377,7 +377,7 @@ abstract class FW_Abstract_MailBase{
 		}
 
 		$this->body = $prepare;
-		$this->body .= nl2br(htmlspecialchars($body));
+		$this->body .= nl2br($body);
 		$this->body .= self::$lineEnd . self::$lineEnd;
 		$this->body .= $attach;
 	}
