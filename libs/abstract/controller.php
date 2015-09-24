@@ -9,27 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.10
  */
-<<<<<<< HEAD:libs/mvc/Controller.php
-class FW_Mvc_Controller implements FW_Interface_Controller{
-	/**
-	 * filter to precess befor script running
-	 *
-	 * @access private
-	 * @var FW_FilterChain
-	 */
-	private $preFilter;
-
-	/**
-	 * filter to process after script running
-	 *
-	 * @access private
-	 * @var FW_FilterChain
-	 */
-	private $postFilter;
-
-=======
 abstract class FW_Abstract_Controller{
->>>>>>> master:libs/abstract/Controller.php
 	/**
 	 * controller view
 	 *
