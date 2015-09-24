@@ -135,6 +135,10 @@ define('CURRENT_SESSION_USER',		'fw_curr_user');
 define('GUEST_GROUP_GID',			0);
 define('GUEST_GROUP_UID',			0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+define('GUEST_USER_NAME',			'guest');
+>>>>>>> master
 =======
 define('GUEST_USER_NAME',			'guest');
 >>>>>>> master
@@ -144,12 +148,15 @@ define('FW_USER_GROUP_ADMIN_ID',	1);
 // defined application pages
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define('FW_PAGE_404',				"error");
 =======
 define('FW_PAGE_404',				"error/accessDenied");
 >>>>>>> origin/1.10-dev
 define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_404);
 =======
+=======
+>>>>>>> master
 define('FW_PAGE_404',				'error/not_found');
 define('FW_PAGE_403',				'error/access_denied');
 define('FW_ACCESS_DENIED_PAGE',		FW_PAGE_403);
@@ -157,5 +164,8 @@ define('FW_NOT_FOUND_PAGE',			FW_PAGE_404);
 
 // debug mode
 define('DEBUG_MODE',				true);
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 ?>

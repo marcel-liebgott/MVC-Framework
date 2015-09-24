@@ -4,8 +4,11 @@ define('PATH', '');
 $protocol = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == '1' || strtolower($_SERVER['HTTPS'])=='on')) ? 'https' : 'http';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 define('PATH', $protocol . '://' . $_SERVER['SERVER_NAME'] . '/' . pathinfo($_SERVER['SCRIPT_FILENAME'])['extension'] . '/' . basename(realpath('.')) . '/');
 
+=======
+>>>>>>> master
 =======
 >>>>>>> master
 require_once 'config/config.php';

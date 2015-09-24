@@ -8,6 +8,7 @@ class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_C
 		parent::__construct();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		$this->addPostFilter(new FW_Filter_HttpAuthFilter(array('admin' => "admin")));
 		
@@ -16,6 +17,8 @@ class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_C
 		$user->getUserByName('Marcel');
 =======
 >>>>>>> origin/1.10-dev
+=======
+>>>>>>> master
 =======
 >>>>>>> master
 	}

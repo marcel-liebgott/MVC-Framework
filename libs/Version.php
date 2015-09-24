@@ -46,7 +46,11 @@ final class FW_Version{
 	 * @var String
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private static $_build = "001";
+=======
+	private static $_build = "002";
+>>>>>>> master
 =======
 	private static $_build = "002";
 >>>>>>> master

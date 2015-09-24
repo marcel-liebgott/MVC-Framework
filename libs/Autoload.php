@@ -3,7 +3,11 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
+<<<<<<< HEAD
 require_once 'interface/Autoload.php';
+=======
+require_once 'interface/autoload.php';
+>>>>>>> master
 
 /**
  * autoload class
@@ -91,6 +95,8 @@ class FW_Autoload implements FW_Interface_Autoload{
 	public function autoload($class){
 		if(substr($class, 0, 3) == $this->_prefix){
 			$class = substr($class, 3);
+			
+			$class = strtolower($class);
 		
 			$class_arr = explode('_', $class);
 			

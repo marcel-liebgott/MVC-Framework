@@ -102,6 +102,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
         try{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             $sth = $this->pdo->prepare($sql);
 
             foreach($array as $key => &$value){
@@ -112,6 +113,8 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             
             return new FW_Array($sth->fetchAll($fetchMode));
 =======
+=======
+>>>>>>> master
 =======
 >>>>>>> master
         	if(self::$_use_db){
@@ -126,7 +129,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 	            return new FW_Array($sth->fetchAll($fetchMode));
         	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/1.10-dev
+=======
+>>>>>>> master
 =======
 >>>>>>> master
         }catch(PDOException $e){
