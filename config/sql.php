@@ -15,7 +15,7 @@ define('FW_DB_TABLE_GROUP',				DB_PREFIX . 'group');
 define('FW_DB_TBL_USER_ID',				'uid');
 define('FW_DB_TBL_USER_NAME',			'u_name');
 define('FW_DB_TBL_USER_PASS',			'u_pass');
-define('FW_DB_TBL_USER_GROUP',			'u_groups');
+define('FW_DB_TBL_USER_GROUP',			'u_group');
 
 /**
  * Database Table 'group'
