@@ -133,7 +133,8 @@ class FW_User_Data{
 			$cookie = FW_Registry::getInstance()->get('cookies');
 				
 			if($user !== null){
-				$loggedin = $this->checkUser($name, $pass);
+				$userObject = new FW_User_Data($user);
+				$loggedin = $this->checkUser($name, $pass, $userObject);
 	
 				if($loggedin){
 					// store user in sessions
@@ -167,18 +168,19 @@ class FW_User_Data{
 	 * @since 1.02
 	 * @param String $name
 	 * @param String $pass
+	 * @param FW_User_Data $user
 	 * @return boolean
 	 */
-	private function checkUser($name, $pass){
-		if($this->_data == null){
+	private function checkUser($name, $pass, $user){
+		if($user == null){
 			throw new FW_Exception_MissingData("user not found");
 		}
 	
-		if($name !== $this->_data->get(FW_DB_TBL_USER_NAME)){
+		if($name !== $user->getUserData(FW_DB_TBL_USER_NAME)){
 			return false;
 		}
 	
-		if($pass !== $this->_data->get(FW_DB_TBL_USER_PASS)){
+		if($pass !== $user->getUserData(FW_DB_TBL_USER_PASS)){
 			return false;
 		}
 	
