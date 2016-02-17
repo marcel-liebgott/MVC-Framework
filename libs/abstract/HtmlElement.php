@@ -95,11 +95,11 @@ abstract class FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
 		$this->setName($name);
@@ -112,7 +112,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set name of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $name
 	 */
 	public final function setName($name){
 		if(FW_Validate::isMixed($name)){
@@ -134,7 +134,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set id of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $id
 	 */
 	public final function setId($id){
 		if(FW_Validate::isString($id)){
@@ -156,7 +156,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set class of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $class
 	 */
 	public final function setClass($class){
 		if(FW_Validate::isMixed($class)){
@@ -178,7 +178,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set default of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $default
 	 */
 	public final function setDefault($default){
 		if(FW_Validate::isMixed($default)){
@@ -200,8 +200,8 @@ abstract class FW_Abstract_HtmlElement{
 	 * set style property of this element
 	 *
 	 * @access public
-	 * @param string
-	 * @param string 
+	 * @param string $key
+	 * @param string $value
 	 */
 	public final function setStyle($key, $value){
 		if(FW_Validate::isString($key) && FW_Validate::isString($value)){
@@ -223,7 +223,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set autocomplete property of this element
 	 *
 	 * @access public
-	 * @var boolean
+	 * @var boolean $complete
 	 */
 	public final function setAutocomplete($complete){
 		if(FW_Validate::isBool($complete)){
@@ -255,7 +255,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set autofocus property of this element
 	 *
 	 * @access public
-	 * @param boolean
+	 * @param boolean $focus
 	 */
 	public final function setAutofocus($focus){
 		if(FW_Validate::isBool($focus)){
@@ -276,10 +276,9 @@ abstract class FW_Abstract_HtmlElement{
 	/**
 	 * set disabled property of this element
 	 * isn't the value of param empty, so we would be disabled this element
-	 * disabled value="{@param value}"
 	 *
 	 * @access public
-	 * @param mixed
+	 * @param mixed $value
 	 */
 	public final function setDisabled($value){
 		if(FW_Validate::isMixed($value)){
@@ -301,7 +300,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set the pattern property of this element
 	 *
 	 * @access public
-	 * @param mixed
+	 * @param mixed $pattern
 	 */
 	public final function setPattern($pattern){
 		if(FW_Validate::isMixed($pattern)){

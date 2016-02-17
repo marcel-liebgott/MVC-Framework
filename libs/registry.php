@@ -24,7 +24,7 @@ class FW_Registry extends FW_Singleton{
      *
      * @access public
      * @static
-     * @return resource
+     * @return FW_Registry
      */
     public static function getInstance(){
        return parent::_getInstance(get_class());
@@ -75,7 +75,7 @@ class FW_Registry extends FW_Singleton{
      * set database instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Database $data
      */
     public function setDatabase($data){
         self::set(self::KEY_DATABASE, $data);
@@ -85,7 +85,7 @@ class FW_Registry extends FW_Singleton{
      * get database instance
      *
      * @access public
-     * @return resource $data
+     * @return FW_Database $data
      */
     public function getDatabase(){
         return self::get(self::KEY_DATABASE);
@@ -95,7 +95,7 @@ class FW_Registry extends FW_Singleton{
      * set request instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Request $data
      */
     public function setRequest(FW_Request $request){
         self::set(self::KEY_REQUEST, $request);
@@ -105,7 +105,7 @@ class FW_Registry extends FW_Singleton{
      * get request instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Request $data
      */
     public function getRequest(){
         return self::get(self::KEY_REQUEST);
@@ -115,7 +115,7 @@ class FW_Registry extends FW_Singleton{
      * set response instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Response $data
      */
     public function setResponse(FW_Response $response){
         self::set(self::KEY_RESPONSE, $response);
@@ -125,7 +125,7 @@ class FW_Registry extends FW_Singleton{
      * get response instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Response $data
      */
     public function getResponse(){
         return self::get(self::KEY_RESPONSE);
@@ -135,7 +135,7 @@ class FW_Registry extends FW_Singleton{
      * set configuration instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Configuration $data
      */
     public function setConfiguration(FW_Configuration $config){
         self::set(self::KEY_CONFIGURATION, $config);
@@ -145,7 +145,7 @@ class FW_Registry extends FW_Singleton{
      * get configuration instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Configuration $data
      */
     public function getConfiguration(){
         return self::get(self::KEY_CONFIGURATION);
@@ -165,7 +165,7 @@ class FW_Registry extends FW_Singleton{
      * get languages instance
      *
      * @access public
-     * @param resource $data
+     * @param FW_Language $data
      */
     public function getLanguage(){
         return self::get(self::KEY_LANGUAGE);

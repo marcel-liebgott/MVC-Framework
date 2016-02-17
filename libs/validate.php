@@ -162,7 +162,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
-     * @param string $data 
+     * @param boolean $data 
      * @return boolean|string is failed
      */
     public static function isBool($data){ 
@@ -217,7 +217,7 @@ final class FW_Validate{
      * @access public
      * @since 1.00
      * @static
-     * @param type $data 
+     * @param string $data 
      * @return boolean|string is failed
      */
     public static function isValidMail($data){

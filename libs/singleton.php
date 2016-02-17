@@ -26,8 +26,8 @@ abstract class FW_Singleton{
 	 * @access protected
 	 * @static
 	 * @since 1.01
-	 * @param String $class
-	 * @return object
+	 * @param string $class
+	 * @return FW_Singleton
 	 */
 	protected static function _getInstance($class){
 		if(!isset(self::$_instances[$class])){

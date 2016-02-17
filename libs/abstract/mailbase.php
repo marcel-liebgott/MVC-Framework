@@ -39,7 +39,7 @@ abstract class FW_Abstract_MailBase{
 	 * @access private
 	 * @var string
 	 */
-	private $reveiverName;
+	private $receiverName;
 
 	/**
 	 * mail body
@@ -69,7 +69,7 @@ abstract class FW_Abstract_MailBase{
 	 * e-mail attachment
 	 *
 	 * @access private
-	 * @var $_FILES
+	 * @var array
 	 */
 	private $attachment;
 
@@ -136,7 +136,7 @@ abstract class FW_Abstract_MailBase{
 	 * set e-mail from
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $from
 	 */
 	public function setFrom($from){
 		$from = trim($from);
@@ -160,7 +160,7 @@ abstract class FW_Abstract_MailBase{
 	 * set e-mail receiver
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $receiver
 	 */
 	public function setReceiver($receiver){
 		$receiver = trim($receiver);
@@ -177,14 +177,14 @@ abstract class FW_Abstract_MailBase{
 	 * @return string
 	 */
 	public function getReceiver(){
-		return $this->reveiverName . '<' . $this->receiver . '>';
+		return $this->receiverName . '<' . $this->receiver . '>';
 	}
 
 	/**
 	 * set e-mail charset
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $charset
 	 */
 	public function setCharset($charset){
 		if(FW_Validate::isString($charset)){
@@ -206,10 +206,10 @@ abstract class FW_Abstract_MailBase{
 	 * set e-mail content type
 	 *
 	 * @access public
-	 * @var string
+	 * @var string $contentType
 	 */
 	public function setContentType($contentType){
-		if($this->validate->isMixed($contentType)){
+		if(FW_Validate::isMixed($contentType)){
 			$this->contentType = $contentType;
 		}
 	}
@@ -228,7 +228,7 @@ abstract class FW_Abstract_MailBase{
 	 * set e-mail subject
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $subject
 	 */
 	public function setSubject($subject){
 		if(FW_Validate::isString($subject)){
@@ -259,7 +259,7 @@ abstract class FW_Abstract_MailBase{
         $this->header .= $this->getHeaderLine('Content-Type', $this->contentType . '; charset=' . $this->charset);
         $this->header .= $this->getHeaderLine('Content-Transfer-Encoding', '8bit');
         $this->header .= $this->getHeaderLine('Message-ID', time() . ' noreply@' . $_SERVER['SERVER_NAME'] . '>');
-        $this->header .= $this->getHeaderLine('X-Priority', $this->priority);
+        $this->header .= $this->getHeaderLine('X-Priority', (string) $this->priority);
         $this->header .= $this->getHeaderLine('X-Mailer', $this->xmailer);
         $this->header .= self::$lineEnd;
 	}
@@ -290,7 +290,7 @@ abstract class FW_Abstract_MailBase{
 	 * set the receiver name of this e-mail
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $name
 	 */
 	public function setReceiverName($name){
 		if(FW_Validate::isMixed($name)){
@@ -312,7 +312,7 @@ abstract class FW_Abstract_MailBase{
 	 * set XMailer of this email
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $xmailer
 	 */
 	public function setXmailer($xmailer){
 		if(FW_Validate::isString($xmailer)){
@@ -334,10 +334,10 @@ abstract class FW_Abstract_MailBase{
 	 * set email priority
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $priority
 	 */
 	public function setPriority($priority){
-		if(FW_Validate::isInterger($priority) && ($priority == 1 || $priority == 3 || $priority == 5)){
+		if(FW_Validate::isInteger($priority) && ($priority == 1 || $priority == 3 || $priority == 5)){
 			$this->priority = $priority;
 		}
 	}
@@ -356,7 +356,7 @@ abstract class FW_Abstract_MailBase{
 	 * set e-mail body
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $body
 	 */
 	public function setMailBody($body){
 		$prepare = '';
@@ -407,7 +407,7 @@ abstract class FW_Abstract_MailBase{
 	 *
 	 * @access private
 	 * @param name of the upload input field
-	 * @return mixed
+	 * @return string $name
 	 */
 	private function checkAttachment($name){
 		if(FW_Validate::isString($name)){
@@ -427,9 +427,10 @@ abstract class FW_Abstract_MailBase{
 	 * set e-mail attachment
 	 *
 	 * @access public
+	 * @param string $name
 	 */
-	public function setAttachment(){
-		$file = $this->checkAttachment();
+	public function setAttachment($name){
+		$file = $this->checkAttachment($name);
 
 		if($file !== false){
 			$this->attachment = $file;
@@ -452,8 +453,9 @@ abstract class FW_Abstract_MailBase{
 	 * generate a email header line
 	 *
 	 * @access private
-	 * @param string
-	 * @param string
+	 * @param string $key
+	 * @param string $value
+	 * @return string
 	 */
 	private function getHeaderLine($key, $value){
 		return $key . ': ' . $value . self::$lineEnd;

@@ -16,6 +16,7 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * @access public
 	 * @static
 	 * @since 1.10
+	 * @return FW_DAO_User
 	 */
 	public static function getInstance(){
 		return parent::_getInstance(get_class());

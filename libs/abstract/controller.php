@@ -67,6 +67,30 @@ abstract class FW_Abstract_Controller{
 	protected $lang;
 	
 	/**
+	 * filter which run before controller execution
+	 * 
+	 * @access protected
+	 * @var FW_FilterChain
+	 */
+	protected $preFilter;
+	
+	/**
+	 * filter which run after controller execution
+	 * 
+	 * @access protected
+	 * @var FW_FilterChain
+	 */
+	protected $postFilter;
+	
+	/**
+	 * model instance
+	 * 
+	 * @access protected
+	 * @var FW_Mvc_Model
+	 */
+	protected $model;
+	
+	/**
 	 * grant access for guests
 	 * by default the access is true
 	 * 
@@ -98,12 +122,14 @@ abstract class FW_Abstract_Controller{
 	 * @access protected
 	 */
 	protected function __construct(){
+		$registry = FW_Registry::getInstance();
+		
 		$this->special = FW_Special::getInstance();
 		$this->view = new FW_Mvc_View(get_class($this));
-		$this->db = FW_Registry::getInstance()->getDatabase();
-		$this->request = FW_Registry::getInstance()->getRequest();
-		$this->response = FW_Registry::getInstance()->getResponse();
-		$this->lang = FW_Registry::getInstance()->getLanguage();
+		$this->db = $registry->getDatabase();
+		$this->request = $registry->getRequest();
+		$this->response = $registry->getResponse();
+		$this->lang = $registry->getLanguage();
 		$this->preFilter = new FW_FilterChain();
 		$this->postFilter = new FW_FilterChain();
 		
@@ -115,7 +141,7 @@ abstract class FW_Abstract_Controller{
 	 * add an pre filter
 	 *
 	 * @access public
-	 * @param FW_Filter
+	 * @param FW_Interface_Filter $filter
 	 */
 	public function addPreFilter(FW_Interface_Filter $filter){
 		$this->preFilter->addFilters($filter);
@@ -125,7 +151,7 @@ abstract class FW_Abstract_Controller{
 	 * add an post filter
 	 *
 	 * @access public
-	 * @param FW_Filter
+	 * @param FW_Interface_Filter $filter
 	 */
 	public function addPostFilter(FW_Interface_Filter $filter){
 		$this->postFilter->addFilters($filter);
@@ -135,8 +161,8 @@ abstract class FW_Abstract_Controller{
 	 *handle http request
 	 *
 	 * @access public
-	 * @param FW_Request
-	 * @param FW_Response
+	 * @param FW_Request $request
+	 * @param FW_Response $response
 	 */
 	public function handleRequest(FW_Request $request, FW_Response $response){
 		$this->preFilter->processFilters($request, $response);
@@ -149,8 +175,8 @@ abstract class FW_Abstract_Controller{
 	 * load controller model
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $modelPath
 	 */
 	public function loadModel($name, $modelPath){
 		$path = $modelPath . $name . '_model.php';
