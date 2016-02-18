@@ -56,6 +56,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * 
 	 * @access public
 	 * @since 1.00
+	 * @return FW_Bootstrap
 	 */
 	public static function getInstance(){
 		return parent::_getInstance(get_class());
@@ -123,6 +124,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 *
 	 * @access public
 	 * @since 1.00
+	 * @return boolean
 	 */
 	public function init(){
 		$this->initRegistry();

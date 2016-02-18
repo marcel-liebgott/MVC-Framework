@@ -9,7 +9,7 @@ class FW_Exception_ConnectionFailure extends FW_Exception_Critical{
 	 *
 	 * @access public
 	 * @param string $message
-	 * @param int code
+	 * @param int $code
 	 */
 	public function __construct($message, $code = 0){
 		parent::__construct($message, $code);

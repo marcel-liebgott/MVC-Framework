@@ -21,7 +21,7 @@ class FW_Ftp{
 	 * ftp host
 	 *
 	 * @access private
-	 * @var string
+	 * @var FW_String
 	 */
 	private $host;
 
@@ -37,7 +37,7 @@ class FW_Ftp{
 	 * ftp user
 	 *
 	 * @access private
-	 * @var string
+	 * @var FW_String
 	 */
 	private $user;
 
@@ -45,7 +45,7 @@ class FW_Ftp{
 	 * ftp pass
 	 *
 	 * @access private
-	 * @var string
+	 * @var FW_String
 	 */
 	private $pass;
 
@@ -69,10 +69,10 @@ class FW_Ftp{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string $host
+	 * @param FW_String $host
 	 * @param int $port
-	 * @param string $user
-	 * @param string $pass
+	 * @param FW_String $user
+	 * @param FW_String $pass
 	 * @param int $timeout
 	 */
 	public function __construct($host, $port = 21, $user, $pass, $timeout = 90){
@@ -87,7 +87,7 @@ class FW_Ftp{
 	 * set ftp host
 	 *
 	 * @access public
-	 * @param string $host
+	 * @param FW_String $host
 	 */
 	public function setHost($host){
 		if(FW_Validate::isValidUrl($host)){
@@ -99,7 +99,7 @@ class FW_Ftp{
 	 * get ftp host
 	 *
 	 * @access public
-	 * @return string
+	 * @return FW_String
 	 */
 	public function getHost(){
 		return $this->host;
@@ -131,7 +131,7 @@ class FW_Ftp{
 	 * set ftp user
 	 *
 	 * @access public
-	 * @param string $user
+	 * @param FW_String $user
 	 */
 	public function setUser($user){
 		if(FW_Validate::isString($user)){
@@ -143,7 +143,7 @@ class FW_Ftp{
 	 * get ftp user
 	 *
 	 * @access public
-	 * @return string
+	 * @return FW_String
 	 */
 	public function getUser(){
 		return $this->user;
@@ -153,7 +153,7 @@ class FW_Ftp{
 	 * set ftp pass
 	 *
 	 * @access public
-	 * @param string $pass
+	 * @param FW_String $pass
 	 */
 	public function setPass($pass){
 		if(FW_Validate::isString($pass)){
@@ -165,7 +165,7 @@ class FW_Ftp{
 	 * get ftp pass
 	 *
 	 * @access public
-	 * @return string
+	 * @return FW_String
 	 */
 	public function getPass(){
 		return $this->pass;
@@ -187,7 +187,7 @@ class FW_Ftp{
 	 * get ftp timeout
 	 *
 	 * @access public
-	 * @return string
+	 * @return int
 	 */
 	public function getTimeout(){
 		return $this->timeout;
@@ -221,7 +221,6 @@ class FW_Ftp{
 	 * login at ftp server
 	 *
 	 * @access public
-	 * @return boolean
 	 */
 	public function login(){
 		if(!ftp_login($this->con, $this->user, $this->pass)){
@@ -237,15 +236,14 @@ class FW_Ftp{
 	 * @param string $localFile
 	 * @param int $mode
 	 * @return boolean
-	 * @todo test it
 	 */
-	public function uploadFile($remoteFile, $loclFile, $mode = FTP_ASCII){
+	public function uploadFile($remoteFile, $localFile, $mode = FTP_ASCII){
 		if(!in_array($mode, $this->enableMode)){
 			throw new FW_Exception_MissingData("FTP-Mode not supported");
 		}
 
-		if($this->validate->isString($remoteFile) && $this->validate->isString($loclFile)){
-			return ftp_put($this->con, $remoteFile, $loclFile, $mode);
+		if(FW_Validate::isString($remoteFile) && FW_Validate::isString($localFile)){
+			return ftp_put($this->con, $remoteFile, $localFile, $mode);
 		}
 	}
 
@@ -255,7 +253,7 @@ class FW_Ftp{
 	 * @access public
 	 * @param string $file
 	 * @param int $mode
-	 * @return boolean
+	 * @return int
 	 */
 	public function chmod($file, $mode){
 		if(function_exists('ftp_chmod')){
@@ -270,7 +268,7 @@ class FW_Ftp{
 	 *
 	 * @access public
 	 * @param string $dirName
-	 * @return boolean
+	 * @return int
 	 */
 	public function mkdir($dirName){
 		if(FW_Validate::isString($dirName)){

@@ -68,7 +68,7 @@ class FW_BBCode extends FW_Singleton{
 	 * read BBCode XML file
 	 *
 	 * @access public
-	 * @param file
+	 * @param string $xmlFile
 	 */
 	public function readBBCodeXML($xmlFile){
 		if(file_exists($xmlFile)){
@@ -97,7 +97,7 @@ class FW_BBCode extends FW_Singleton{
 	 * read Smiley XML file
 	 *
 	 * @access public
-	 * @param file
+	 * @param string $xmlFile
 	 */
 	public function readSmileyXML($xmlFile){
 		if(file_exists($xmlFile)){
@@ -126,8 +126,8 @@ class FW_BBCode extends FW_Singleton{
 	 * add an new BBCode Tag
 	 *
 	 * @access public
-	 * @param $id
-	 * @param $array
+	 * @param string $id
+	 * @param array $array
 	 */
 	public function addBBCodeTag($id, $array){
 		$this->enableTags[$id] = $array;
@@ -137,6 +137,7 @@ class FW_BBCode extends FW_Singleton{
 	 * set string, which would be to convert
 	 *
 	 * @access public
+	 * @param string $bbcodeString
 	 */
 	public function setBBCodeString($bbcodeString){
 		$this->string = $bbcodeString;
@@ -146,7 +147,7 @@ class FW_BBCode extends FW_Singleton{
 	 * check BBCode String
 	 * 
 	 * @access private
-	 * @param array
+	 * @param array $tags
 	 * @return boolean
 	 */
 	private function checkBBCode($tags){
@@ -201,13 +202,13 @@ class FW_BBCode extends FW_Singleton{
 	 * convert BBCode entries
 	 *
 	 * @access public
-	 * @param string
 	 */
 	public function convertBBCode(){
 		// find link
 		$this->string = preg_replace('/\[url=(.*?)\](.*?)\[\/url\]/s', '<a href="http://$1">$2</a>', $this->string);
 		$this->string = preg_replace('/\[url\](.*?)\[\/url\]/s', '<a href="http://$1">$1</a>', $this->string);
 
+		$tags = array();
 		preg_match_all(
         	'/(.*?)(\[(\/?[a-z]+)(=?[^\]\[]*\]))|(.*?)$/si', $this->string, $tags, PREG_OFFSET_CAPTURE
         );
@@ -216,10 +217,10 @@ class FW_BBCode extends FW_Singleton{
 
 		if(empty($this->string)){
 			if($check !== true){
-				echo "somethink wrong with bbcode";
-				return -1;
+				throw new FW_Exception_Critical("something wrong with bbcode");
 			}
-			return -1;
+			
+			throw new FW_Exception_MissingData("bbcode string is empty");
 		}
 
 		// working with index 2
@@ -238,6 +239,7 @@ class FW_BBCode extends FW_Singleton{
 					// get position of first BBCode tag in search string
 					$pos = $tags[$i][1];
 
+					$match = array();
 					// get first tag
 					preg_match('/\[(.+?)(?:=(.+?))?\]/si', $tag, $match);
 
@@ -248,7 +250,7 @@ class FW_BBCode extends FW_Singleton{
 						// get idx of this first ending tag
 						$end_tag_name = '[/' . $tag_name . ']';
 						$lenght_ending_tag = strlen($end_tag_name);
-						$idx_ending_tag = $this->getIndexofEndingTag($end_tag_name, $tags);
+						$idx_ending_tag = $this->getIndexOfEndingTag($end_tag_name, $tags);
 
 						$start_pos = $pos + $this->charDiff;
 

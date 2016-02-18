@@ -129,7 +129,8 @@ abstract class FW_Abstract_MailBase{
 	 * constructor
 	 */
 	public function __construct(){
-		self::$delimiter = md5(time());
+		$time = time();
+		self::$delimiter = md5((string) $time);
 	}
 
 	/**
@@ -406,8 +407,8 @@ abstract class FW_Abstract_MailBase{
 	 * check file attachment
 	 *
 	 * @access private
-	 * @param name of the upload input field
-	 * @return string $name
+	 * @param string $name
+	 * @return string|boolean
 	 */
 	private function checkAttachment($name){
 		if(FW_Validate::isString($name)){

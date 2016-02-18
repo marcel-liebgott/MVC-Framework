@@ -73,7 +73,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
-     * @param string $data 
+     * @param int $data 
      * @return boolean|string if failed
      */
     public static function isInteger($data){ 

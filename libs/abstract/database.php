@@ -5,6 +5,7 @@ if(!defined('PATH')){
 
 /**
  * base database class
+ * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @since 1.01
  */
@@ -14,7 +15,7 @@ abstract class FW_Abstract_Database extends FW_Singleton{
 	 * 
 	 * @access public
 	 * @static
-	 * @param resource $class
+	 * @param string $class
 	 * @return FW_Abstract_Database
 	 */
 	public static function __getInstance($class){

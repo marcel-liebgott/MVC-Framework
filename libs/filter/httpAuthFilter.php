@@ -22,7 +22,7 @@ class FW_Filter_HttpAuthFilter implements FW_Interface_Filter{
 	 * construct
 	 *
 	 * @access public
-	 * @param array
+	 * @param array $authData
 	 */
 	public function __construct($authData){
 		$this->authData = $authData;

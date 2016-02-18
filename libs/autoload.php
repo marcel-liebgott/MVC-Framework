@@ -78,17 +78,18 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @since 1.01
 	 */
 	public function register(){
-		spl_autoload_register(array($this, 'autoload'));
+		spl_autoload_register(FW_Autoload::autoload);
 	}
 	
 	/**
 	 * handle class request
 	 * 
 	 * @access private
+	 * @static
 	 * @since 1.01
-	 * @param String $class
+	 * @param string $class
 	 */
-	public function autoload($class){
+	public static function autoload($class){
 		if(substr($class, 0, 3) == $this->_prefix){
 			$class = substr($class, 3);
 			

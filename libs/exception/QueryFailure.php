@@ -8,9 +8,9 @@ final class FW_Exception_QueryFailure extends FW_Excpetion_Critical{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param int
+	 * @param string $message
+	 * @param string $query
+	 * @param int $number
 	 */
 	public function __construct($message, $query, $number = 0){
 		$msg = 'MySQL-Query failed: ' . $number . ': ' . $message . '\n';

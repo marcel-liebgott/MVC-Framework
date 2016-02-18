@@ -23,7 +23,7 @@ class FW_FilterChain{
 	 * add an filter
 	 *
 	 * @access public
-	 * @param FW_Filter
+	 * @param FW_Filter $filter
 	 */
 	public function addFilters(FW_Interface_Filter $filter){
 		$this->filters[] = $filter;
@@ -33,8 +33,8 @@ class FW_FilterChain{
 	 * process a filter
 	 *
 	 * @access public
-	 * @param FW_Request
-	 * @param FW_Response
+	 * @param FW_Request $request
+	 * @param FW_Response $response
 	 */
 	public function processFilters(FW_Request $request, FW_Response $response){
 		foreach($this->filters as $filter){

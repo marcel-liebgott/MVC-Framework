@@ -97,7 +97,7 @@ abstract class FW_Abstract_UserGroup{
 	 * 
 	 * @access protected
 	 * @since 1.10
-	 * @param String $name
+	 * @param string $name
 	 */
 	protected function setGroupName($name){
 		$this->_groupName = $name;
@@ -108,6 +108,7 @@ abstract class FW_Abstract_UserGroup{
 	 * 
 	 * @access protected
 	 * @since 1.10
+	 * @return string
 	 */
 	protected function getGroupName(){
 		return $this->_groupName;
