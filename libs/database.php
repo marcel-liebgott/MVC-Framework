@@ -40,7 +40,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * get instance of this class - singleton
      *
      * @access public
-     * @return ressource
+     * @return FW_Database
      */
     public static function getInstance(){
         return parent::__getInstance(get_class());
@@ -50,10 +50,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * constructer
      *
      * @access public
+     * @throws FW_Exception_DBConnectionFailure
      */
     public function __construct(){
-    	$config = FW_Registry::getInstance()->get(FW_Registry::KEY_CONFIGURATION);
-    	self::$_use_db = $config->getConfig(new FW_String("use_database"));
+    	self::$_use_db = $this->config->getConfig(use_database);
     	 
     	if(self::$_use_db == true){
     		try{
@@ -70,7 +70,8 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * execute database query
      *
      * @access public
-     * @param ressouce
+     * @throws FW_Exception_DBFailure
+     * @param PDOStatement $sth
      */
     public function execute($sth){
     	try{
@@ -92,9 +93,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * select data from table
      *
      * @access public
-     * @param string
-     * @param array
-     * @param int
+     * @throws FW_Exception_QueryFailure
+     * @param string $sql
+     * @param array $array
+     * @param int $fetchMode
      * @return FW_Array
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
@@ -128,8 +130,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * insert new data into database
      *
      * @access public
-     * @param string
-     * @param array
+     * @throws FW_Exception_QueryFailure
+     * @param string $table
+     * @param array $data
+     * @return string
      */
     public function insert($table, $data){
         try{
@@ -138,7 +142,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             $fieldNames = implode('`, `', array_keys($data));
             $fieldValues = ':' . implode(', :', array_keys($data));
             
-            $sth = $this->prepare("INSERT INTO " . $table . " (`" . $fieldNames . "`) VALUES (" . $fieldValues . ")");
+            $sth = $this->pdo->prepare("INSERT INTO " . $table . " (`" . $fieldNames . "`) VALUES (" . $fieldValues . ")");
             
             foreach($data as $key => $value){
                 $sth->bindValue(":$key", $value);
@@ -156,9 +160,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * update a data
      *
      * @access public
-     * @param string
-     * @param array
-     * @param string
+     * @throws FW_Exception_QueryFailure
+     * @param string $table
+     * @param array $data
+     * @param string $where
      */
     public function update($table, $data, $where){
         try{
@@ -188,9 +193,11 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * delete data
      *
      * @access public
-     * @param string
-     * @param string
-     * @param int
+     * @throws FW_Exception_QueryFailure
+     * @param string $table
+     * @param string $where
+     * @param int $limit
+     * @return PDOStatement
      */
     public function delete($table, $where, $limit = 1){
         try{
@@ -222,7 +229,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * set database encoding
      *
      * @access public
-     * @param string
+     * @param string $name
      */
     public function setNames($name){
         $sth = $this->pdo->prepare("SET NAMES " . $name);
@@ -234,9 +241,9 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * set transaction property
      *
      * @access public
-     * @param boolean
+     * @param boolean $use
      */
-    public function setUseTransaction(bool $use){
+    public function setUseTransaction($use){
         $this->use_transaction = $use;
     }
 
@@ -254,10 +261,11 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * starts a transaction
      *
      * @access public
+     * @todo begin transaction
      */
     public function startTransaction(){
         if($this->getUseTransaction()){
-            $this->beginTransaction();
+            //$this->beginTransaction();
         }
     }
 
@@ -287,10 +295,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * get last inserted id
      *
      * @access public
-     * @return int
+     * @return string
      */
     public function getLastInsertedId(){
-        return $this->lastInsertId();
+        return $this->pdo->lastInsertId();
     }
     
     /**
@@ -298,7 +306,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * 
      * @access public
      * @since 1.02
-     * @param String $table
+     * @param string $table
      * @return array
      */
     public function getTableColumns($table){

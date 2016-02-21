@@ -145,7 +145,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
-     * @param string $data 
+     * @param float $data 
      * @return boolean|string is failed
      */
     public static function isFloat($data){ 
@@ -200,6 +200,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param mixed $data 
      * @return boolean|string is failed
      */

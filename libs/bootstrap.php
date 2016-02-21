@@ -144,6 +144,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 *
 	 * @access private
 	 * @since 1.00
+	 * @throws FW_Exception
 	 */
 	private function loadDefaultController(){
 		$path = CONTROLLER_DIR . 'index.php';
@@ -205,6 +206,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 *
 	 * @access private
 	 * @since 1.00
+	 * @throws FW_Exception_UnsupportedMethod
 	 */
 	private function callControllerMethod(){
 		if(FW_String::strtolower($this->url[0]) === 'acp'){

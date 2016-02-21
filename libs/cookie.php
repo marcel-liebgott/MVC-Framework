@@ -112,7 +112,7 @@ class FW_Cookie{
      * @return mixed
      */
     public static function get($name){
-        if($this->existsCookie($name)){
+        if(self::existsCookie($name)){
             return $_COOKIE[$name];
         }
         
@@ -296,7 +296,7 @@ class FW_Cookie{
      * @param String $name
      */
     public function delete($name){
-    	if($this->existsCookie($name)){
+    	if(self::existsCookie($name)){
     		setcookie(COOKIE_PREFIX . $name, '', time() - 3600);
     	}
     }

@@ -17,6 +17,12 @@ class FW_Breadcrumb{
     
     const BREADCRUMB_SEPARATOR = ' &raquo; ';
     
+    /**
+     * constructor
+     * 
+     * @since 1.00
+     * @return FW_Breadcrumb
+     */
     public static function getInstance(){
         if(self::$instance == null){
             self::$instance = new FW_Breadcrumb();
@@ -47,6 +53,8 @@ class FW_Breadcrumb{
      */
     public function getBreadcrumb(){
         $breadcrumb_items = array();
+        
+        $link = array();
         
         foreach(self::$breadcrumb as $item){
             list($title, $url) = $item;

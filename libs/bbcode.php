@@ -202,6 +202,8 @@ class FW_BBCode extends FW_Singleton{
 	 * convert BBCode entries
 	 *
 	 * @access public
+	 * @throws FW_Exception_MissingData
+	 * @throws FW_Exception
 	 */
 	public function convertBBCode(){
 		// find link
@@ -217,7 +219,7 @@ class FW_BBCode extends FW_Singleton{
 
 		if(empty($this->string)){
 			if($check !== true){
-				throw new FW_Exception_Critical("something wrong with bbcode");
+				throw new FW_Exception("something wrong with bbcode");
 			}
 			
 			throw new FW_Exception_MissingData("bbcode string is empty");

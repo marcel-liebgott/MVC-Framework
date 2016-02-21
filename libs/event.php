@@ -14,7 +14,7 @@ class FW_Event{
 	 * event name
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_name;
 	
@@ -22,7 +22,7 @@ class FW_Event{
 	 * event context
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_context;
 	
@@ -30,7 +30,7 @@ class FW_Event{
 	 * event info
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_info;
 	
@@ -60,7 +60,7 @@ class FW_Event{
 	 * set event name
 	 * 
 	 * @access public
-	 * @param String $name
+	 * @param string $name
 	 */
 	public function setName($name){
 		$this->_name = $name;
@@ -80,7 +80,7 @@ class FW_Event{
 	 * set event context
 	 * 
 	 * @access public
-	 * @param String $context
+	 * @param string $context
 	 */
 	public function setContext($context){
 		$this->_context = $context;
@@ -90,7 +90,7 @@ class FW_Event{
 	 * get event context
 	 * 
 	 * @access public
-	 * @return String
+	 * @return string
 	 */
 	public function getContext(){
 		return $this->_context;
@@ -100,7 +100,7 @@ class FW_Event{
 	 * set event info
 	 * 
 	 * @access public
-	 * @param String $info
+	 * @param string $info
 	 */
 	public function setInfo($info){
 		$this->_info = $info;
@@ -110,10 +110,10 @@ class FW_Event{
 	 * get event info
 	 * 
 	 * @access public
-	 * @return String
+	 * @return string
 	 */
 	public function getInfo(){
-		return $this->info;
+		return $this->_info;
 	}
 	
 	/**

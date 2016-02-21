@@ -24,7 +24,7 @@ class FW_Configuration extends FW_Singleton{
      *
      * @access public
      * @static
-     * @return resource
+     * @return FW_Configuration
      */
     public static function getInstance(){        
         return parent::_getInstance(get_class());
@@ -82,6 +82,7 @@ class FW_Configuration extends FW_Singleton{
      * read ini file
      *
      * @access public
+     * @throws FW_Exception_MissingData
      * @param string $path
      */
     public function readIni($path){

@@ -7,8 +7,8 @@ require_once CONFIG_DIR . SQL_FILE;
 require_once 'libs/autoload.php';
 
 if(DEBUG_MODE){
-	ini_set('display_errors', '1');
-	ini_set('display_startup_errors', '1');
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
 	
 	error_reporting(E_ALL);
 }
@@ -20,7 +20,7 @@ try{
 	
 	$loader = FW_Bootstrap::getInstance();
 	$loader->init();
-}catch(FW_Exception $e){
+}catch(FW_Exception_Exception $e){
 	echo "Exception caught: " . $e->getMessage() . '<br>';
     echo "Line: " . $e->getLine() . '<br>';
     echo "File: " . $e->getFile();

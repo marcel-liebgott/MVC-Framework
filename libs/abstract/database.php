@@ -11,6 +11,14 @@ if(!defined('PATH')){
  */
 abstract class FW_Abstract_Database extends FW_Singleton{
 	/**
+	 * configuration
+	 * 
+	 * @access protected
+	 * @var FW_Configuration
+	 */
+	protected $config;
+	
+	/**
 	 * return singleton instance
 	 * 
 	 * @access public
@@ -20,6 +28,9 @@ abstract class FW_Abstract_Database extends FW_Singleton{
 	 */
 	public static function __getInstance($class){
 		return parent::_getInstance($class);
+		
+		$registry = FW_Registry::getInstance();
+		$this->config = $registry->getConfiguration();
 	}
 }
 ?>

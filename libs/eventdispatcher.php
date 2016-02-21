@@ -23,7 +23,7 @@ class FW_EventDispatcher extends FW_Singleton{
 	 * 
 	 * @access public
 	 * @static
-	 * @return resource
+	 * @return FW_EventDispatcher
 	 */
 	public static function getInstance(){
 		return parent::_getInstance(get_class());
@@ -48,9 +48,10 @@ class FW_EventDispatcher extends FW_Singleton{
 	 * trigger an event
 	 * 
 	 * @access public
-	 * @param FW_Event $event
+	 * @param string $event
 	 * @param string $context
 	 * @param string $info
+	 * @return FW_Event
 	 */
 	public function triggerEvent($event, $context = null, $info = null){
 		if(!($event instanceof FW_Interface_Event)){
@@ -66,7 +67,7 @@ class FW_EventDispatcher extends FW_Singleton{
 		foreach($this->_handlers[$eventName] as $handler){
 			$handler->handle($event);
 			
-			if($event.isCanceled()){
+			if($event->isCanceled()){
 				break;
 			}
 		}

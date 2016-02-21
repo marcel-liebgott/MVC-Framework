@@ -23,7 +23,7 @@ final class FW_Feed_Document{
 	 * title
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_title;
 	
@@ -39,7 +39,7 @@ final class FW_Feed_Document{
 	 * link
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_link;
 	
@@ -47,7 +47,7 @@ final class FW_Feed_Document{
 	 * version
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_version;
 	
@@ -55,7 +55,7 @@ final class FW_Feed_Document{
 	 * language
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_language;
 	
@@ -63,7 +63,7 @@ final class FW_Feed_Document{
 	 * description
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_description;
 	
@@ -71,7 +71,7 @@ final class FW_Feed_Document{
 	 * category
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $_category;
 	
@@ -94,7 +94,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @param String $title
+	 * @param string $title
 	 */
 	public function setTitle($title){
 		if(FW_Validate::isString($title)){
@@ -107,7 +107,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @return String
+	 * @return string
 	 */
 	public function getTitle(){
 		return $this->_title;
@@ -142,7 +142,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @param String $encoding
+	 * @param string $encoding
 	 */
 	public function setEncoding($encoding){
 		if(FW_Validate::isString($encoding)){
@@ -155,7 +155,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @return String
+	 * @return string
 	 */
 	public function getEncoding(){
 		return $this->_encoding;
@@ -166,7 +166,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @param String $link
+	 * @param string $link
 	 */
 	public function setLink($link){
 		if(FW_Validate::isValidUrl($link)){
@@ -179,7 +179,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @return String
+	 * @return string
 	 */
 	public function getLink(){
 		return $this->_link;
@@ -190,10 +190,10 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @param Float $version
+	 * @param string $version
 	 */
 	public function setVersion($version){
-		if(FW_Validate::isFloat($version)){
+		if(FW_Validate::isString($version)){
 			$this->_version = $version;
 		}
 	}
@@ -203,7 +203,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @return Float
+	 * @return string
 	 */
 	public function getVersion(){
 		return $this->_version;
@@ -214,7 +214,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @param String $language
+	 * @param string $language
 	 */
 	public function setLanguage($language){
 		if(FW_Validate::isString($language)){
@@ -227,7 +227,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @return String
+	 * @return string
 	 */
 	public function getLanguage(){
 		return $this->_language;
@@ -238,7 +238,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @param String $description
+	 * @param string $description
 	 */
 	public function setDescription($description){
 		if(FW_Validate::isString($description)){
@@ -251,7 +251,7 @@ final class FW_Feed_Document{
 	 * 
 	 * @access public
 	 * @since 1.01
-	 * @return String
+	 * @return string
 	 */
 	public function getDescription(){
 		return $this->_description;
@@ -262,7 +262,7 @@ final class FW_Feed_Document{
 	 *
 	 * @access public
 	 * @since 1.01
-	 * @param String $category
+	 * @param string $category
 	 */
 	public function setCategory($category){
 		if(FW_Validate::isString($category)){
@@ -275,7 +275,7 @@ final class FW_Feed_Document{
 	 *
 	 * @access public
 	 * @since 1.01
-	 * @return String
+	 * @return string
 	 */
 	public function getCategory(){
 		return $this->_category;

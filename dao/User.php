@@ -28,7 +28,7 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * @access public
 	 * @since 1.10
 	 * @param int $id
-	 * @return array
+	 * @return FW_Array
 	 */
 	public function getUserById($id){
 		$user = $this->_db->select(
@@ -44,7 +44,7 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * @access public
 	 * @since 1.10
 	 * @param String $name
-	 * @return array
+	 * @return FW_Array
 	 */
 	public function getUserByName($name){
 		$user = $this->_db->select(

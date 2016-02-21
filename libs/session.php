@@ -37,7 +37,7 @@ class FW_Session{
      * @access public
      * @static
      * @param string $key
-     * @param string $value
+     * @param mixed $value
      */
     public static function set($key, $value){
         $_SESSION[$key] = $value;
