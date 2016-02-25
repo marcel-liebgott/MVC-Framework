@@ -16,7 +16,7 @@ final class FW_Stringhelper{
 	 * 
 	 * @access public
 	 * @since 1.00
-	 * @param string
+	 * @param string $date
 	 * @return string
 	 */
 	public static function getCleanDate($date){
@@ -32,7 +32,7 @@ final class FW_Stringhelper{
 	 *
 	 * @access public
 	 * @since 1.00
-	 * @param string
+	 * @param string $mail
 	 * @return boolean
 	 */
 	public static function isValidMail($mail){
@@ -48,7 +48,7 @@ final class FW_Stringhelper{
 	 *
 	 * @access public
 	 * @since 1.00
-	 * @param string
+	 * @param string $url
 	 * @return boolean
 	 */
 	public static function isValidUrl($url){
@@ -69,15 +69,15 @@ final class FW_Stringhelper{
 	 *
 	 * @access public
 	 * @since 1.00
-	 * @param flaot
-	 * @param int
+	 * @param float $size
+	 * @param int $round
 	 * @return string
 	 */
 	public static function convertSize($size, $round = 3){
 		$base = log($size) / log(1024);
 		$sizes = array('B', 'kB', 'MB', 'GB', 'TB');
 
-		return round(pow(1024, $base - floor($base)), $round) . $sizes[floor($base)];
+		return round(pow(1024, (int)($base - floor($base))), $round) . $sizes[floor($base)];
 	}
 }
 ?>

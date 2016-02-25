@@ -19,6 +19,7 @@ final class FW_Validate{
      * @access public
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @param int $arg 
      * @return boolean|array if failed
@@ -37,6 +38,7 @@ final class FW_Validate{
      * @access public
      * @since 1.00 
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @param int $arg 
      * @return boolean|array if failed
@@ -55,6 +57,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @param int $arg 
      * @return boolean|array if failed
@@ -73,11 +76,12 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param int $data 
      * @return boolean|string if failed
      */
     public static function isInteger($data){ 
-        if(!is_integer($data)){
+        if(!is_int($data)){
             throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_integer'));
         } 
           
@@ -90,13 +94,14 @@ final class FW_Validate{
      * @access public
      * @since 1.00
      * @static
-     * @param int
-     * @param int
-     * @param int
+     * @throws FW_Exception_WrongParameter
+     * @param int $min
+     * @param int $max
+     * @param int $value
      * @return boolean|string is failed
      */
     public static function inRange($min, $max, $value){
-        if($this->isInteger($value) && $this->isInteger($min) && $this->isInteger($max)){
+        if(self::isInteger($value) && self::isInteger($min) && self::isInteger($max)){
             if($value >= $min && $value <= $max){
                 return true;
             }else{
@@ -111,6 +116,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @return boolean|string is failed
      */
@@ -128,6 +134,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @return boolean|string is failed
      */
@@ -145,6 +152,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param float $data 
      * @return boolean|string is failed
      */
@@ -162,6 +170,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param boolean $data 
      * @return boolean|string is failed
      */
@@ -179,6 +188,7 @@ final class FW_Validate{
      * @access public 
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param array $data 
      * @return boolean|string is failed
      */
@@ -201,6 +211,7 @@ final class FW_Validate{
      * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
+     * @throws FW_Exception_WrongParameter
      * @param mixed $data 
      * @return boolean|string is failed
      */
@@ -218,6 +229,7 @@ final class FW_Validate{
      * @access public
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @return boolean|string is failed
      */
@@ -235,6 +247,7 @@ final class FW_Validate{
      * @access public
      * @since 1.00
      * @static
+     * @throws FW_Exception_WrongParameter
      * @param string $data
      * @return boolean|string is failed
      */
@@ -252,7 +265,8 @@ final class FW_Validate{
      * @access public
      * @since 1.00
      * @static
-     * @param string date
+     * @throws FW_Exception_WrongParameter
+     * @param string $date
      * @return boolean|string is failed
      */
     public static function isValidDate($date){
@@ -262,6 +276,7 @@ final class FW_Validate{
 
         $daysPerMonth = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
+        $match = array();
         preg_match('/^(.*?)\.(.*?)\.(.*?)$/', $date, $match);
 
         if(count($match) == 4){

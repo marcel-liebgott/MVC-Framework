@@ -30,7 +30,7 @@ final class FW_String{
 	 * string value
 	 * 
 	 * @access private
-	 * @var String
+	 * @var string
 	 */
 	private $value;
 	
@@ -38,7 +38,7 @@ final class FW_String{
 	 * constructor
 	 * 
 	 * @access public
-	 * @param unknown $string
+	 * @param string $string
 	 * @since 1.01
 	 */
 	public function __construct($string){
@@ -60,7 +60,7 @@ final class FW_String{
 	 * set the boolean value for using mb function
 	 *
 	 * @access public
-	 * @param boolean
+	 * @param boolean $mb
 	 */
 	public static function setMbUsing($mb){
 		self::$use_mb = $mb;
@@ -80,7 +80,7 @@ final class FW_String{
 	 * set encoding if you use mb_* function - see FW_String::$use_mb
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $encoding
 	 */
 	public static function setEncoding($encoding = 'UTF-8'){
 		if(self::$use_mb){
@@ -105,7 +105,7 @@ final class FW_String{
 	 * set current language
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $string
 	 */
 	public static function setLanguage($string){
 		if(self::$use_mb){
@@ -129,9 +129,9 @@ final class FW_String{
 	 * get the substring 
 	 *
 	 * @access public
-	 * @param string
-	 * @param int
-	 * @param int
+	 * @param string $string
+	 * @param int $startPos
+	 * @param int $lenght
 	 * @return string
 	 */
 	public static function substr($string, $startPos, $lenght = 0){
@@ -154,7 +154,7 @@ final class FW_String{
 	 * return the lenght of an string
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $string
 	 * @return int
 	 */
 	public static function strlen($string){
@@ -169,7 +169,8 @@ final class FW_String{
 	 * make a string lowercase
 	 *
 	 * @access public 
-	 * @param string
+	 * @param string $string
+	 * @return string
 	 */
 	public static function strtolower($string){
 		if(self::$use_mb){
@@ -183,7 +184,8 @@ final class FW_String{
 	 * make a string uppercase
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $string
+	 * @return string
 	 */
 	public static function strtoupper($string){
 		if(self::$use_mb){
@@ -197,9 +199,9 @@ final class FW_String{
 	 * find position of first occurrence of needle in haystack
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param int
+	 * @param string $haystack
+	 * @param string $needle
+	 * @param int $offset
 	 * @return string
 	 */
 	public static function strpos($haystack, $needle, $offset = 0){
@@ -214,8 +216,8 @@ final class FW_String{
 	 * count the number of substring occurrences
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
+	 * @param string $haystack
+	 * @param string $needle
 	 * @return int
 	 */
 	public static function substrCount($haystack, $needle){
@@ -230,18 +232,18 @@ final class FW_String{
 	 * send mail
 	 *
 	 * @access public
-	 * @param string
-	 * @param string 
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $to
+	 * @param string $subject
+	 * @param string $message
+	 * @param string $additional_headers
+	 * @param string $additional_parameters
 	 * @return boolean
 	 */
-	public static function mail($to, $subject, $message, $additional_headers = '', $addidional_parameters = ''){
+	public static function mail($to, $subject, $message, $additional_headers = '', $additional_parameters = ''){
 		if(self::$use_mb){
-			return mb_send_mail($to, $subject, $message, $additional_headers, $addidional_parameters);
+			return mb_send_mail($to, $subject, $message, $additional_headers, $additional_parameters);
 		}else{
-			return mail($to, $subject, $message, $additional_headers, $addidional_parameters);
+			return mail($to, $subject, $message, $additional_headers, $additional_parameters);
 		}
 	}
 }

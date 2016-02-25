@@ -70,6 +70,7 @@ class FW_User_Data{
 	 * @access public
 	 * @since 1.10
 	 * @param String $key
+	 * @return string
 	 */
 	public function getUserData($key){
 		return $this->_data->get($key);
@@ -81,7 +82,7 @@ class FW_User_Data{
 	 * @access public
 	 * @since 1.01
 	 * @return FW_Array
-	 * @throws FW_Exception_DBFailure
+	 * @throws FW_Exception_Critical
 	 */
 	public function getGroup(){
 		$gid = $this->_data->get(FW_DB_TBL_USER_GROUP);
@@ -129,8 +130,9 @@ class FW_User_Data{
 	 */
 	public function login($name, $pass){
 		if($name !== null && $pass !== null){
+			$registry = FW_Registry::getInstance();
 			$user = FW_DAO::getUser()->getUserByName($name);
-			$cookie = FW_Registry::getInstance()->get('cookies');
+			$cookie = $registry::get('cookies');
 				
 			if($user !== null){
 				$userObject = new FW_User_Data($user);
