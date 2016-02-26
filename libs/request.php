@@ -71,7 +71,7 @@ class FW_Request extends FW_Singleton{
 	 * 
 	 * @access public
      * @static
-	 * @return resource
+	 * @return FW_Request
 	 */
 	public static function getInstance(){
 		return parent::_getInstance(get_class());

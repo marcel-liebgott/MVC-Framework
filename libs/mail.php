@@ -32,7 +32,7 @@ class FW_Mail{
 	 * @access private
 	 * @var string
 	 */
-	private $reveiverName;
+	private $receiverName;
 
 	/**
 	 * mail body
@@ -94,14 +94,15 @@ class FW_Mail{
 	 * constructor
 	 */
 	public function __construct(){
-		self::$delimiter = md5(time());
+		$time = (string) time();
+		self::$delimiter = md5($time);
 	}
 
 	/**
 	 * set e-mail receiver
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $receiver
 	 */
 	public function setReceiver($receiver){
 		if(FW_Validate::isValidMail($receiver)){
@@ -123,7 +124,7 @@ class FW_Mail{
 	 * set e-mail charset
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $charset
 	 */
 	public function setCharset($charset){
 		if(FW_Validate::isString($charset)){
@@ -145,7 +146,7 @@ class FW_Mail{
 	 * set e-mail content type
 	 *
 	 * @access public
-	 * @var string
+	 * @var string $contentType
 	 */
 	public function setContentType($contentType){
 		if(FW_Validate::isString($contentType)){
@@ -167,7 +168,7 @@ class FW_Mail{
 	 * set e-mail subject
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $subject
 	 */
 	public function setSubject($subject){
 		if(FW_Validate::isString($subject)){
@@ -192,7 +193,7 @@ class FW_Mail{
 	 */
 	private function setMailHeader(){
 		$this->header = 'From: Test <noreply@' . $_SERVER['SERVER_NAME'] . '>\r\n';
-		$this->header .= 'Reply-To: ' . $this->receivername . '<' . $this->receiver . '>\r\n';
+		$this->header .= 'Reply-To: ' . $this->receiverName . '<' . $this->receiver . '>\r\n';
 		$this->header .= 'Return-Path: noreply@' . $_SERVER['SERVER_NAME'] . '\r\n';
 		$this->header .= 'Date: ' . date('D, d M Y H:i:s O',time()) . '\r\n';
 		$this->header .= 'MIME-Version: 1.0\r\n';
@@ -217,11 +218,11 @@ class FW_Mail{
 	 * set the receiver name of this e-mail
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $name
 	 */
 	public function setReceiverName($name){
 		if(FW_Validate::isMixed($name)){
-			$this->reveiverName = $name;
+			$this->receiverName = $name;
 		}
 	}
 
@@ -239,7 +240,7 @@ class FW_Mail{
 	 * set e-mail body
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $body
 	 */
 	public function setMailBody($body){
 		$prepare = '';
@@ -279,7 +280,7 @@ class FW_Mail{
 	 * check file attachment
 	 *
 	 * @access private
-	 * @param name of the upload input field
+	 * @param string $name
 	 * @return mixed
 	 */
 	private function checkAttachment($name){
@@ -300,9 +301,10 @@ class FW_Mail{
 	 * set e-mail attachment
 	 *
 	 * @access public
+	 * @param string $name
 	 */
-	public function setAttachment(){
-		$file = $this->checkAttachment();
+	public function setAttachment($name){
+		$file = $this->checkAttachment($name);
 
 		if($file !== false){
 			$this->attachment = $file;
@@ -315,7 +317,7 @@ class FW_Mail{
 	 * get attachment
 	 *
 	 * @access public
-	 * @return array
+	 * @return $_FILES
 	 */
 	public function getAttachment(){
 		return $this->attachment;

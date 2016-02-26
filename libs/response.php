@@ -40,7 +40,7 @@ class FW_Response extends FW_Singleton{
      * return the instance, because is an singleton class
      * 
      * @access public
-     * @return type $instace
+     * @return FW_Response
      */
     public static function getInstance(){
         return parent::_getInstance(get_class());

@@ -43,6 +43,7 @@ abstract class FW_Singleton{
 	 * constructor
 	 *
 	 * @access public
+	 * @throws FW_Exception
 	 */
 	public function __construct(){
 		if(self::$_locked){

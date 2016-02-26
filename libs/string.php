@@ -202,7 +202,7 @@ final class FW_String{
 	 * @param string $haystack
 	 * @param string $needle
 	 * @param int $offset
-	 * @return string
+	 * @return int
 	 */
 	public static function strpos($haystack, $needle, $offset = 0){
 		if(self::$use_mb){

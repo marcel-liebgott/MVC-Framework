@@ -172,12 +172,13 @@ class FW_Socket{
 	 * @access public
 	 * @param string $path
 	 * @param string $data
+	 * @return string
 	 */
 	public function post($path, $data){
 		$request = 'POST ' . $path . ' HTTP/1.1' . self::$lineEnd;
 		$request .= $this->getSocketLine('Host', $this->host);
 		$request .= $this->getSocketLine('Content-Type', 'application/x-www-form-urlencoded');
-		$request .= $this->getSocketLine('Content-Length', FW_String::strlen($data));
+		$request .= $this->getSocketLine('Content-Length', (string) FW_String::strlen($data));
 		$request .= $this->getSocketLine('Connection', 'close' . "\r\n");
 		$request .= $data;
 
@@ -189,6 +190,7 @@ class FW_Socket{
 	 *
 	 * @access public
 	 * @param string $path
+	 * @return string
 	 */
 	public function get($path){
 		$request = 'GET ' . $path . ' HTTP/1.1' . self::$lineEnd;
@@ -214,7 +216,9 @@ class FW_Socket{
 	 * send data
 	 *
 	 * @access private
+	 * @throws FW_Exception_ConnectionFailure
 	 * @param string $data
+	 * @return string
 	 */
 	private function sendRequest($data){
 		$this->con = fsockopen($this->host, $this->port, $this->errno, $this->error, $this->timeout);
@@ -248,7 +252,7 @@ class FW_Socket{
 	 * get content
 	 *
 	 * @access private
-	 * @param array $data
+	 * @param string $data
 	 * @return string
 	 */
 	private function getContent($data){

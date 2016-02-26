@@ -20,6 +20,9 @@ final class FW_Profiler{
 
 	/**
 	 * start memory of profile
+	 * 
+	 * @access private
+	 * @var int
 	 */
 	private $start_mem;
 
@@ -64,7 +67,7 @@ final class FW_Profiler{
 	 *
 	 * @access public
 	 * @since 1.00
-	 * @return int
+	 * @return string
 	 */
 	public function getMemory(){
 		$end_mem = FW_Memory::getCurrentMemory();

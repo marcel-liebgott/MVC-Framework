@@ -88,7 +88,7 @@ final class FW_Mail_SMTP extends FW_Abstract_MailBase implements FW_Interface_Ma
 	 * set smtp port
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $port
 	 */
 	public function setPort($port){
 		if(FW_Validate::isInteger($port)){
@@ -110,7 +110,7 @@ final class FW_Mail_SMTP extends FW_Abstract_MailBase implements FW_Interface_Ma
 	 * set smtp user
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $user
 	 */
 	public function setUser($user){
 		if(FW_Validate::isString($user)){
@@ -132,7 +132,7 @@ final class FW_Mail_SMTP extends FW_Abstract_MailBase implements FW_Interface_Ma
 	 * set smtp pass
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $pass
 	 */
 	public function setPass($pass){
 		if(FW_Validate::isMixed($pass)){
@@ -158,15 +158,19 @@ final class FW_Mail_SMTP extends FW_Abstract_MailBase implements FW_Interface_Ma
 
 		if(!$this->socket){
 			echo "can't connect to " . $this->host . ":" . $this->port;
+			return false;
 		}
 
 		$this->sendCommand('EHLO');
+		
+		return true;
 	}
 
 	/**
 	 * send an command to smtp server
 	 *
 	 * @access private
+	 * @param string $comm
 	 */
 	private function sendCommand($comm){
 		fputs($this->socket, $comm);

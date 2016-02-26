@@ -23,7 +23,7 @@ final class FW_Memory{
 	 * return the limit of PHP memory
 	 *
 	 * @access public
-	 * @return int
+	 * @return string
 	 */
 	public static function getMemoryLimit(){
 		return ini_get('memory_limit');

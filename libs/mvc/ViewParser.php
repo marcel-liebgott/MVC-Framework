@@ -43,10 +43,8 @@ class FW_Mvc_ViewParser{
      * parse an include statement
      * 
      * @access protected
-     * @param string $kindOfInclude
-     * @param string $fileDir
-     * @param string $fileName
-     * @return string
+     * @param array $result
+     * @return mixed
      */
     protected function includeParse($result){
         $type = str_replace(' ', '', $result[1]);
@@ -110,12 +108,14 @@ class FW_Mvc_ViewParser{
      * parse an if statement and compare the condition
      * 
      * @access protected
+     * @throws FW_Exception
      * @param array $result
      * @return string
      */
     protected function parseIfElse($result){
         $condition = false;
         $con = null;
+        $if_else_match = array();
         preg_match_all('/(.*):(.*)\s+(.*)\s+(.*)/i', $result[1], $if_else_match);
         
         if(count($if_else_match[0]) > 0){
@@ -131,6 +131,7 @@ class FW_Mvc_ViewParser{
             }
         }
         
+        $var_match = array(); 
         preg_match_all('/\$(.*)\s+(.*)\s+(.*)/i', $result[1], $var_match);
         
         if(count($var_match[0]) > 0){

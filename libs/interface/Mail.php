@@ -15,6 +15,7 @@ interface FW_Interface_Mail{
 	 * and send the mail
 	 *
 	 * @access public
+	 * @return boolean
 	 */
 	public function send();
 }

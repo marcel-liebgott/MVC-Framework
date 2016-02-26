@@ -10,7 +10,6 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @since 1.00
  */
-
 class FW_Mvc_View extends FW_Mvc_ViewParser{
     private $template;
     private $class;
@@ -27,11 +26,26 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
     //private $include_regex = '#\{include\s*(.+)\s*\"(.+)\"\s*(?:\s*(.+?))?\}#s';
     private $bbcode_regex = '#\{bbcode\}\s*(.+?)\s*\{endbbcode\}#s';
     
+    /**
+     * constructor
+     * 
+     * @access public
+     * @param resource $class
+     */
     public function __construct($class){
         $this->class = $class;
         parent::__construct();
     }
     
+    /**
+     * render
+     * 
+     * @access public
+     * @since 1.00
+     * @param string $name
+     * @param string $noInclude
+     * @throws FW_Exception
+     */
     public function render($name, $noInclude = false){
         $request = FW_Registry::getInstance()->getRequest();
         $url = $request->getUrl();
@@ -73,6 +87,14 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
         }
     }
 
+    /**
+     * hightlight php code
+     * 
+     * @access private
+     * @since 1.00
+     * @param array $matches
+     * @return string
+     */
     private function highlight_php($matches){
         $php = highlight_string($matches[0], true);
 
@@ -224,7 +246,6 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
      * @access private
      * @param array $result
      * @return string
-     * @throws FW_Exception
      */
     private function parseFor($result){        
         $key = $result[1];

@@ -7,7 +7,7 @@ if(!defined('PATH')){
  * class to get additional user information
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.10
+ * @version 1.01
  */
 class FW_User_Data{
 	/**
@@ -22,7 +22,7 @@ class FW_User_Data{
 	 * constructor
 	 * 
 	 * @access public
-	 * @since 1.10
+	 * @since 1.01
 	 * @param arary $data
 	 */
 	public function __construct($data = array()){
@@ -45,7 +45,7 @@ class FW_User_Data{
 	 * return all user data
 	 * 
 	 * @access public
-	 * @since 1.10
+	 * @since 1.01
 	 * @return array
 	 */
 	public function getUserAllData(){
@@ -56,7 +56,7 @@ class FW_User_Data{
 	 * set a user data
 	 * 
 	 * @access public
-	 * @since 1.10
+	 * @since 1.01
 	 * @param String $key
 	 * @param String $value
 	 */
@@ -68,7 +68,7 @@ class FW_User_Data{
 	 * return a property from the user data
 	 * 
 	 * @access public
-	 * @since 1.10
+	 * @since 1.01
 	 * @param String $key
 	 * @return string
 	 */
@@ -113,7 +113,7 @@ class FW_User_Data{
 	 *  check if user is logged in
 	 *
 	 *  @access public
-	 *  @since 1.02
+	 *  @since 1.01
 	 *  @return boolean
 	 */
 	public function isLoggedin(){
@@ -124,7 +124,7 @@ class FW_User_Data{
 	 * try to login a user
 	 *
 	 * @access public
-	 * @since 1.02
+	 * @since 1.01
 	 * @param String $name
 	 * @param String $pass
 	 */
@@ -154,7 +154,7 @@ class FW_User_Data{
 	 * logout the current user
 	 *
 	 * @access public
-	 * @since 1.02
+	 * @since 1.01
 	 */
 	public function logout(){
 		$cookie = FW_Registry::get('cookies');
@@ -167,7 +167,8 @@ class FW_User_Data{
 	 * check user
 	 *
 	 * @access public
-	 * @since 1.02
+	 * @since 1.01
+	 * @throws FW_Exception_MissingData
 	 * @param String $name
 	 * @param String $pass
 	 * @param FW_User_Data $user
@@ -193,7 +194,7 @@ class FW_User_Data{
 	 * serialize the current user data
 	 *
 	 * @access public
-	 * @since 1.02
+	 * @since 1.01
 	 */
 	public function serialize(){
 		return serialize($this->_data);
@@ -203,7 +204,7 @@ class FW_User_Data{
 	 * unserialize the current user data
 	 * 
 	 * @access public
-	 * @since 1.02
+	 * @since 1.01
 	 */
 	public function unserialize(){
 		return unserialize($this->_data);
