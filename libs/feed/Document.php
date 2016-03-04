@@ -7,8 +7,7 @@ if(!defined('PATH')){
  * feed document which is presenting {@link FW_Feed_Item}s
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.01
- * @final
+ * @since 1.01
  */
 final class FW_Feed_Document{
 	/**
@@ -83,6 +82,14 @@ final class FW_Feed_Document{
 	 */
 	private $_items = array();
 	
+	/**
+	 * constructor
+	 * 
+	 * @access public
+	 * @param string $title
+	 * @param int $date
+	 * @param string $encoding
+	 */
 	public function __construct($title, $date, $encoding = 'UTF-8'){
 		$this->setTitle($title);
 		$this->setDate($date);
@@ -93,7 +100,6 @@ final class FW_Feed_Document{
 	 * set title
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param string $title
 	 */
 	public function setTitle($title){
@@ -106,7 +112,6 @@ final class FW_Feed_Document{
 	 * return title
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return string
 	 */
 	public function getTitle(){
@@ -117,7 +122,6 @@ final class FW_Feed_Document{
 	 * set date
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param int $date
 	 */
 	public function setDate($date){
@@ -130,7 +134,6 @@ final class FW_Feed_Document{
 	 * get date
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return int
 	 */
 	public function getDate(){
@@ -141,7 +144,6 @@ final class FW_Feed_Document{
 	 * set encoding
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param string $encoding
 	 */
 	public function setEncoding($encoding){
@@ -154,7 +156,6 @@ final class FW_Feed_Document{
 	 * get encoding
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return string
 	 */
 	public function getEncoding(){
@@ -165,7 +166,6 @@ final class FW_Feed_Document{
 	 * set link
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param string $link
 	 */
 	public function setLink($link){
@@ -178,7 +178,6 @@ final class FW_Feed_Document{
 	 * get link
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return string
 	 */
 	public function getLink(){
@@ -189,7 +188,6 @@ final class FW_Feed_Document{
 	 * set version
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param string $version
 	 */
 	public function setVersion($version){
@@ -202,7 +200,6 @@ final class FW_Feed_Document{
 	 * get version
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return string
 	 */
 	public function getVersion(){
@@ -213,7 +210,6 @@ final class FW_Feed_Document{
 	 * set language
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param string $language
 	 */
 	public function setLanguage($language){
@@ -226,7 +222,6 @@ final class FW_Feed_Document{
 	 * get language
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return string
 	 */
 	public function getLanguage(){
@@ -237,7 +232,6 @@ final class FW_Feed_Document{
 	 * set description
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param string $description
 	 */
 	public function setDescription($description){
@@ -250,7 +244,6 @@ final class FW_Feed_Document{
 	 * get description
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return string
 	 */
 	public function getDescription(){
@@ -261,7 +254,6 @@ final class FW_Feed_Document{
 	 * set category
 	 *
 	 * @access public
-	 * @since 1.01
 	 * @param string $category
 	 */
 	public function setCategory($category){
@@ -274,7 +266,6 @@ final class FW_Feed_Document{
 	 * get category
 	 *
 	 * @access public
-	 * @since 1.01
 	 * @return string
 	 */
 	public function getCategory(){
@@ -285,7 +276,6 @@ final class FW_Feed_Document{
 	 * add a item
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param FW_Feed_Item $item
 	 */
 	public function addItem(FW_Feed_Item $item){
@@ -296,7 +286,6 @@ final class FW_Feed_Document{
 	 * get all {@see FW_Feed_Item}s
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return array
 	 */
 	public function getItems(){

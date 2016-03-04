@@ -125,7 +125,7 @@ abstract class FW_Abstract_Controller{
 		$registry = FW_Registry::getInstance();
 		
 		$this->special = FW_Special::getInstance();
-		$this->view = new FW_Mvc_View(get_class($this));
+		$this->view = new FW_Mvc_View($this);
 		$this->db = $registry->getDatabase();
 		$this->request = $registry->getRequest();
 		$this->response = $registry->getResponse();

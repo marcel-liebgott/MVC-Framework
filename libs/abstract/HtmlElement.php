@@ -7,7 +7,7 @@ if(!defined('PATH')){
  * basic class for html input elements
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @verion 1.00
+ * @since 1.00
  */
 abstract class FW_Abstract_HtmlElement{
 	/**
@@ -98,10 +98,9 @@ abstract class FW_Abstract_HtmlElement{
 	 * @param string $name
 	 * @param string $id
 	 * @param string $class
-	 * @param string $value
 	 * @param string $default
 	 */
-	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
+	public function __construct($name, $id = null, $class = null, $default = null){
 		$this->setName($name);
 		$this->setId($id);
 		$this->setClass($class);
@@ -223,7 +222,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * set autocomplete property of this element
 	 *
 	 * @access public
-	 * @var boolean $complete
+	 * @param boolean $complete
 	 */
 	public final function setAutocomplete($complete){
 		if(FW_Validate::isBool($complete)){

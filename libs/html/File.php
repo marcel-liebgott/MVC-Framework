@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html textbox element - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_File extends FW_Abstract_HtmlElement{
 	/**
@@ -45,15 +46,14 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($name, $id, $class, $value, $default);
+		parent::__construct($name, $id, $class, $default);
 
 		$this->setValue($value);
 	}
@@ -62,7 +62,7 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $value
 	 */
 	public final function setValue($value){
 		if(FW_Validate::isMixed($value)){
@@ -84,7 +84,7 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * set the placeholder property of this element
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $placeholder
 	 */
 	public final function setPlaceholder($placeholder){
 		if(FW_Validate::isMixed($placeholder)){
@@ -96,7 +96,7 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * get placeholder
 	 *
 	 * @access public
-	 * @var string
+	 * @return string
 	 */
 	public final function getPlaceholder(){
 		return $this->placeholder;
@@ -106,7 +106,7 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * set required property of this element
 	 *
 	 * @access public
-	 * @var boolean
+	 * @param boolean $required
 	 */
 	public final function setRequired($required){
 		if(FW_Validate::isBool($required)){
@@ -118,7 +118,7 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * set maxlenght property of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $len
 	 */
 	public final function setMaxlenght($len){
 		if(FW_Validate::isInteger($len) && $len < 0){
@@ -140,7 +140,6 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * set multiple property of file input
 	 *
 	 * @access public
-	 * @final
 	 * @param boolean $multiple
 	 */
 	public final function setMultiple($multiple){
@@ -153,7 +152,6 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * get multiple
 	 *
 	 * @access public
-	 * @final
 	 * @return boolean
 	 */
 	public final function getMultiple(){

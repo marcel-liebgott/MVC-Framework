@@ -112,6 +112,7 @@ class FW_BBCode extends FW_Singleton{
 				$regex = $xmlContent->Item[$i]->Regex;
 
 				$this->enableSmileys[(string)$shortcut] = array(
+					'id' => (string) $id,
 					'img' => (string)$img,
 					'desc' => (string)$desc,
 					'shortcut' => (string)$shortcut,
@@ -247,7 +248,6 @@ class FW_BBCode extends FW_Singleton{
 
 					if(count($match) > 0){
 						$tag_name = $match[1];
-						$lenght_open_tag = strlen($match[0]);
 
 						// get idx of this first ending tag
 						$end_tag_name = '[/' . $tag_name . ']';
@@ -276,9 +276,6 @@ class FW_BBCode extends FW_Singleton{
 							$substr = substr($this->string, $pos, ($idx_ending_tag + $lenght_ending_tag) - $pos);
 							// $substr = substr($this->string, $pos + $lenght_open_tag, ($idx_ending_tag - ($pos + $lenght_open_tag)));
 
-							// find currect enabled BBCode tag
-							$enabled_tag = $this->enableTags[$tag_name];
-
 							$replacedString = preg_replace($enableTag['regex'], $enableTag['replace'], $substr);
 
 							$this->string = str_replace($substr, $replacedString, $this->string);
@@ -296,9 +293,11 @@ class FW_BBCode extends FW_Singleton{
 	 * give array of searching ending BBCode tag
 	 *
 	 * @access private
+	 * @param string $end_tag_name
+	 * @param array $array
 	 * @return int
 	 */
-	private function getIndexOfEndingTag($end_tag_name, array $array){
+	private function getIndexOfEndingTag($end_tag_name, $array){
 		foreach($array as $subarray){
 			if($subarray[0] === $end_tag_name){
 				return $subarray[1];

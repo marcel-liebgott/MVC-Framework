@@ -30,7 +30,7 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
      * constructor
      * 
      * @access public
-     * @param resource $class
+     * @param FW_Abstract_Controller $class
      */
     public function __construct($class){
         $this->class = $class;

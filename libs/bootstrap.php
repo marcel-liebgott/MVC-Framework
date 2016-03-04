@@ -232,7 +232,7 @@ class FW_Bootstrap extends FW_Singleton{
                     }
                 }
             }else{
-            	throw new FW_Exception_UnsupportedMethod($this->url[1] . " dosn't exists in " . get_class($this->controller));
+            	throw new FW_Exception_UnsupportedMethod($this->url[1] . " dosn't exists");
             }
         }else{
             $this->controller->index();
@@ -274,7 +274,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * checked if controller existst;
 	 *
 	 * @access private
-	 * @since 1.00
+	 * @param string $file
 	 * @return boolean
 	 */
 	private function existsController($file){

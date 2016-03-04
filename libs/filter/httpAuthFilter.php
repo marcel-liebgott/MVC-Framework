@@ -32,7 +32,7 @@ class FW_Filter_HttpAuthFilter implements FW_Interface_Filter{
 	 * (non-PHPdoc)
 	 * @see FW_Interface_Filter::execute()
 	 */
-	public function execute(FW_Request $request, FW_Response $response){
+	public function execute($request, $response){
 		$authData = $request->getAuthData();
 
 		if($authData == null){

@@ -7,7 +7,7 @@ if(!defined('PATH')){
  * class to represenate an array
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.01
+ * @since 1.01
  */
 final class FW_Array{
 	/**
@@ -30,7 +30,7 @@ final class FW_Array{
 	 * constructor
 	 * 
 	 * @access public
-	 * @param Array $array
+	 * @param array $array
 	 */
 	public function __construct($array = array()){
 		$this->_array = new ArrayObject($array);
@@ -41,7 +41,6 @@ final class FW_Array{
 	 * get the iterator of this array
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return ArrayIterator
 	 */
 	public function getIterator(){
@@ -52,7 +51,6 @@ final class FW_Array{
 	 * append an array
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param mixed $data
 	 */
 	public function add($data){
@@ -71,7 +69,6 @@ final class FW_Array{
 	 * get the size of the array
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return int
 	 */
 	public function size(){
@@ -82,7 +79,6 @@ final class FW_Array{
 	 * get an array element based on a key
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param mixed $key
 	 * @return mixed
 	 */
@@ -102,7 +98,6 @@ final class FW_Array{
 	 * check if key exists
 	 * 
 	 * @access public
-	 * @since 1.02
 	 * @param Mixed $key
 	 * @return boolean
 	 */
@@ -124,7 +119,6 @@ final class FW_Array{
 	 * remove an array element by given key
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param Mixed $key
 	 */
 	public function remove($key){

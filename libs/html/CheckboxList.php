@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html list of checkboxes - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_CheckboxList extends FW_Abstract_HtmlElement{
 	/**
@@ -29,22 +30,21 @@ final class FW_Html_CheckboxList extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($name, $id, $class, $value, $default);
+		parent::__construct($name, $id, $class, $default);
 	}
 
 	/**
 	 * set delimiter
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $delimiter
 	 */
 	public final function setDeletimiter($delimiter){
 		if(FW_Validate::isMixed($delimiter)){
@@ -66,7 +66,7 @@ final class FW_Html_CheckboxList extends FW_Abstract_HtmlElement{
 	 * set checked
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $checked
 	 */
 	public final function setChecked($checked){
 		if(FW_Validate::isMixed($checked)){

@@ -3,9 +3,21 @@ if(!defined('PATH')){
 	die('no direct script access allowed');
 }
 
+/**
+ * wrong argument exception
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @since 1.00
+ */
 final class FW_Exception_WrongParameter extends FW_Exception_Critical{
+	/**
+	 * constructor
+	 * 
+	 * @access public
+	 * @param array $data
+	 * @param int $code
+	 */
 	public function __construct($data, $code = 0){
-		print_r($data);
 		$message = $data['message'];
 		$arg = '';
 
@@ -14,12 +26,11 @@ final class FW_Exception_WrongParameter extends FW_Exception_Critical{
 		}
 
 		$registry = FW_Registry::getInstance();
-
-		$lang = FW_Registry::getInstance()->getLanguage();
+		$lang = $registry->getLanguage();
 
 		$msg = $lang->getLangValue($message) . $arg;
 
-		parent::__construct($message, $code);
+		parent::__construct($msg, $code);
 	}
 }
 ?>

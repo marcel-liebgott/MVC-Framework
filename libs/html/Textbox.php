@@ -37,15 +37,14 @@ final class FW_Html_Textbox extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($name, $id, $class, $value, $default);
+		parent::__construct($name, $id, $class, $default);
 
 		$this->setValue($value);
 	}
@@ -54,7 +53,7 @@ final class FW_Html_Textbox extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $value
 	 */
 	public final function setValue($value){
 		if(FW_Validate::isMixed($value)){
@@ -76,7 +75,7 @@ final class FW_Html_Textbox extends FW_Abstract_HtmlElement{
 	 * set the placeholder property of this element
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $placeholder
 	 */
 	public final function setPlaceholder($placeholder){
 		if(FW_Validate::isMixed($placeholder)){
@@ -98,7 +97,7 @@ final class FW_Html_Textbox extends FW_Abstract_HtmlElement{
 	 * set required property of this element
 	 *
 	 * @access public
-	 * @var boolean
+	 * @var boolean $required
 	 */
 	public final function setRequired($required){
 		if(FW_Validate::isBool($required)){
@@ -110,7 +109,7 @@ final class FW_Html_Textbox extends FW_Abstract_HtmlElement{
 	 * set maxlenght property of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $len
 	 */
 	public final function setMaxlenght($len){
 		if(FW_Validate::isInteger($len) && $len < 0){

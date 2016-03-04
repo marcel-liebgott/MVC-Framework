@@ -150,7 +150,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             
             $this->execute($sth);
 
-            return $this->lastInsertId();
+            return $this->getLastInsertedId();
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
         }
@@ -177,7 +177,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             
             $fieldDetails = rtrim($fieldDetails, ',');
             
-            $sth = $this->prepare("UPDATE " . $table . " SET " . $fieldDetails  . " WHERE " . $where);
+            $sth = $this->pdo->prepare("UPDATE " . $table . " SET " . $fieldDetails  . " WHERE " . $where);
             
             foreach($data as $key => $value){
                 $sth->bindValue(":$key", $value);
@@ -201,7 +201,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function delete($table, $where, $limit = 1){
         try{
-            $sth = $this->prepare("DELETE FROM " . $table . " WHERE " . $where . " LIMIT " . $limit);
+            $sth = $this->pdo->prepare("DELETE FROM " . $table . " WHERE " . $where . " LIMIT " . $limit);
 
             $this->execute($sth);
 
@@ -261,11 +261,10 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * starts a transaction
      *
      * @access public
-     * @todo begin transaction
      */
     public function startTransaction(){
         if($this->getUseTransaction()){
-            //$this->beginTransaction();
+            $this->pdo->beginTransaction();
         }
     }
 
@@ -276,7 +275,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function commitTransaction(){
         if($this->getUseTransaction()){
-            $this->commit();
+            $this->pdo->commit();
         }
     }
 
@@ -287,7 +286,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function rollbackTransaction(){
         if($this->getUseTransaction()){
-            $this->rollBack();
+            $this->pdo->rollBack();
         }
     }
 

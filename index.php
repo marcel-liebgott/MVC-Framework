@@ -1,15 +1,14 @@
 <?php
-define('PATH', '');
+if(!defined('PATH')){
+	define('PATH', '');
+}
 
 require_once 'config/config.php';
 require_once 'libs/config/config.php';
 require_once CONFIG_DIR . SQL_FILE;
 require_once 'libs/autoload.php';
 
-if(DEBUG_MODE){
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	
+if(DEBUG_MODE){	
 	error_reporting(E_ALL);
 }
 

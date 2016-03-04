@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html textbox element - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_Button extends FW_Abstract_HtmlElement{
 	/**
@@ -29,15 +30,13 @@ final class FW_Html_Button extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($id = null, $class = null, $value = null, $default = null){
-		parent::__construct(null, $id, $class, $value, $default);
+		parent::__construct(null, $id, $class, $default);
 
 		$this->setValue($value);
 	}
@@ -46,8 +45,7 @@ final class FW_Html_Button extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @final
-	 * @param string 
+	 * @param string $value
 	 */
 	public final function setValue($value){
 		if(FW_Validate::isMixed($value)){
@@ -59,7 +57,6 @@ final class FW_Html_Button extends FW_Abstract_HtmlElement{
 	 * return the value of this element
 	 *
 	 * @access public
-	 * @final
 	 * @return string
 	 */
 	public final function getValue(){
@@ -70,7 +67,6 @@ final class FW_Html_Button extends FW_Abstract_HtmlElement{
 	 * set button type
 	 *
 	 * @access public
-	 * @final
 	 * @param string $type
 	 */
 	public final function setType($type){
@@ -81,7 +77,6 @@ final class FW_Html_Button extends FW_Abstract_HtmlElement{
 	 * get button type
 	 *
 	 * @access public
-	 * @final
 	 * @return string
 	 */
 	public final function getType(){

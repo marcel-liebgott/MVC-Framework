@@ -7,8 +7,7 @@ if(!defined('PATH')){
  * a feed item
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.01
- * @final
+ * @since 1.01
  */
 final class FW_Feed_Item{
 	/**
@@ -104,7 +103,6 @@ final class FW_Feed_Item{
 	 * set title
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param String $title
 	 */
 	public function setTitle($title){
@@ -117,7 +115,6 @@ final class FW_Feed_Item{
 	 * get title
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return String
 	 */
 	public function getTitle(){
@@ -128,7 +125,6 @@ final class FW_Feed_Item{
 	 * set link
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param String $link
 	 */
 	public function setLink($link){
@@ -141,7 +137,6 @@ final class FW_Feed_Item{
 	 * get link
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return String
 	 */
 	public function getLink(){
@@ -152,7 +147,6 @@ final class FW_Feed_Item{
 	 * set description
 	 *
 	 * @access public
-	 * @since 1.01
 	 * @param String $desc
 	 */
 	public function setDescription($desc){
@@ -165,7 +159,6 @@ final class FW_Feed_Item{
 	 * get decription
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return String
 	 */
 	public function getDescription(){
@@ -176,7 +169,6 @@ final class FW_Feed_Item{
 	 * set author
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param String $author
 	 */
 	public function setAuthor($author){
@@ -189,7 +181,6 @@ final class FW_Feed_Item{
 	 * get author
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return String
 	 */
 	public function getAuthor(){
@@ -200,7 +191,6 @@ final class FW_Feed_Item{
 	 * set date
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param int $date
 	 */
 	public function setDate($date){
@@ -213,7 +203,6 @@ final class FW_Feed_Item{
 	 * get date
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return int
 	 */
 	public function getDate(){
@@ -224,7 +213,6 @@ final class FW_Feed_Item{
 	 * set link to comment
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param String $comment
 	 */
 	public function setComment($comment){
@@ -237,7 +225,6 @@ final class FW_Feed_Item{
 	 * get comment link
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return String
 	 */
 	public function getComment(){
@@ -248,7 +235,6 @@ final class FW_Feed_Item{
 	 * set category
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param String $category
 	 */
 	public function setCategory($category){
@@ -261,7 +247,6 @@ final class FW_Feed_Item{
 	 * get category
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return String
 	 */
 	public function getCategory(){
@@ -272,7 +257,6 @@ final class FW_Feed_Item{
 	 * set guid
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @param mixed $guid
 	 */
 	public function setGuid($guid){
@@ -285,7 +269,6 @@ final class FW_Feed_Item{
 	 * get guid
 	 * 
 	 * @access public
-	 * @since 1.01
 	 * @return mixed
 	 */
 	public function getGuid(){

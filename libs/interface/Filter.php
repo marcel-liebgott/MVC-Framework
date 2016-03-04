@@ -18,6 +18,6 @@ interface FW_Interface_Filter{
 	 * @param FW_Request $request
 	 * @param FW_Response $response
 	 */
-	public function execute(FW_Request $request, FW_Response $response);
+	public function execute($request, $response);
 }
 ?>

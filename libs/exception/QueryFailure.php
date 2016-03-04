@@ -3,6 +3,12 @@ if(!defined('PATH')){
 	die("no direct script access allowed");
 }
 
+/**
+ * database query failure exception
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @since 1.00
+ */
 final class FW_Exception_QueryFailure extends FW_Exception_Critical{
 	/**
 	 * constructor

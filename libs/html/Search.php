@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html search element - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_Search extends FW_Abstract_HtmlElement{
 	/**
@@ -21,15 +22,14 @@ final class FW_Html_Search extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($name, $id, $class, $value, $default);
+		parent::__construct($name, $id, $class, $default);
 
 		$this->setAutocomplete(false);
 	}
@@ -38,7 +38,7 @@ final class FW_Html_Search extends FW_Abstract_HtmlElement{
 	 * set placeholder of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $placeholder
 	 */
 	public final function setPlaceholder($placeholder){
 		if(FW_Validate::isString($placeholder)){

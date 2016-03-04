@@ -27,7 +27,7 @@ class FW_DAO_UserGroup extends FW_Abstract_DAO{
 	 * @access public
 	 * @since 1.10
 	 * @throws FW_Exception_MissingData
-	 * @param int|string $id
+	 * @param int $id
 	 * @return FW_Array
 	 */
 	public function getGroupById($id){

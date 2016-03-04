@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate a list of html dropdown element - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_SelectList extends FW_Abstract_HtmlList{
 	/**
@@ -37,22 +38,21 @@ final class FW_Html_SelectList extends FW_Abstract_HtmlList{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($name, $id, $class, $value, $default);
+		parent::__construct($name, $id, $class, $default);
 	}
 
 	/**
 	 * set multiple property of this element
 	 *
 	 * @access public
-	 * @param boolean
+	 * @param boolean $multiple
 	 */
 	public final function setMultiple($multiple){
 		if(FW_Validate::isBool($multiple)){
@@ -74,7 +74,7 @@ final class FW_Html_SelectList extends FW_Abstract_HtmlList{
 	 * set size property of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $size
 	 */
 	public final function setSize($size){
 		if(FW_Validate::isInteger($size)){
@@ -96,7 +96,7 @@ final class FW_Html_SelectList extends FW_Abstract_HtmlList{
 	 * set selected
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $selected
 	 */
 	public final function setSelected($selected){
 		if(FW_Validate::isMixed($selected)){

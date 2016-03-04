@@ -24,6 +24,6 @@ interface FW_Interface_Autoload{
    * @access public
    * @since 1.02
    */
-  public function autoload($class);
+  public static function autoload($class);
 }
 ?>

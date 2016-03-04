@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html textarea - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	/**
@@ -61,15 +62,15 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $type
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($type, $name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($type, $name, $id, $class, $value, $default);
+		parent::__construct($type, $name, $id, $class, $default);
 
 		$this->setValue($value);
 	}
@@ -78,7 +79,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * set cols of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $cols
 	 */
 	public final function setCols($cols){
 		if(FW_Validate::isInteger($cols)){
@@ -100,7 +101,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * set rows of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $rows
 	 */
 	public final function setRows($rows){
 		if(FW_Validate::isInteger($rows)){
@@ -122,7 +123,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $value
 	 */
 	public final function setValue($value){
 		if(FW_Validate::isString($value)){
@@ -144,7 +145,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * set vertical resize css property
 	 *
 	 * @access public
-	 * @param boolean
+	 * @param boolean $resize
 	 */
 	public final function setVerticalResize($resize){
 		if(FW_Validate::isBool($resize)){
@@ -166,7 +167,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * set horizontal resize css property
 	 *
 	 * @access public
-	 * @param boolean
+	 * @param boolean $resize
 	 */
 	public final function setHorizontalResize($resize){
 		if(FW_Validate::isBool($resize)){
@@ -188,7 +189,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * set the placeholder property of this element
 	 *
 	 * @access public
-	 * @param string
+	 * @param string $placeholder
 	 */
 	public final function setPlaceholder($placeholder){
 		if(FW_Validate::isString($placeholder)){

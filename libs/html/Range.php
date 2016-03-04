@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html range element - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 class FW_Html_Range extends FW_Abstract_HtmlElement{
 	/**
@@ -37,26 +38,26 @@ class FW_Html_Range extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $type
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($type, $name, $id = null, $class = null, $value = null, $default = null){
 		if($value !== null){
 			$value = null;
 		}
 
-		parent::__construct($type, $name, $id, $class, $value, $default);
+		parent::__construct($type, $name, $id, $class, $default);
 	}
 
 	/**
 	 * set min property of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $min
 	 */
 	public final function setMin($min){
 		if(FW_Validate::isInteger($min)){
@@ -78,7 +79,7 @@ class FW_Html_Range extends FW_Abstract_HtmlElement{
 	 * set max property of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $max
 	 */
 	public final function setMax($max){
 		if(FW_Validate::isInteger($max)){
@@ -100,7 +101,7 @@ class FW_Html_Range extends FW_Abstract_HtmlElement{
 	 * set step property of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $step
 	 */
 	public final function setStep($step){
 		if(FW_Validate::isInteger($step)){

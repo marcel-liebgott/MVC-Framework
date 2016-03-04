@@ -98,10 +98,9 @@ abstract class FW_Abstract_HtmlList{
 	 * @param string $name
 	 * @param string $id
 	 * @param string $class
-	 * @param string $value
 	 * @param string $default
 	 */
-	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
+	public function __construct($name, $id = null, $class = null, $default = null){
 		$this->validate = new FW_Validate();
 
 		$this->setName($name);

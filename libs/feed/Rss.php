@@ -14,7 +14,7 @@ class FW_Feed_RSS implements FW_Interface_FeedType{
 	 * (non-PHPdoc)
 	 * @see FW_Interface_FeedType::render()
 	 */
-	public function render(FW_Feed_Document $document){
+	public function render($document){
 		$xml = '<?xml version="1.0" encoding="' . $document->getEncoding() . '" ?>';
 		$xml .= '<rss version="' . $document->getVersion() . '">';
 		

@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html time element - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_Time extends FW_Abstract_HtmlElement{
 	/**
@@ -37,15 +38,14 @@ final class FW_Html_Time extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($name, $id, $class, $value, $default);
+		parent::__construct($name, $id, $class, $default);
 
 		$this->setValue($value);
 		$this->setAutocomplete(false);
@@ -55,7 +55,7 @@ final class FW_Html_Time extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @param string 
+	 * @param string $value
 	 */
 	public final function setValue($value){
 		if(FW_Validate::isInteger($value)){
@@ -77,7 +77,7 @@ final class FW_Html_Time extends FW_Abstract_HtmlElement{
 	 * set min property of this element
 	 *
 	 * @access public
-	 * @param int
+	 * @param int $min
 	 */
 	public final function setMin($min){
 		if(FW_Validate::isInteger($min)){

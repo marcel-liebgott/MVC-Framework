@@ -207,7 +207,7 @@ abstract class FW_Abstract_MailBase{
 	 * set e-mail content type
 	 *
 	 * @access public
-	 * @var string $contentType
+	 * @param string $contentType
 	 */
 	public function setContentType($contentType){
 		if(FW_Validate::isMixed($contentType)){

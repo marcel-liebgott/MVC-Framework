@@ -7,6 +7,7 @@ if(!defined('PATH')){
  * with this class you could be generate an html week element - based on html5
  *
  * @author Marcel Liebgott <Marcel@mliebgott.de>
+ * @since 1.00
  */
 final class FW_Html_Month extends FW_Abstract_HtmlElement{
 		/**
@@ -37,19 +38,18 @@ final class FW_Html_Month extends FW_Abstract_HtmlElement{
 	 * constructor
 	 *
 	 * @access public
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
-	 * @param string
+	 * @param string $name
+	 * @param string $id
+	 * @param string $class
+	 * @param string $value
+	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
 		if($value !== null){
 			$value = null;
 		}
 
-		parent::__construct($name, $id, $class, $value, $default);
+		parent::__construct($name, $id, $class, $default);
 
 		$this->setAutocomplete(false);
 	}

@@ -18,6 +18,6 @@ interface FW_Interface_FeedType{
 	 * @param FW_Feed_Document $document
 	 * @return String
 	 */
-	public function render(FW_Feed_Document $document);
+	public function render($document);
 }
 ?>
