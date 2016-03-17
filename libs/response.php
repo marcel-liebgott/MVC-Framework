@@ -81,7 +81,7 @@ class FW_Response extends FW_Singleton{
      * return the current content
      * 
      * @access public
-     * @return type string
+     * @return string
      */
     public function getContent(){
         return $this->content;

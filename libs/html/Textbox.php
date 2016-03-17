@@ -87,7 +87,7 @@ final class FW_Html_Textbox extends FW_Abstract_HtmlElement{
 	 * get placeholder
 	 *
 	 * @access public
-	 * @var string
+	 * @return string
 	 */
 	public final function getPlaceholder(){
 		return $this->placeholder;
@@ -97,7 +97,7 @@ final class FW_Html_Textbox extends FW_Abstract_HtmlElement{
 	 * set required property of this element
 	 *
 	 * @access public
-	 * @var boolean $required
+	 * @param boolean $required
 	 */
 	public final function setRequired($required){
 		if(FW_Validate::isBool($required)){

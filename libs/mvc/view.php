@@ -136,7 +136,7 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
     private function assignVariables(){
         if(count($this->vars) > 0){
             foreach($this->vars as $ident => $replace){
-                if(FW_Validate::isArray($replace, false)){
+                if(FW_Validate::isArray($replace)){
                     foreach($replace as $key => $value){
                         $v = null;
                         
@@ -220,10 +220,11 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
      * @return mixed
      */
     private function generateMessageArea(){
-        $msg = null;        
-        if(count($msg) > 0){
+        $msg = null;
+        
+        if($msg != null && count($msg) > 0){
             $lang = FW_Registry::getInstance()->getLanguage();
-            $msg_level = strtolower($msg[0]);
+            $msg_level = FW_String::strtolower($msg[0]);
             $msg_value = $msg[1];
             
             $msg_template = file_get_contents($this->msgFile);
@@ -231,8 +232,14 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
             $s_level = self::BEGIN_DELIMITER . 'msg_level' . self::END_DELIMITER;
             $s_value = self::BEGIN_DELIMITER . 'msg_value' . self::END_DELIMITER;
             
-            $msg_template = $this->replace($s_level, $lang->getLangValue($msg_level), $msg_template);
-            $msg_template = $this->replace($s_value, $msg_value, $msg_template);
+            if($msg_level != null){
+            	$msg_level = $lang->getLangValue($msg_level);
+            	
+            	if($msg_level != null){
+	            	$msg_template = $this->replace($s_level, $msg_level, $msg_template);
+	            	$msg_template = $this->replace($s_value, $msg_value, $msg_template);
+            	}
+            }
             
             return $msg_template;
         }
@@ -260,14 +267,16 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
         }
         
         if(is_array($value)){
-            foreach($this->vars[$from] as $ident => $value){
+            foreach($this->vars[$from] as $value){
                 $tmp_s = $result[3];
                 
-                foreach($value as $k => $v){
-                    $find = self::BEGIN_DELIMITER . $key . '.' . $k . self::END_DELIMITER;
-                    $tmp_s = $this->replace($find, $v, $tmp_s);
+                if(is_array($value)){
+	                foreach($value as $k => $v){
+	                    $find = self::BEGIN_DELIMITER . $key . '.' . $k . self::END_DELIMITER;
+	                    $tmp_s = $this->replace($find, $v, $tmp_s);
+	                }
+	                $c .= $tmp_s;
                 }
-                $c .= $tmp_s;
             }
         }else{
             $find = self::BEGIN_DELIMITER . $key . self::END_DELIMITER;

@@ -71,7 +71,7 @@ final class FW_Html_Week extends FW_Abstract_HtmlElement{
 	 * return the value of this element
 	 *
 	 * @access public
-	 * @return string
+	 * @return date
 	 */
 	public final function getValue(){
 		return $this->value;
@@ -81,8 +81,8 @@ final class FW_Html_Week extends FW_Abstract_HtmlElement{
 	 * set min property of this element
 	 *
 	 * @access public
-	 * @param string $week
-	 * @param string $year
+	 * @param int $week
+	 * @param int $year
 	 */
 	public final function setMin($week, $year){
 		if(FW_Validate::isInteger($week) && FW_Validate::isInteger($year)){
@@ -95,7 +95,7 @@ final class FW_Html_Week extends FW_Abstract_HtmlElement{
 	 * get min
 	 *
 	 * @access public
-	 * @return string
+	 * @return date
 	 */
 	public final function getMin(){
 		return $this->min;
@@ -118,7 +118,7 @@ final class FW_Html_Week extends FW_Abstract_HtmlElement{
 	 * get max
 	 *
 	 * @access public
-	 * @return string
+	 * @return date
 	 */
 	public final function getMax(){
 		return $this->max;

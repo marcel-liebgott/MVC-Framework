@@ -66,6 +66,7 @@ final class FW_Mail_SMTP extends FW_Abstract_MailBase implements FW_Interface_Ma
 	 * set smtp host
 	 *
 	 * @access private
+	 * @param string $host
 	 * @var string
 	 */
 	public function setHost($host){

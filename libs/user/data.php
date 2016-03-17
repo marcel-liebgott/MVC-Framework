@@ -81,7 +81,7 @@ class FW_User_Data{
 	 *
 	 * @access public
 	 * @since 1.01
-	 * @return FW_Array
+	 * @return FW_Array|string
 	 * @throws FW_Exception_Critical
 	 */
 	public function getGroup(){
@@ -188,26 +188,6 @@ class FW_User_Data{
 		}
 	
 		return true;
-	}
-	
-	/**
-	 * serialize the current user data
-	 *
-	 * @access public
-	 * @since 1.01
-	 */
-	public function serialize(){
-		return serialize($this->_data);
-	}
-	
-	/**
-	 * unserialize the current user data
-	 * 
-	 * @access public
-	 * @since 1.01
-	 */
-	public function unserialize(){
-		return unserialize($this->_data);
 	}
 }
 ?>

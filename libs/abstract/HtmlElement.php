@@ -54,10 +54,10 @@ abstract class FW_Abstract_HtmlElement{
 	/**
 	 * if this element required
 	 *
-	 * @access private
+	 * @access protected
 	 * @var boolean
 	 */
-	private $required = false;
+	protected $required = false;
 
 	/**
 	 * autofocus this element

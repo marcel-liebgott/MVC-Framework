@@ -73,6 +73,7 @@ class FW_Socket{
 	 * @access public
 	 * @param string $host
 	 * @param int $port
+	 * @param int $timeout
 	 */
 	public function __construct($host, $port = 80, $timeout = 30){
 		$this->setHost($host);

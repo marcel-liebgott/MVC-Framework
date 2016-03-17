@@ -141,6 +141,7 @@ class FW_Request extends FW_Singleton{
      * check the header information
      *
      * @access public
+     * @param string $key
      * @return boolean
      */
     public function issetHeader($key){
@@ -155,6 +156,7 @@ class FW_Request extends FW_Singleton{
      * return a header information, if they exists
      *
      * @access public
+     * @param string $key
      * @return mixed
      */
     public function getHeader($key){
@@ -171,6 +173,7 @@ class FW_Request extends FW_Singleton{
      * check if a $_GET information exists
      *
      * @access public
+     * @param string $key
      * @return boolean
      */
     public function issetGet($key){
@@ -185,6 +188,7 @@ class FW_Request extends FW_Singleton{
      * return a $_GET information
      *
      * @access public
+     * @param string $key
      * @return mixed
      */
     public function getGet($key){
@@ -201,6 +205,7 @@ class FW_Request extends FW_Singleton{
      * check if a $_POST information exists
      *
      * @access public
+     * @param string $key
      * @return boolean
      */
     public function issetPost($key){
@@ -239,6 +244,7 @@ class FW_Request extends FW_Singleton{
      * check if a file exists
      *
      * @access public
+     * @param string $key
      * @return boolean
      */
     public function issetFile($key){
@@ -253,6 +259,7 @@ class FW_Request extends FW_Singleton{
      * return a file
      *
      * @access public
+     * @param string $key
      * @return array
      */
     public function getFile($key){
@@ -307,6 +314,7 @@ class FW_Request extends FW_Singleton{
      * return a cookie, if they exists
      *
      * @access public
+     * @param string $name
      * @return mixed
      */
     public function getCookie($name){

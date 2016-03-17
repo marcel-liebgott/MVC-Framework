@@ -17,7 +17,6 @@ final class FW_Validate{
      * check the min length of an string 
      *  
      * @access public
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $data 
@@ -36,7 +35,6 @@ final class FW_Validate{
      * check the max length of an string 
      *  
      * @access public
-     * @since 1.00 
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $data 
@@ -55,7 +53,6 @@ final class FW_Validate{
      * check the data of his length 
      *  
      * @access public 
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $data 
@@ -74,7 +71,6 @@ final class FW_Validate{
      * check if input is an int 
      *  
      * @access public 
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param int $data 
@@ -92,7 +88,6 @@ final class FW_Validate{
      * check if integerin range
      *
      * @access public
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param int $min
@@ -114,7 +109,6 @@ final class FW_Validate{
      * check if input is an string 
      *  
      * @access public 
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $data 
@@ -132,7 +126,6 @@ final class FW_Validate{
      * check if input is an numeric 
      *  
      * @access public 
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $data 
@@ -150,7 +143,6 @@ final class FW_Validate{
      * check if input is an float 
      *  
      * @access public 
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param float $data 
@@ -167,8 +159,7 @@ final class FW_Validate{
     /** 
      * check if input is an bool 
      *  
-     * @access public 
-     * @since 1.00
+     * @access public
      * @static
      * @throws FW_Exception_WrongParameter
      * @param boolean $data 
@@ -185,20 +176,15 @@ final class FW_Validate{
     /** 
      * check if input is an array 
      *  
-     * @access public 
-     * @since 1.00
+     * @access public
      * @static
      * @throws FW_Exception_WrongParameter
      * @param array $data 
      * @return boolean|string is failed
      */
-    public static function isArray($data, $throws = true){
+    public static function isArray($data){
         if(!is_array($data)){
-            if($throws){
-                throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_array'));
-            }else{
-                return false;
-            }
+			throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_array'));
         } 
           
         return true; 
@@ -208,9 +194,7 @@ final class FW_Validate{
      * checked if the input has an mixed value 
      *  
      * @access public 
-     * @since 1.00
      * @static
-     * @throws FW_Exception_WrongParameter
      * @throws FW_Exception_WrongParameter
      * @param mixed $data 
      * @return boolean|string is failed
@@ -227,7 +211,6 @@ final class FW_Validate{
      * check the value of a valid e-mail adress
      *  
      * @access public
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $data 
@@ -245,7 +228,6 @@ final class FW_Validate{
      * check the value of a valid url
      *
      * @access public
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $data
@@ -263,7 +245,6 @@ final class FW_Validate{
      * check the value of a valid date
      *
      * @access public
-     * @since 1.00
      * @static
      * @throws FW_Exception_WrongParameter
      * @param string $date

@@ -50,7 +50,7 @@ class FW_Mvc_ViewParser{
         $type = str_replace(' ', '', $result[1]);
         if(!in_array($type, array_keys($this->enableKindsOfIncludes))){
             $this->msg->setMessage('not supported kind of include', FW_Messages::_E_ERROR);
-            return;
+            return null;
         }
         
         // exists file
@@ -58,7 +58,7 @@ class FW_Mvc_ViewParser{
         
         if(!file_exists($templateFile)){
             $this->msg->setMessage("can't find template file<br>" . $templateFile, FW_Messages::_E_ERROR);
-            return;
+            return null;
         }
 
         $content = file_get_contents($templateFile);

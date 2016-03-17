@@ -7,14 +7,12 @@ if(!defined('PATH')){
  * interface for autoload implementation
  *
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.02
  */
 interface FW_Interface_Autoload{
   /**
    * register an autoloader
    *
    * @access public
-   * @since 1.02
    */
   public function register();
   
@@ -22,7 +20,7 @@ interface FW_Interface_Autoload{
    * autoload function
    *
    * @access public
-   * @since 1.02
+   * @param object $class
    */
   public static function autoload($class);
 }

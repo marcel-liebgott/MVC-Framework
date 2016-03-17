@@ -70,7 +70,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * @param string $default
 	 */
 	public function __construct($type, $name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($type, $name, $id, $class, $default);
+		parent::__construct($name, $id, $class, $default);
 
 		$this->setValue($value);
 	}
@@ -201,7 +201,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * get placeholder
 	 *
 	 * @access public
-	 * @var string
+	 * @return string
 	 */
 	public final function getPlaceholder(){
 		return $this->placeholder;
