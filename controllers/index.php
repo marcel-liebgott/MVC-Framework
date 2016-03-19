@@ -9,7 +9,7 @@ class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_C
 	}
 
 	public function index(){
-// 		$updateAvailable = FW_VersionCompare::checkForUpdate();
+		$updateAvailable = FW_VersionCompare::checkForUpdate();
 
 		// current user
 		$user = FW_Session::get(CURRENT_SESSION_USER);
@@ -21,7 +21,7 @@ class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_C
 		$groups = $user->getGroup();
 		
 		$this->view->addVariables(array(
-// 			'updateAvailable' => (int) $updateAvailable,
+			'updateAvailable' => (int) $updateAvailable,
 			'username' => $user->getUserData(FW_DB_TBL_USER_NAME),
 			'loggedin' => $user->isLoggedin(),
 			'usergroups' => $groups

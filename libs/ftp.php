@@ -21,7 +21,7 @@ class FW_Ftp{
 	 * ftp host
 	 *
 	 * @access private
-	 * @var FW_String
+	 * @var string
 	 */
 	private $host;
 
@@ -37,7 +37,7 @@ class FW_Ftp{
 	 * ftp user
 	 *
 	 * @access private
-	 * @var FW_String
+	 * @var string
 	 */
 	private $user;
 
@@ -45,7 +45,7 @@ class FW_Ftp{
 	 * ftp pass
 	 *
 	 * @access private
-	 * @var FW_String
+	 * @var string
 	 */
 	private $pass;
 
@@ -69,17 +69,17 @@ class FW_Ftp{
 	 * constructor
 	 *
 	 * @access public
-	 * @param FW_String $host
+	 * @param string $host
 	 * @param int $port
-	 * @param FW_String $user
-	 * @param FW_String $pass
+	 * @param string $user
+	 * @param string $pass
 	 * @param int $timeout
 	 */
 	public function __construct($host, $port = 21, $user, $pass, $timeout = 90){
-		$this->setHost(new FW_String($host));
+		$this->setHost($host);
 		$this->setPort($port);
-		$this->setUser(new FW_String($user));
-		$this->setPass(new FW_String($pass));
+		$this->setUser($user);
+		$this->setPass($pass);
 		$this->setTimeout($timeout);
 	}
 
@@ -87,7 +87,7 @@ class FW_Ftp{
 	 * set ftp host
 	 *
 	 * @access public
-	 * @param FW_String $host
+	 * @param string $host
 	 */
 	public function setHost($host){
 		if(FW_Validate::isValidUrl($host)){
@@ -99,7 +99,7 @@ class FW_Ftp{
 	 * get ftp host
 	 *
 	 * @access public
-	 * @return FW_String
+	 * @return string
 	 */
 	public function getHost(){
 		return $this->host;
@@ -131,7 +131,7 @@ class FW_Ftp{
 	 * set ftp user
 	 *
 	 * @access public
-	 * @param FW_String $user
+	 * @param string $user
 	 */
 	public function setUser($user){
 		if(FW_Validate::isString($user)){
@@ -143,7 +143,7 @@ class FW_Ftp{
 	 * get ftp user
 	 *
 	 * @access public
-	 * @return FW_String
+	 * @return string
 	 */
 	public function getUser(){
 		return $this->user;
@@ -153,7 +153,7 @@ class FW_Ftp{
 	 * set ftp pass
 	 *
 	 * @access public
-	 * @param FW_String $pass
+	 * @param string $pass
 	 */
 	public function setPass($pass){
 		if(FW_Validate::isString($pass)){
@@ -165,7 +165,7 @@ class FW_Ftp{
 	 * get ftp pass
 	 *
 	 * @access public
-	 * @return FW_String
+	 * @return string
 	 */
 	public function getPass(){
 		return $this->pass;
@@ -197,6 +197,7 @@ class FW_Ftp{
 	 * connect to a ftp server
 	 *
 	 * @access public
+	 * @throws FW_Exception_ConnectionFailure
 	 */
 	public function connect(){
 		$this->con = ftp_connect($this->host, $this->port, $this->timeout);
@@ -221,6 +222,7 @@ class FW_Ftp{
 	 * login at ftp server
 	 *
 	 * @access public
+	 * @throws FW_Exception_ConnectionFailure
 	 */
 	public function login(){
 		if(!ftp_login($this->con, $this->user, $this->pass)){
@@ -232,6 +234,7 @@ class FW_Ftp{
 	 * upload an file to ftp-server
 	 *
 	 * @access public
+	 * @throws FW_Exception_MissingData
 	 * @param string $remoteFile
 	 * @param string $localFile
 	 * @param int $mode
@@ -268,7 +271,7 @@ class FW_Ftp{
 	 *
 	 * @access public
 	 * @param string $dirName
-	 * @return int
+	 * @return string
 	 */
 	public function mkdir($dirName){
 		if(FW_Validate::isString($dirName)){
@@ -280,7 +283,7 @@ class FW_Ftp{
 	 * change directory
 	 *
 	 * @access public
-	 * @param string $dirNme
+	 * @param string $dirName
 	 * @return boolean
 	 */
 	public function chdir($dirName){

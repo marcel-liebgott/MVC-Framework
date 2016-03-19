@@ -14,7 +14,7 @@ final class FW_Html_DatetimeLocal extends FW_Abstract_HtmlElement{
 	 * min property of this element
 	 *
 	 * @access private
-	 * @var date
+	 * @var string
 	 */
 	private $min;
 
@@ -22,7 +22,7 @@ final class FW_Html_DatetimeLocal extends FW_Abstract_HtmlElement{
 	 * max property of this element
 	 *
 	 * @access private
-	 * @var date
+	 * @var string
 	 */
 	private $max;
 
@@ -30,7 +30,7 @@ final class FW_Html_DatetimeLocal extends FW_Abstract_HtmlElement{
 	 * value of this element
 	 *
 	 * @access private
-	 * @var date
+	 * @var string
 	 */
 	private $value;
 
@@ -66,9 +66,7 @@ final class FW_Html_DatetimeLocal extends FW_Abstract_HtmlElement{
 	 * @param string $value 
 	 */
 	public final function setValue($value){
-		if(FW_Validate::isInteger($value)){
-			$this->value = $value;
-		}
+		$this->value = $value;
 	}
 
 	/**
@@ -85,20 +83,18 @@ final class FW_Html_DatetimeLocal extends FW_Abstract_HtmlElement{
 	 * set min property of this element
 	 *
 	 * @access public
-	 * @param int $min
+	 * @param string $min
 	 */
 	public final function setMin($min){
-		if(FW_Validate::isInteger($min)){
-			$this->setvalue($min);
-			$this->min = $min;
-		}
+		$this->setValue($min);
+		$this->min = $min;
 	}
 
 	/**
 	 * get min
 	 *
 	 * @access public
-	 * @return int
+	 * @return string
 	 */
 	public final function getMin(){
 		return $this->min;
@@ -108,19 +104,17 @@ final class FW_Html_DatetimeLocal extends FW_Abstract_HtmlElement{
 	 * set max property of this element
 	 *
 	 * @access public
-	 * @param int $max
+	 * @param string $max
 	 */
 	public final function setMax($max){
-		if(FW_Validate::isInteger($max)){
-			$this->max = $max;
-		}
+		$this->max = $max;
 	}
 
 	/**
 	 * get max
 	 *
 	 * @access public
-	 * @return int
+	 * @return string
 	 */
 	public final function getMax(){
 		return $this->max;

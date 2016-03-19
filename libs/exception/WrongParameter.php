@@ -18,7 +18,10 @@ final class FW_Exception_WrongParameter extends FW_Exception_Critical{
 	 * @param int $code
 	 */
 	public function __construct($data, $code = 0){
-		$message = $data['message'];
+		if(isset($data['message'])){
+			$message = $data['message'];
+		}
+		
 		$arg = '';
 
 		if(isset($data['arg']) && !empty($data['arg'])){
@@ -28,7 +31,9 @@ final class FW_Exception_WrongParameter extends FW_Exception_Critical{
 		$registry = FW_Registry::getInstance();
 		$lang = $registry->getLanguage();
 
-		$msg = $lang->getLangValue($message) . $arg;
+		$lang_value = $lang->getLangValue($message);
+		
+		$msg = $lang_value . $arg;
 
 		parent::__construct($msg, $code);
 	}

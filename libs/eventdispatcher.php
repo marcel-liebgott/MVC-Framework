@@ -49,8 +49,8 @@ class FW_EventDispatcher extends FW_Singleton{
 	 * 
 	 * @access public
 	 * @param string $event
-	 * @param string $context
-	 * @param string $info
+	 * @param object $context
+	 * @param array $info
 	 * @return FW_Event
 	 */
 	public function triggerEvent($event, $context = null, $info = null){

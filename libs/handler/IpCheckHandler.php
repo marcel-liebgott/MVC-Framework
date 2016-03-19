@@ -42,5 +42,13 @@ class FW_Handler_IpCheckHandler implements FW_Interface_EventHandler{
 			$event->cancel();
 		}
 	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see FW_Interface_EventHandler::handle()
+	 */
+	public function handle($event){
+		
+	}
 }
 ?>

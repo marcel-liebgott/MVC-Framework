@@ -53,7 +53,9 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @throws FW_Exception_DBConnectionFailure
      */
     public function __construct(){
-    	self::$_use_db = $this->config->getConfig(use_database);
+    	parent::__construct();
+    	
+    	self::$_use_db = parent::$config->getConfig('use_database');
     	 
     	if(self::$_use_db == true){
     		try{
@@ -122,7 +124,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 	            return new FW_Array($sth->fetchAll($fetchMode));
         	}
         }catch(PDOException $e){
-            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
     }
     
@@ -152,7 +154,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 
             return $this->getLastInsertedId();
         }catch(PDOException $e){
-            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
     }
     
@@ -185,7 +187,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
             
             $this->execute($sth);
         }catch(PDOException $e){
-            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
     }
     
@@ -207,7 +209,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 
             return $sth;
         }catch(PDOException $e){
-            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString'], PDO::errorCode());
+            throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
     }
     

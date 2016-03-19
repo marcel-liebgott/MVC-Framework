@@ -50,11 +50,11 @@ class FW_Html_Number extends FW_Abstract_HtmlElement{
 	 * @param string $name
 	 * @param string $id
 	 * @param string $class
-	 * @param string $value
+	 * @param int $value
 	 * @param string $default
 	 */
 	public function __construct($type, $name, $id = null, $class = null, $value = null, $default = null){
-		parent::__construct($type, $name, $id, $class, $default);
+		parent::__construct($name, $id, $class, $default);
 
 		if($value == null){
 			$this->setValue($this->getMin());
@@ -65,7 +65,7 @@ class FW_Html_Number extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @param string $value 
+	 * @param int $value 
 	 */
 	public final function setValue($value){
 		if(FW_Validate::isInteger($value)){
@@ -77,7 +77,7 @@ class FW_Html_Number extends FW_Abstract_HtmlElement{
 	 * return the value of this element
 	 *
 	 * @access public
-	 * @return string
+	 * @return int
 	 */
 	public final function getValue(){
 		return $this->value;
@@ -91,7 +91,7 @@ class FW_Html_Number extends FW_Abstract_HtmlElement{
 	 */
 	public final function setMin($min){
 		if(FW_Validate::isInteger($min)){
-			$this->setvalue($min);
+			$this->setValue($min);
 			$this->min = $min;
 		}
 	}

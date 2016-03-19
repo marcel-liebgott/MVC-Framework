@@ -49,7 +49,7 @@ final class FW_Html_Date extends FW_Abstract_HtmlElement{
 	 * @param string $name
 	 * @param string $id
 	 * @param string $class
-	 * @param string $value
+	 * @param date $value
 	 * @param string $default
 	 */
 	public function __construct($name, $id = null, $class = null, $value = null, $default = null){
@@ -63,19 +63,17 @@ final class FW_Html_Date extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @param string $value
+	 * @param date $value
 	 */
 	public final function setValue($value){
-		if(FW_Validate::isInteger($value)){
-			$this->value = $value;
-		}
+		$this->value = $value;
 	}
 
 	/**
 	 * return the value of this element
 	 *
 	 * @access public
-	 * @return string
+	 * @return date
 	 */
 	public final function getValue(){
 		return $this->value;
@@ -85,20 +83,18 @@ final class FW_Html_Date extends FW_Abstract_HtmlElement{
 	 * set min property of this element
 	 *
 	 * @access public
-	 * @param int $min
+	 * @param date $min
 	 */
 	public final function setMin($min){
-		if(FW_Validate::isInteger($min)){
-			$this->setvalue($min);
-			$this->min = $min;
-		}
+		$this->setValue($min);
+		$this->min = $min;
 	}
 
 	/**
 	 * get min
 	 *
 	 * @access public
-	 * @return int
+	 * @return date
 	 */
 	public final function getMin(){
 		return $this->min;
@@ -108,19 +104,17 @@ final class FW_Html_Date extends FW_Abstract_HtmlElement{
 	 * set max property of this element
 	 *
 	 * @access public
-	 * @param int $max
+	 * @param date $max
 	 */
 	public final function setMax($max){
-		if(FW_Validate::isInteger($max)){
-			$this->max = $max;
-		}
+		$this->max = $max;
 	}
 
 	/**
 	 * get max
 	 *
 	 * @access public
-	 * @return int
+	 * @return date
 	 */
 	public final function getMax(){
 		return $this->max;

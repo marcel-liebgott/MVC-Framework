@@ -215,7 +215,6 @@ abstract class FW_Abstract_Controller{
 	 * chekc if the given user group have access to the current controller
 	 * 
 	 * @access public
-	 * @since 1.10
 	 * @param int $gid
 	 * @return boolean
 	 */
@@ -233,7 +232,6 @@ abstract class FW_Abstract_Controller{
 	 * check if the provided user group doesn't have access to the current user group
 	 * 
 	 * @access public
-	 * @since 1.10
 	 * @param int $gid
 	 * @return boolean
 	 */

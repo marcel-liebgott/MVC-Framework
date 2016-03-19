@@ -22,20 +22,26 @@ final class FW_VersionCompare{
 	public static function checkForUpdate(){
 		$socket = new FW_Socket(FW_HOST);
 		$data = $socket->post(FW_PATH, null);
-
-		$data_arr = explode("|", $data);
-
-		$version = $data_arr[0];
-		$state = $data_arr[1];
-
-		if(FW_Version::getVersionId() < $version){
-			return true;
-		}else{
-			if(FW_Version::getVersionId() == $version){
-				$version_id = constant('STATE_' . FW_String::strtoupper($state));
-
-				if(FW_String::strtoupper(FW_Version::getVersionState()) < $version_id){
-					return true;
+		
+		if($data != null){
+			if(FW_String::strpos($data, '|') > 0){
+				$data_arr = explode("|", $data);
+				
+				if($data_arr != null && count($data_arr) == 2){
+					$version = $data_arr[0];
+					$state = $data_arr[1];
+			
+					if(FW_Version::getVersionId() < $version){
+						return true;
+					}else{
+						if(FW_Version::getVersionId() == $version){
+							$version_id = constant('STATE_' . FW_String::strtoupper($state));
+			
+							if(FW_String::strtoupper(FW_Version::getVersionState()) < $version_id){
+								return true;
+							}
+						}
+					}
 				}
 			}
 		}

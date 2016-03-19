@@ -50,7 +50,7 @@ class FW_Html_Range extends FW_Abstract_HtmlElement{
 			$value = null;
 		}
 
-		parent::__construct($type, $name, $id, $class, $default);
+		parent::__construct($name, $id, $class, $default);
 	}
 
 	/**

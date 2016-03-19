@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <Marcel@mliebgott.de>
  * @since 1.00
  */
-final class FW_Html_CheckboxList extends FW_Abstract_HtmlElement{
+final class FW_Html_CheckboxList extends FW_Abstract_HtmlList{
 	/**
 	 * delimiter to display each item
 	 *

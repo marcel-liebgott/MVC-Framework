@@ -17,9 +17,10 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * class prefix
 	 * 
 	 * @access private
-	 * @var String
+	 * @static
+	 * @var string
 	 */
-	private $_prefix;
+	private static $_prefix;
 	
 	/**
 	 * instance
@@ -68,7 +69,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @param String $prefix
 	 */
 	public function setPrefix($prefix){
-		$this->_prefix = $prefix;
+		self::$_prefix = $prefix;
 	}
 	
 	/**
@@ -78,7 +79,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @since 1.01
 	 */
 	public function register(){
-		spl_autoload_register(self::autoload);
+		spl_autoload_register('FW_Autoload::autoload');
 	}
 	
 	/**
@@ -90,7 +91,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @param string $class
 	 */
 	public static function autoload($class){
-		if(substr($class, 0, 3) == $this->_prefix){
+		if(substr($class, 0, 3) == self::$_prefix){
 			$class = substr($class, 3);
 			
 			$class = strtolower($class);

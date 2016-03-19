@@ -14,7 +14,7 @@ final class FW_Html_Month extends FW_Abstract_HtmlElement{
 	 * min property of this element
 	 *
 	 * @access private
-	 * @var date
+	 * @var string
 	 */
 	private $min;
 
@@ -22,7 +22,7 @@ final class FW_Html_Month extends FW_Abstract_HtmlElement{
 	 * max property of this element
 	 *
 	 * @access private
-	 * @var date
+	 * @var string
 	 */
 	private $max;
 
@@ -30,7 +30,7 @@ final class FW_Html_Month extends FW_Abstract_HtmlElement{
 	 * value of this element
 	 *
 	 * @access private
-	 * @var date
+	 * @var string
 	 */
 	private $value;
 
@@ -58,8 +58,8 @@ final class FW_Html_Month extends FW_Abstract_HtmlElement{
 	 * set value of this element
 	 *
 	 * @access public
-	 * @param int
-	 * @param int
+	 * @param int $month
+	 * @param int $year
 	 */
 	public final function setValue($month, $year){
 		if(FW_Validate::isInteger($month) && FW_Validate::isInteger($year)){
@@ -81,7 +81,8 @@ final class FW_Html_Month extends FW_Abstract_HtmlElement{
 	 * set min property of this element
 	 *
 	 * @access public
-	 * @param string
+	 * @param int $month
+	 * @param int $year
 	 */
 	public final function setMin($month, $year){
 		if(FW_Validate::isInteger($month) && FW_Validate::isInteger($year)){
@@ -104,8 +105,8 @@ final class FW_Html_Month extends FW_Abstract_HtmlElement{
 	 * set max property of this element
 	 *
 	 * @access public
-	 * @param int
-	 * @param int
+	 * @param int $month
+	 * @param int $year
 	 */
 	public final function setMax($month, $year){
 		if(FW_Validate::isInteger($month) && FW_Validate::isInteger($year)){

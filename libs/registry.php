@@ -66,7 +66,7 @@ class FW_Registry extends FW_Singleton{
      */
     public static function get($key){
         if(isset(self::$values[$key])){
-            return self::$value;
+            return self::$values[$key];
         }
         
         return null;

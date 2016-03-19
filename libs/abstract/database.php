@@ -14,9 +14,10 @@ abstract class FW_Abstract_Database extends FW_Singleton{
 	 * configuration
 	 * 
 	 * @access protected
+	 * @static
 	 * @var FW_Configuration
 	 */
-	protected $config;
+	protected static $config;
 	
 	/**
 	 * return singleton instance
@@ -27,10 +28,10 @@ abstract class FW_Abstract_Database extends FW_Singleton{
 	 * @return FW_Abstract_Database
 	 */
 	public static function __getInstance($class){
-		return parent::_getInstance($class);
-		
 		$registry = FW_Registry::getInstance();
-		$this->config = $registry->getConfiguration();
+		self::$config = $registry->getConfiguration();
+		
+		return parent::_getInstance($class);
 	}
 }
 ?>

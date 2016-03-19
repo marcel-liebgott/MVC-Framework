@@ -38,7 +38,6 @@ abstract class FW_Abstract_UserGroup{
 	 * is the user group for guest only
 	 * 
 	 * @access protected
-	 * @since 1.10
 	 * @return boolean
 	 */
 	protected function isGuest(){
@@ -49,7 +48,6 @@ abstract class FW_Abstract_UserGroup{
 	 * set the property if the this user group is onyl for guest
 	 * 
 	 * @access protected
-	 * @since 1.10
 	 * @param boolean $isGuest
 	 */
 	protected function setIsGuest($isGuest){
@@ -62,12 +60,12 @@ abstract class FW_Abstract_UserGroup{
 	 * set the group id
 	 * 
 	 * @access protected
-	 * @since 1.10
 	 * @param int $id
 	 */
 	protected function setGroupId($id){
 		// check if this id exits
-		$ids = new FW_Array(FW_Registry::get('fw_user_groups_ids'));
+		$user_group_id = FW_Registry::get('fw_user_groups_ids');
+		$ids = new FW_Array(array($user_group_id));
 		
 		if(($ids == null && empty($ids)) || $ids->get($id) == false){
 			$ids->add($id);
@@ -85,7 +83,6 @@ abstract class FW_Abstract_UserGroup{
 	 * return the group id
 	 * 
 	 * @access protected
-	 * @since 1.10
 	 * @return int
 	 */
 	protected function getGroupId(){
@@ -96,7 +93,6 @@ abstract class FW_Abstract_UserGroup{
 	 * set the name of the current user group
 	 * 
 	 * @access protected
-	 * @since 1.10
 	 * @param string $name
 	 */
 	protected function setGroupName($name){
@@ -107,7 +103,6 @@ abstract class FW_Abstract_UserGroup{
 	 * get the name of the user group
 	 * 
 	 * @access protected
-	 * @since 1.10
 	 * @return string
 	 */
 	protected function getGroupName(){

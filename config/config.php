@@ -18,6 +18,7 @@ define('PROTOCOL',	$protocol);
 define('PORT',		$port);
 define('DOC_ROOT',	$doc_root);
 define('BASE_URL',	$base_url);
+define('FULL_URL',	$full_url);
 
 /**
  * admin-modul indentificator
@@ -118,7 +119,7 @@ define('DOWNLOAD_DIR','download/');
  * database authetification
  */
 define('TYPE','mysql');
-define('HOST','localhost');
+define('HOST','127.0.0.1');
 define('USER','root');
 define('PASS','root');
 define('DATA','mvc_fw');

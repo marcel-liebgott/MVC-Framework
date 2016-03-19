@@ -83,6 +83,7 @@ class FW_BBCode extends FW_Singleton{
 				$regex = $xmlContent->Tag[$i]->Regex;
 
 				$this->enableTags[(string)$shortcut] = array(
+					'id' => (string)$id,
 					'img' => (string)$img,
 					'desc' => (string)$desc,
 					'shortcut' => (string)$shortcut,

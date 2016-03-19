@@ -106,11 +106,12 @@ class FW_Language extends FW_Singleton{
      * @return string|null
      */
     public function getLangValue($ident){
+    	$value = '';
         if($this->existsIdent($ident) == true){
-            return $this->langValues[$ident];
+            $value = $this->langValues[$ident];
         }
         
-        return "";
+		return $value;
     }
     
     /**

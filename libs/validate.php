@@ -180,11 +180,16 @@ final class FW_Validate{
      * @static
      * @throws FW_Exception_WrongParameter
      * @param array $data 
+     * @param boolean $throw
      * @return boolean|string is failed
      */
-    public static function isArray($data){
+    public static function isArray($data, $throw = false){
         if(!is_array($data)){
-			throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_array'));
+        	if($throw){
+				throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_array', 'arg' => $data));
+        	}else{
+        		return false;
+        	}
         } 
           
         return true; 

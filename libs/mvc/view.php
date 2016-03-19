@@ -136,7 +136,7 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
     private function assignVariables(){
         if(count($this->vars) > 0){
             foreach($this->vars as $ident => $replace){
-                if(FW_Validate::isArray($replace)){
+                if(FW_Validate::isArray($replace, false)){
                     foreach($replace as $key => $value){
                         $v = null;
                         

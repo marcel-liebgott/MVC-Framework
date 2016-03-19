@@ -30,7 +30,7 @@ class FW_Event{
 	 * event info
 	 * 
 	 * @access private
-	 * @var string
+	 * @var array
 	 */
 	private $_info;
 	
@@ -46,9 +46,9 @@ class FW_Event{
 	 * constructor
 	 * 
 	 * @access public
-	 * @param String $name
-	 * @param String $context
-	 * @param String $info
+	 * @param string $name
+	 * @param object $context
+	 * @param array $info
 	 */
 	public function __construct($name, $context = null, $info = null){
 		$this->_name = $name;
@@ -100,7 +100,7 @@ class FW_Event{
 	 * set event info
 	 * 
 	 * @access public
-	 * @param string $info
+	 * @param array $info
 	 */
 	public function setInfo($info){
 		$this->_info = $info;
@@ -110,7 +110,7 @@ class FW_Event{
 	 * get event info
 	 * 
 	 * @access public
-	 * @return string
+	 * @return array
 	 */
 	public function getInfo(){
 		return $this->_info;

@@ -8,7 +8,6 @@ if(!defined('PATH')){
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @abstract
- * @version 1.20
  */
 abstract class FW_MVC_Controller_Default extends FW_Abstract_Controller implements FW_Interface_ControllerType{
 	/**

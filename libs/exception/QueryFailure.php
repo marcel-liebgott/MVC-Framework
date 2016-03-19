@@ -16,13 +16,12 @@ final class FW_Exception_QueryFailure extends FW_Exception_Critical{
 	 * @access public
 	 * @param string $message
 	 * @param string $query
-	 * @param int $number
 	 */
-	public function __construct($message, $query, $number = 0){
-		$msg = 'MySQL-Query failed: ' . $number . ': ' . $message . '\n';
+	public function __construct($message, $query){
+		$msg = 'MySQL-Query failed: ' . $message . '\n';
 		$msg .= 'MySql-Query: ' . $query;
 
-		parent::__construct($msg, $number);
+		parent::__construct($msg, 0);
 	}
 }
 ?>
