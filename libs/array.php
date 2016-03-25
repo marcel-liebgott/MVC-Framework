@@ -19,32 +19,26 @@ final class FW_Array{
 	private $_array;
 	
 	/**
-	 * array iterator
-	 * 
-	 * @access private
-	 * @var ArrayIterator
-	 */
-	private $_iterator;
-	
-	/**
 	 * constructor
 	 * 
 	 * @access public
 	 * @param array $array
 	 */
 	public function __construct($array = array()){
-		$this->_array = new ArrayObject($array);
-		$this->_iterator = $this->_array->getIterator();
+		if(count($array) == 1){
+			$array = $array[0];
+		}
+		
+		$this->_array = $array;
 	}
 	
 	/**
-	 * get the iterator of this array
+	 * destructor
 	 * 
 	 * @access public
-	 * @return ArrayIterator
 	 */
-	public function getIterator(){
-		return $this->_iterator;
+	public function __destruct(){
+		$this->_array = null;
 	}
 	
 	/**
@@ -61,7 +55,7 @@ final class FW_Array{
 				$this->_array[$key] = $data[$key];
 			}
 		}else{
-			$this->_array->append($data);
+			$this->_array[] = $data;
 		}
 	}
 	
@@ -72,25 +66,23 @@ final class FW_Array{
 	 * @return int
 	 */
 	public function size(){
-		return $this->_iterator->count();
+		return count($this->_array);
 	}
 	
 	/**
 	 * get an array element based on a key
 	 * 
 	 * @access public
-	 * @param mixed $key
+	 * @param mixed $needed
 	 * @return mixed
 	 */
-	public function get($key){
-		$this->_iterator->rewind();
+	public function get($needed){
+		$keys = array_keys($this->_array);
 		
-		while($this->_iterator->valid()){
-			if($this->_iterator->key() === $key){
-				return $this->_iterator->current();
+		foreach($keys as $key){
+			if($key == $needed){
+				return $this->_array[$key];
 			}
-			
-			$this->_iterator->next();
 		}
 	}
 	
@@ -102,14 +94,12 @@ final class FW_Array{
 	 * @return boolean
 	 */
 	public function exists($key){
-		$this->_iterator->rewind();
+		$keys = array_keys($this->_array);
 		
-		while($this->_iterator->valid()){
-			if($this->_iterator->key() === $key){
+		foreach($keys as $key){
+			if(key == $needed){
 				return true;
 			}
-			
-			$this->_iterator->next();
 		}
 		
 		return false;
@@ -122,13 +112,11 @@ final class FW_Array{
 	 * @param Mixed $key
 	 */
 	public function remove($key){
-		$this->_iterator->rewind();
+		$keys = array_keys($this->_array);
 		
-		while($this->_iterator->valid()){
-			if($this->_iterator->key() === $key){
-				$this->_iterator->offsetUnset($key);
-				
-				continue;
+		foreach($keys as $key){
+			if(key == $needed){
+				unset($this->_array[$key]);
 			}
 		}
 	}
