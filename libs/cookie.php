@@ -112,7 +112,7 @@ class FW_Cookie{
      * @return mixed
      */
     public static function get($name){
-        if(self::existsCookie($name)){
+        if(self::existsCookie(COOKIE_PREFIX . $name)){
             return $_COOKIE[$name];
         }
         
