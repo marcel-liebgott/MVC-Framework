@@ -45,7 +45,7 @@ final class FW_Version{
 	 * @static
 	 * @var String
 	 */
-	private static $_build = "009";
+	private static $_build = "010";
 	
 	/**
 	 * current version state
