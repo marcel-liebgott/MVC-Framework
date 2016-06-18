@@ -103,7 +103,7 @@ class FW_Language extends FW_Singleton{
      * 
      * @access public
      * @param string $ident
-     * @return string|null
+     * @return string
      */
     public function getLangValue($ident){
     	$value = '';

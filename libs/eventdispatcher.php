@@ -55,24 +55,24 @@ class FW_EventDispatcher extends FW_Singleton{
 	 */
 	public function triggerEvent($event, $context = null, $info = null){
 		if(!($event instanceof FW_Interface_Event)){
-			$event = new FW_Event($event, $context, $info);
+			$newEvent = new FW_Event($event, $context, $info);
 		}
 		
-		$eventName = $event->getName();
+		$eventName = $newEvent->getName();
 		
 		if(!isset($this->_handlers[$eventName])){
-			return $event;
+			return $newEvent;
 		}
 		
 		foreach($this->_handlers[$eventName] as $handler){
-			$handler->handle($event);
+			$handler->handle($newEvent);
 			
-			if($event->isCanceled()){
+			if($newEvent->isCanceled()){
 				break;
 			}
 		}
 		
-		return $event;
+		return $newEvent;
 	}
 }
 ?>
