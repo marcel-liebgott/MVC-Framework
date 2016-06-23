@@ -25,8 +25,5 @@ try{
 	echo "Exception caught: " . $e->getMessage() . '<br>';
     echo "Line: " . $e->getLine() . '<br>';
     echo "File: " . $e->getFile();
-    echo "<pre>";
-    var_dump($e->getTraceAsString());
-    echo "</pre>";
 }
 ?>
