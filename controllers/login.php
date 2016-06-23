@@ -1,6 +1,6 @@
 <?php
 if(!defined('PATH')){
-	die('no direct script access allowed');
+	throw new FW_Exception_AccessDenied('no direct script access allowed');
 }
 
 class FW_Front_login extends FW_MVC_Controller_Default implements FW_Interface_Controller{

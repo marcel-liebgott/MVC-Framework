@@ -4,12 +4,12 @@ if(!defined('PATH')){
 }
 
 /**
- * unsupported method exception
+ * access denied exception
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @since 1.00
+ * @version 1.01
  */
-class FW_Exception_UnsupportedMethod extends FW_Exception_Critical{
+class FW_Exception_AccessDenied extends FW_Exception_Critical{
 	/**
 	 * constructor
 	 * 
@@ -17,8 +17,7 @@ class FW_Exception_UnsupportedMethod extends FW_Exception_Critical{
 	 * @param string $message
 	 */
 	public function __construct($message){
-		$msg = "unsupported Method: " . $$message;
-		parent::__construct($msg);
+		parent::__construct($message);
 	}
 }
 ?>

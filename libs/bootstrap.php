@@ -1,6 +1,6 @@
 <?php
 if(!defined('PATH')){
-	die("no direct skript access allowed");
+	throw new FW_Exception_AccessDenied("no direct skript access allowed");
 }
 
 /**
