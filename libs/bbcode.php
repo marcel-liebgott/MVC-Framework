@@ -281,7 +281,6 @@ class FW_BBCode extends FW_Singleton{
 						if(count($match) == 3){
 							// get value between open and ending tag
 							$substr = substr($this->string, $pos, ($idx_ending_tag + $lenght_ending_tag) - $pos);
-							// $substr = substr($this->string, $pos + $lenght_open_tag, ($idx_ending_tag - ($pos + $lenght_open_tag)));
 
 							$replacedString = preg_replace($enableTag['regex'], $enableTag['replace'], $substr);
 
