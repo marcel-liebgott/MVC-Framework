@@ -6,8 +6,8 @@ if(!defined('PATH')){
 /**
  * http://www.phpbuddy.eu/emails-mit-php-versenden.html?start=2
  *
- * @todo some default stuff
- *		subject
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ * @version 1.00
  */
 class FW_Mail{
 	/**

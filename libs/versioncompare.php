@@ -8,7 +8,6 @@ if(!defined('PATH')){
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.00
- * @todo testen
  */
 final class FW_VersionCompare{
 	/**
