@@ -33,7 +33,8 @@ class FW_Auth{
             FW_Session::destroy();
             $response = FW_Registry::getInstance()->getResponse();
             $response->redirectUrl('acp/login/', true);
-            exit;
+            
+            return;
         }
     }
     

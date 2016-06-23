@@ -112,7 +112,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 				require_once LIBS . $path;
 			}
 		}else{
-			die("Class '" . $class . "' doesn't a enabled framework class");
+			throw new FW_Exception_NotSupported("Class '" . $class . "' doesn't a enabled framework class");
 		}
 	}
 	

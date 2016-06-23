@@ -40,7 +40,8 @@ class FW_Filter_loginFilter implements FW_Interface_Filter{
 		FW_Session::destroy();
 		$response = FW_Registry::getInstance()->getResponse();
 		$response->redirectUrl('acp/login/', true);
-		exit;
+		
+		return;
 	}
 }
 ?>

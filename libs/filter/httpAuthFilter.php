@@ -64,7 +64,8 @@ class FW_Filter_HttpAuthFilter implements FW_Interface_Filter{
 		$response->setStatus('401 Unauthorized');
 		$response->addHeader('WWW-Authenticate', 'Basic realm="Test"');
 		$response->send();
-		exit();
+		
+		return;
 	}
 }
 ?>
