@@ -74,7 +74,9 @@ class FW_BBCode extends FW_Singleton{
 		if(file_exists($xmlFile)){
 			$xmlContent = simplexml_load_file($xmlFile);
 
-			for($i = 0; $i < count($xmlContent); $i++){
+			$xmlCount = count($xmlContent);
+			
+			for($i = 0; $i < $xmlCount; $i++){
 				$id = $xmlContent->Tag[$i]->Id;
 				$img = $xmlContent->Tag[$i]->Img;
 				$desc = $xmlContent->Tag[$i]->Description;
@@ -104,7 +106,9 @@ class FW_BBCode extends FW_Singleton{
 		if(file_exists($xmlFile)){
 			$xmlContent = simplexml_load_file($xmlFile);
 
-			for($i = 0; $i < count($xmlContent); $i++){
+			$xmlCount = count($xmlContent);
+			
+			for($i = 0; $i < $xmlCount; $i++){
 				$id = $xmlContent->Item[$i]->Id;
 				$img = $xmlContent->Item[$i]->Img;
 				$desc = $xmlContent->Item[$i]->Description;
@@ -156,7 +160,9 @@ class FW_BBCode extends FW_Singleton{
         $count_open_tags = 0;
         $open_tags = array();
 
-        for($i = 0; $i < count($tags[3]); $i++){
+        $countTags = count($tags[3]);
+        
+        for($i = 0; $i < $countTags; $i++){
         	$tag = $tags[3][$i][0];
 
         	if(empty($tag[0])){

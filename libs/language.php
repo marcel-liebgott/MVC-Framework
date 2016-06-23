@@ -125,7 +125,9 @@ class FW_Language extends FW_Singleton{
         if(FW_Validate::isArray($array)){
             $arr = array();
             
-            for($i = 0; $i < count($array); $i++){
+            $count = count($array);
+            
+            for($i = 0; $i < $count; $i++){
                 if(isset($array[$i]['id']) && !empty($array[$i]['id'])){
                     unset($array[$i]['id']);
                 }
