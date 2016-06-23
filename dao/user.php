@@ -7,7 +7,6 @@ if(!defined('PATH')){
  * Data access object for users
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.10
  */
 final class FW_DAO_User extends FW_Abstract_DAO{
 	/**
@@ -15,7 +14,6 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.10
 	 * @return FW_DAO_User
 	 */
 	public static function getInstance(){
@@ -26,7 +24,6 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * get all user information by user id
 	 * 
 	 * @access public
-	 * @since 1.10
 	 * @param int $id
 	 * @return FW_Array
 	 */
@@ -42,7 +39,6 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * return all user information  by user name
 	 * 
 	 * @access public
-	 * @since 1.10
 	 * @param String $name
 	 * @return FW_Array
 	 */

@@ -3,6 +3,11 @@ if(!defined('PATH')){
 	die("no direct script access allowed");
 }
 
+/**
+ * registry class
+ * 
+ * @author Marcel Liebgott <marcel@mliebgott.de>
+ */
 class FW_Registry extends FW_Singleton{
     /**
      * array of saved instances

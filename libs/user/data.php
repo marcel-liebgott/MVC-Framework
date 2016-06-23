@@ -34,8 +34,10 @@ class FW_User_Data{
 				FW_DB_TBL_USER_ID => GUEST_GROUP_UID,
 				FW_DB_TBL_USER_NAME => $langGuest
 			));
-		}else{
+		}else if(!($data instanceof FW_Array)){
 			$this->_data = new FW_Array($data);
+		}else{
+			$this->_data = $data;
 		}
 	}
 	
@@ -68,7 +70,8 @@ class FW_User_Data{
 	 * @return string
 	 */
 	public function getUserData($key){
-		return $this->_data->get($key);
+		$data = $this->_data->get($key);
+		return $data;
 	}
 	
 	/**
@@ -110,6 +113,18 @@ class FW_User_Data{
 	 *  @return boolean
 	 */
 	public function isLoggedin(){
+		// exists an cookie
+		$registry = FW_Registry::getInstance();
+		
+		if(FW_Cookie::existsCookie('user')){
+			$userCookie = FW_Cookie::get('user');
+			
+			if($userCookie > 0){
+				return true;
+			}
+		}
+		
+		
 		return $this->_data->get(FW_DB_TBL_USER_ID) > 0;
 	}
 	
@@ -125,21 +140,34 @@ class FW_User_Data{
 			$registry = FW_Registry::getInstance();
 			$user = FW_DAO::getUser()->getUserByName($name);
 			$cookie = $registry::get('cookies');
+			$response = $registry->getResponse();
 				
 			if($user !== null){
 				$userObject = new FW_User_Data($user);
-				$loggedin = $this->checkUser($name, $pass, $userObject);
-	
-				if($loggedin){
-					echo "loggedin";
-					// store user in sessions
-					FW_Session::set('user_' . $this->_data->get(FW_DB_TBL_USER_ID), serialize($user));
+				
+				// check login data
+				if($userObject->getUserData(FW_DB_TBL_USER_PASS) === $pass){
+					$loggedin = $this->checkUser($name, $pass, $userObject);
 					
-					var_dump($_SESSION);
-						
-					if(USE_COOKIES){
-						$cookie->setCookie('user', serialize($user));
+					$uid = $userObject->getUserData(FW_DB_TBL_USER_ID);
+		
+					if($loggedin){
+						// store user in sessions
+						FW_Registry::set('user', $userObject);
+						FW_Session::set('user', $userObject->getUserData(FW_DB_TBL_USER_ID));
 					}
+					
+					// set cookie if it's enabled
+					if(USE_COOKIES){
+						$cookie->setCookie('user', $user->get(FW_DB_TBL_USER_ID));
+					}
+					
+					// save current user into the regsitry
+					FW_Registry::set('user', $userObject);
+					
+					$response->redirectUrl('index', true);
+				}else{
+					echo "login daten stimmen nicht!";
 				}
 			}
 		}
