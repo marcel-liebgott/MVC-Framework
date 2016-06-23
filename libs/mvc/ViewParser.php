@@ -92,11 +92,11 @@ class FW_Mvc_ViewParser{
     public function addVariables(array $vars){
         $keys = array_keys($vars);
         
-        if(array_search('headline', $keys) == false){
+        if(array_search('headline', $keys) === false){
             $this->vars = array_merge($this->vars, array('headline' => true));
         }
         
-        if(array_search('footer', $keys) == false){
+        if(array_search('footer', $keys) === false){
             $this->vars = array_merge($this->vars, array('footer' => true));
         }
         

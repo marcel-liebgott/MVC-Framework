@@ -24,7 +24,7 @@ class FW_User_Data{
 	 * @param arary $data
 	 */
 	public function __construct($data = array()){
-		if($data == null || $data->size() == 0){
+		if($data === null || $data->size() == 0){
 			$this->_data = new FW_Array();
 			$lang = FW_Registry::getInstance()->getLanguage();
 			$langGuest = $lang->getLangValue(GUEST_USER_NAME);
@@ -196,7 +196,7 @@ class FW_User_Data{
 	 * @return boolean
 	 */
 	private function checkUser($name, $pass, $user){
-		if($user == null){
+		if($user === null){
 			throw new FW_Exception_MissingData("user not found");
 		}
 	

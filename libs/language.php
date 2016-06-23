@@ -53,7 +53,7 @@ class FW_Language extends FW_Singleton{
     	
         $lang = FW_Session::get('lang');
         
-        if($lang == null || $lang == ""){
+        if($lang === null || $lang == ""){
         	$config = FW_Registry::getInstance()->getConfiguration();
         	
         	$lang = $config->getConfig('default_lang');
@@ -107,7 +107,7 @@ class FW_Language extends FW_Singleton{
      */
     public function getLangValue($ident){
     	$value = '';
-        if($this->existsIdent($ident) == true){
+        if($this->existsIdent($ident) === true){
             $value = $this->langValues[$ident];
         }
         

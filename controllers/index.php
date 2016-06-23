@@ -14,7 +14,7 @@ class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_C
 		// current user
 		$user = FW_Session::get(CURRENT_SESSION_USER);
 		
-		if($user == null || !isset($user)){
+		if($user === null || !isset($user)){
 			$user = new FW_User_Data();
 		}
 		

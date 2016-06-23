@@ -21,7 +21,7 @@ final class FW_Random{
 	 * @return int
 	 */
 	public static function getIntRandom($min = 0, $max = null){
-		if($max == null){
+		if($max === null){
 			$max = getrandmax();
 		}
 		

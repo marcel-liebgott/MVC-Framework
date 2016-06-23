@@ -57,7 +57,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
     	
     	self::$_use_db = parent::$config->getConfig('use_database');
     	 
-    	if(self::$_use_db == true){
+    	if(self::$_use_db === true){
     		try{
 	            $this->pdo = new PDO(TYPE . ':host=' . HOST. ';dbname=' . DATA , USER, PASS);
 	            

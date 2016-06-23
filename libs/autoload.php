@@ -39,7 +39,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @return FW_Autoload
 	 */
 	public static function getInstance(){
-		if(self::$_instance == null){
+		if(self::$_instance === null){
 			self::$_instance = new FW_Autoload();
 		}
 		

@@ -29,7 +29,7 @@ class FW_Auth{
         FW_Session::init();
         $logged = FW_Session::get('sessionId');
         
-        if($logged == false){
+        if($logged === false){
             FW_Session::destroy();
             $response = FW_Registry::getInstance()->getResponse();
             $response->redirectUrl('acp/login/', true);
@@ -48,7 +48,7 @@ class FW_Auth{
         $os = array('win', 'android', 'linux', 'mac', 'freebsd', 'solaris', 'unix');
         
         foreach($os as $o){
-            if(stripos($userAgent, $o) == true){
+            if(stripos($userAgent, $o) === true){
                 return true;
             }
         }

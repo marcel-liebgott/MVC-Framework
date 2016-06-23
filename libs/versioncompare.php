@@ -22,11 +22,11 @@ final class FW_VersionCompare{
 		$socket = new FW_Socket(FW_HOST);
 		$data = $socket->post(FW_PATH, null);
 		
-		if($data != null){
+		if($data !== null){
 			if(FW_String::strpos($data, '|') > 0){
 				$data_arr = explode("|", $data);
 				
-				if($data_arr != null && count($data_arr) == 2){
+				if($data_arr !== null && count($data_arr) == 2){
 					$version = $data_arr[0];
 					$state = $data_arr[1];
 			

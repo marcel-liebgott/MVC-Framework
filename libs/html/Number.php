@@ -56,7 +56,7 @@ class FW_Html_Number extends FW_Abstract_HtmlElement{
 	public function __construct($type, $name, $id = null, $class = null, $value = null, $default = null){
 		parent::__construct($name, $id, $class, $default);
 
-		if($value == null){
+		if($value === null){
 			$this->setValue($this->getMin());
 		}
 	}

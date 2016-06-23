@@ -26,7 +26,7 @@ class FW_Filter_loginFilter implements FW_Interface_Filter{
 		FW_Session::init();
 		$logged = FW_Session::get('sessionId');
                 
-		if($logged == false){
+		if($logged === false){
 			$this->redirectToLogin();
 		}
 	}

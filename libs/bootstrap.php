@@ -69,7 +69,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * @since 1.00
 	 */
 	public function __construct(){
-		if(self::$registry == null){
+		if(self::$registry === null){
 			self::$registry = FW_Registry::getInstance();
 		}
 	}
@@ -112,7 +112,7 @@ class FW_Bootstrap extends FW_Singleton{
 		// init current user
 		$user = FW_Session::get(CURRENT_SESSION_USER);
 		
-		if(!isset($user) && $user == null){
+		if(!isset($user) && $user === null){
 			$user = new FW_User_Data();
 				
 			FW_Session::set(CURRENT_SESSION_USER, $user);

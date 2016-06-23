@@ -35,7 +35,7 @@ class FW_Filter_HttpAuthFilter implements FW_Interface_Filter{
 	public function execute($request, $response){
 		$authData = $request->getAuthData();
 
-		if($authData == null){
+		if($authData === null){
 			$this->sendAuthRequest($response);
 		}
 		

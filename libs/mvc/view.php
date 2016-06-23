@@ -68,7 +68,7 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
         
         $this->template = file_get_contents($this->headerFile);
 
-        if(in_array('headline', $this->vars) && $this->vars['headline'] == true){
+        if(in_array('headline', $this->vars) && $this->vars['headline'] === true){
             $this->template .= file_get_contents($dir . 'inc/headline.php');
         }
 
@@ -80,7 +80,7 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
         $this->assignVariables();
         $this->renderConst();
         
-        if($noInclude == true){
+        if($noInclude === true){
             require_once 'views/' . $name . '.php';
         }else{
             echo $this->template;
@@ -222,7 +222,7 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
     private function generateMessageArea(){
         $msg = null;
         
-        if($msg != null && count($msg) > 0){
+        if($msg !== null && count($msg) > 0){
             $lang = FW_Registry::getInstance()->getLanguage();
             $msg_level = FW_String::strtolower($msg[0]);
             $msg_value = $msg[1];
@@ -232,10 +232,10 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
             $s_level = self::BEGIN_DELIMITER . 'msg_level' . self::END_DELIMITER;
             $s_value = self::BEGIN_DELIMITER . 'msg_value' . self::END_DELIMITER;
             
-            if($msg_level != null){
+            if($msg_level !== null){
             	$msg_level = $lang->getLangValue($msg_level);
             	
-            	if($msg_level != null){
+            	if($msg_level !== null){
 	            	$msg_template = $this->replace($s_level, $msg_level, $msg_template);
 	            	$msg_template = $this->replace($s_value, $msg_value, $msg_template);
             	}

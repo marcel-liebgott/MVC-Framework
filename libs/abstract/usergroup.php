@@ -67,7 +67,7 @@ abstract class FW_Abstract_UserGroup{
 		$user_group_id = FW_Registry::get('fw_user_groups_ids');
 		$ids = new FW_Array(array($user_group_id));
 		
-		if(($ids == null && empty($ids)) || $ids->get($id) == false){
+		if(($ids === null && empty($ids)) || $ids->get($id) === false){
 			$ids->add($id);
 		}else{
 			$id = FW_Random::getIntRandom();
