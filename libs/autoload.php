@@ -125,7 +125,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @return String
 	 */
 	public static function getPrefix(){
-		return $this->_prefix;
+		return $_prefix;
 	}
 }
 ?>
