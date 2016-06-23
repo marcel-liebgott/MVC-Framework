@@ -56,5 +56,4 @@ class FW_Auth{
         return false;
     }
 }
-
 ?>

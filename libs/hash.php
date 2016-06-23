@@ -27,5 +27,4 @@ final class FW_Hash{
         return hash_final($context);
     }
 }
-
 ?>

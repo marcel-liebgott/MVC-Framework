@@ -97,5 +97,4 @@ class FW_Configuration extends FW_Singleton{
         }
     }
 }
-
 ?>

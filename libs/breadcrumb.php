@@ -71,5 +71,4 @@ class FW_Breadcrumb{
         return implode('<span class="divider">></span>', $breadcrumb_items);
     }
 }
-
 ?>

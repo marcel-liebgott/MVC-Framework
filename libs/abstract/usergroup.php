@@ -50,7 +50,7 @@ abstract class FW_Abstract_UserGroup{
 	 * @access protected
 	 * @param boolean $isGuest
 	 */
-	protected function setIsGuest($isGuest){
+	protected function setGuest($isGuest){
 		if(FW_Validate::isBool($isGuest)){
 			$this->_isGuest = (bool) $isGuest;
 		}

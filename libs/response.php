@@ -129,5 +129,4 @@ class FW_Response extends FW_Singleton{
         }
     }
 }
-
 ?>

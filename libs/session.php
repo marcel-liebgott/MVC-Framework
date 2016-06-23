@@ -79,5 +79,4 @@ class FW_Session{
     	unset($_SESSION[$name]);
     }
 }
-
 ?>

@@ -36,3 +36,4 @@ class FW_Mvc_Model{
         $this->db = $this->registry->getDatabase();
     }
 }
+?>

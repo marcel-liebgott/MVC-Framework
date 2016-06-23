@@ -297,5 +297,5 @@ class FW_Mvc_View extends FW_Mvc_ViewParser{
         return $this->replace($result[0], $this->lang->getLangValue($result[1]), $result[0]);
     }
 }
-
 ?>
+

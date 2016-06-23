@@ -173,5 +173,4 @@ class FW_Mvc_ViewParser{
         }
     }
 }
-
 ?>

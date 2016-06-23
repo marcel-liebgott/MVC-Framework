@@ -145,5 +145,4 @@ class FW_Language extends FW_Singleton{
         }
     }
 }
-
 ?>
