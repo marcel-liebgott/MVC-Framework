@@ -103,16 +103,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
         try{
-            $sth = $this->pdo->prepare($sql);
-
-            foreach($array as $key => &$value){
-                $sth->bindParam("$key", $value);
-            }
-            
-            $this->execute($sth);
-            
-            return new FW_Array($sth->fetchAll($fetchMode));
-        	if(self::$_use_db){
+        	if($this->pdo != null){
 	            $sth = $this->pdo->prepare($sql);
 	
 	            foreach($array as $key => &$value){
@@ -122,7 +113,18 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
 	            $this->execute($sth);
 	            
 	            return new FW_Array($sth->fetchAll($fetchMode));
-        	}
+	        	if(self::$_use_db){
+		            $sth = $this->pdo->prepare($sql);
+		
+		            foreach($array as $key => &$value){
+		                $sth->bindParam("$key", $value);
+		            }
+		            
+		            $this->execute($sth);
+		            
+		            return new FW_Array($sth->fetchAll($fetchMode));
+	        	}
+	        }
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
@@ -139,20 +141,22 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function insert($table, $data){
         try{
-            ksort($data);
-            
-            $fieldNames = implode('`, `', array_keys($data));
-            $fieldValues = ':' . implode(', :', array_keys($data));
-            
-            $sth = $this->pdo->prepare("INSERT INTO " . $table . " (`" . $fieldNames . "`) VALUES (" . $fieldValues . ")");
-            
-            foreach($data as $key => $value){
-                $sth->bindValue(":$key", $value);
-            }
-            
-            $this->execute($sth);
-
-            return $this->getLastInsertedId();
+	        	if($this->pdo != null){
+	            ksort($data);
+	            
+	            $fieldNames = implode('`, `', array_keys($data));
+	            $fieldValues = ':' . implode(', :', array_keys($data));
+	            
+	            $sth = $this->pdo->prepare("INSERT INTO " . $table . " (`" . $fieldNames . "`) VALUES (" . $fieldValues . ")");
+	            
+	            foreach($data as $key => $value){
+	                $sth->bindValue(":$key", $value);
+	            }
+	            
+	            $this->execute($sth);
+	
+	            return $this->getLastInsertedId();
+	        }
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
@@ -169,23 +173,25 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function update($table, $data, $where){
         try{
-            ksort($data);
-            
-            $fieldDetails = '';
-            
-            foreach($data as $key => $value){
-                $fieldDetails .= "`" . $key . "` = :" . $key . ",";
-            }
-            
-            $fieldDetails = rtrim($fieldDetails, ',');
-            
-            $sth = $this->pdo->prepare("UPDATE " . $table . " SET " . $fieldDetails  . " WHERE " . $where);
-            
-            foreach($data as $key => $value){
-                $sth->bindValue(":$key", $value);
-            }
-            
-            $this->execute($sth);
+        	if($this->pdo != null){
+	            ksort($data);
+	            
+	            $fieldDetails = '';
+	            
+	            foreach($data as $key => $value){
+	                $fieldDetails .= "`" . $key . "` = :" . $key . ",";
+	            }
+	            
+	            $fieldDetails = rtrim($fieldDetails, ',');
+	            
+	            $sth = $this->pdo->prepare("UPDATE " . $table . " SET " . $fieldDetails  . " WHERE " . $where);
+	            
+	            foreach($data as $key => $value){
+	                $sth->bindValue(":$key", $value);
+	            }
+	            
+	            $this->execute($sth);
+        	}
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
@@ -203,11 +209,13 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function delete($table, $where, $limit = 1){
         try{
-            $sth = $this->pdo->prepare("DELETE FROM " . $table . " WHERE " . $where . " LIMIT " . $limit);
-
-            $this->execute($sth);
-
-            return $sth;
+	        if($this->pdo != null){
+	            $sth = $this->pdo->prepare("DELETE FROM " . $table . " WHERE " . $where . " LIMIT " . $limit);
+	
+	            $this->execute($sth);
+	
+	            return $sth;
+	        }
         }catch(PDOException $e){
             throw new FW_Exception_QueryFailure($e->getMessage(), $sth['queryString']);
         }
@@ -220,11 +228,13 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return FW_Array
      */
     public function showTables(){
-        $sth = $this->pdo->prepare("SHOW TABLES");
-        
-        $this->execute($sth);
-        
-        return new FW_Array($sth->fetchAll());
+	    	if($this->pdo != null){
+	        $sth = $this->pdo->prepare("SHOW TABLES");
+	        
+	        $this->execute($sth);
+	        
+	        return new FW_Array($sth->fetchAll());
+	    }
     }
     
     /**
@@ -234,9 +244,11 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @param string $name
      */
     public function setNames($name){
-        $sth = $this->pdo->prepare("SET NAMES " . $name);
-        
-        $this->execute($sth);
+    	if($this->pdo != null){
+	        $sth = $this->pdo->prepare("SET NAMES " . $name);
+	        
+	        $this->execute($sth);
+    	}
     }
 
     /**
@@ -265,7 +277,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function startTransaction(){
-        if($this->getUseTransaction()){
+        if($this->getUseTransaction() && $this->pdo != null){
             $this->pdo->beginTransaction();
         }
     }
@@ -276,7 +288,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function commitTransaction(){
-        if($this->getUseTransaction()){
+        if($this->getUseTransaction() && $this->pdo != null){
             $this->pdo->commit();
         }
     }
@@ -287,7 +299,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function rollbackTransaction(){
-        if($this->getUseTransaction()){
+        if($this->getUseTransaction() && $this->pdo != null){
             $this->pdo->rollBack();
         }
     }
@@ -299,7 +311,9 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return string
      */
     public function getLastInsertedId(){
-        return $this->pdo->lastInsertId();
+    	if($this->pdo != null){
+        	return $this->pdo->lastInsertId();
+    	}
     }
     
     /**
@@ -311,7 +325,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return array
      */
     public function getTableColumns($table){
-    	if(self::$_use_db){
+    	if($this->pdo != null){
     		$sth = $this->pdo->prepare("SELECT * FROM " . $table);
     		$sth->execute();
     		$col_count = $sth->columnCount();
