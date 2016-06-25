@@ -36,7 +36,7 @@ final class FW_Version{
 	 * @static
 	 * @var String
 	 */
-	private static $_major = "02";
+	private static $_major = "01";
 	
 	/**
 	 * current build
@@ -138,7 +138,7 @@ final class FW_Version{
 	 * @return String
 	 */
 	public static function getFull(){
-		return FW_Version::$_version . "." . FW_Version::$_major;
+		return FW_Version::$_version . "." . FW_Version::$_major . "." . FW_Version::$_build;
 	}
 }
 ?>
