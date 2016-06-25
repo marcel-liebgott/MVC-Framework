@@ -103,7 +103,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
         try{
-        	if($this->pdo != null){
+        	if($this->pdo !== null){
 	            $sth = $this->pdo->prepare($sql);
 	
 	            foreach($array as $key => &$value){
@@ -141,7 +141,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function insert($table, $data){
         try{
-	        	if($this->pdo != null){
+	        	if($this->pdo !== null){
 	            ksort($data);
 	            
 	            $fieldNames = implode('`, `', array_keys($data));
@@ -173,7 +173,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function update($table, $data, $where){
         try{
-        	if($this->pdo != null){
+        	if($this->pdo !== null){
 	            ksort($data);
 	            
 	            $fieldDetails = '';
@@ -209,7 +209,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function delete($table, $where, $limit = 1){
         try{
-	        if($this->pdo != null){
+	        if($this->pdo !== null){
 	            $sth = $this->pdo->prepare("DELETE FROM " . $table . " WHERE " . $where . " LIMIT " . $limit);
 	
 	            $this->execute($sth);
@@ -228,7 +228,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return FW_Array
      */
     public function showTables(){
-	    	if($this->pdo != null){
+	    	if($this->pdo !== null){
 	        $sth = $this->pdo->prepare("SHOW TABLES");
 	        
 	        $this->execute($sth);
@@ -244,7 +244,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @param string $name
      */
     public function setNames($name){
-    	if($this->pdo != null){
+    	if($this->pdo !== null){
 	        $sth = $this->pdo->prepare("SET NAMES " . $name);
 	        
 	        $this->execute($sth);
@@ -277,7 +277,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function startTransaction(){
-        if($this->getUseTransaction() && $this->pdo != null){
+        if($this->getUseTransaction() && $this->pdo !== null){
             $this->pdo->beginTransaction();
         }
     }
@@ -288,7 +288,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function commitTransaction(){
-        if($this->getUseTransaction() && $this->pdo != null){
+        if($this->getUseTransaction() && $this->pdo !== null){
             $this->pdo->commit();
         }
     }
@@ -299,7 +299,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function rollbackTransaction(){
-        if($this->getUseTransaction() && $this->pdo != null){
+        if($this->getUseTransaction() && $this->pdo !== null){
             $this->pdo->rollBack();
         }
     }
@@ -311,7 +311,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return string
      */
     public function getLastInsertedId(){
-    	if($this->pdo != null){
+    	if($this->pdo !== null){
         	return $this->pdo->lastInsertId();
     	}
     }
@@ -325,7 +325,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @return array
      */
     public function getTableColumns($table){
-    	if($this->pdo != null){
+    	if($this->pdo !== null){
     		$sth = $this->pdo->prepare("SELECT * FROM " . $table);
     		$sth->execute();
     		$col_count = $sth->columnCount();
