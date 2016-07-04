@@ -6,6 +6,7 @@ if(!defined('PATH')){
 class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_Controller{
 	public function __construct(){
 		parent::__construct();
+		$this->page->setTemplate("inc/standard_page");
 	}
 
 	public function index(){
@@ -27,7 +28,11 @@ class FW_Front_index extends FW_MVC_Controller_default implements FW_Interface_C
 			'usergroups' => $groups
 		));
 		
-		$this->view->render('index/index');
+		//$this->view->render('index/index');
+		
+		$this->view->setUseHeadline(true);
+		$this->view->setUseFooter(true);
+		$this->page->render();
 	}
 }
 ?>

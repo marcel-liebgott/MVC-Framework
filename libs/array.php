@@ -9,15 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @since 1.01
  */
-final class FW_Array{
-	/**
-	 * array
-	 * 
-	 * @access private
-	 * @var array
-	 */
-	private $_array;
-	
+final class FW_Array{	
 	/**
 	 * constructor
 	 * 

@@ -24,7 +24,7 @@ class FW_User_Data{
 	 * @param arary $data
 	 */
 	public function __construct($data = array()){
-		if($data === null || $data->size() == 0){
+		if($data === null || count($data) == 0){
 			$this->_data = new FW_Array();
 			$lang = FW_Registry::getInstance()->getLanguage();
 			$langGuest = $lang->getLangValue(GUEST_USER_NAME);
