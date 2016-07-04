@@ -222,22 +222,26 @@ class FW_Socket{
 	 * @return string
 	 */
 	private function sendRequest($data){
-		$this->con = fsockopen($this->host, $this->port, $this->errno, $this->error, $this->timeout);
+		try{
+			$this->con = @fsockopen($this->host, $this->port, $this->errno, $this->error, $this->timeout);
 
-		if(!$this->con){
-			throw new FW_Exception_ConnectionFailure("can't connect to host: " . $this->host);
+			if(!$this->con){
+				throw new FW_Exception_ConnectionFailure("can't connect to host: " . $this->host);
+			}
+
+			fputs($this->con, $data);
+
+			$ret = '';
+			while(!feof($this->con)){
+				$ret .= fgets($this->con, 128);
+			}
+
+			$this->closeConnection();
+
+			return $this->getContent($ret);
+		}catch(FW_Exception_ConnectionFailure $e){
+			return $e->getMessage();
 		}
-
-		fputs($this->con, $data);
-
-		$ret = '';
-		while(!feof($this->con)){
-			$ret .= fgets($this->con, 128);
-		}
-
-		$this->closeConnection();
-
-		return $this->getContent($ret);
 	}
 
 	/**
