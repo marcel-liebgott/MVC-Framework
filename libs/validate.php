@@ -172,6 +172,18 @@ final class FW_Validate{
           
         return true; 
     } 
+	
+	/**
+	 * check if input is an boolean
+	 *
+	 * @access public
+	 * @static
+	 * @param boolean $data
+	 * @return boolean|string is failed
+	 */
+	public static function isBoolean($data){
+		return self::isBool($data);
+	}
       
     /** 
      * check if input is an array 
