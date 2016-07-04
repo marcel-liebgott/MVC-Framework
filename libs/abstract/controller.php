@@ -9,7 +9,7 @@ if(!defined('PATH')){
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.10
  */
-abstract class FW_Abstract_Controller{
+abstract class FW_Abstract_Controller extends FW_Object{
 	/**
 	 * controller view
 	 *
@@ -117,11 +117,19 @@ abstract class FW_Abstract_Controller{
 	private $_groupDenied;
 	
 	/**
+	 * @access protected
+	 * @var FW_Html_Page
+	 */
+	protected $page;
+	
+	/**
 	 * constructor
 	 * 
 	 * @access protected
 	 */
 	protected function __construct(){
+		parent::__construct();
+		
 		$registry = FW_Registry::getInstance();
 		
 		$this->special = FW_Special::getInstance();
@@ -135,6 +143,9 @@ abstract class FW_Abstract_Controller{
 		
 		$this->_groupAccess = new FW_Array();
 		$this->_groupDenied = new FW_Array();
+		
+		$this->page = new FW_Html_Page();
+		$this->page->setView($this->view);
 	}
 	
 	/**
