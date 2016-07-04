@@ -1,5 +1,5 @@
 <div class="container">
-	{if $updateAvailable == true}
+	{if $updateAvailable == false}
 		<h3 style="color:red;">Es ist eine neue Version verfügbar</h3>
 	{else}
 		<h3 style="color: green;">Du nutzt die aktuellste Version</h3>
