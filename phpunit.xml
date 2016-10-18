@@ -26,6 +26,7 @@
 	<testsuites>
 		<testsuite name="utilities">
 			<file>tests/StringTest.php</file>
+			<file>tests/ValidationTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
