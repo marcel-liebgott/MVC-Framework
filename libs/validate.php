@@ -18,14 +18,13 @@ final class FW_Validate{
      *  
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @param int $arg 
-     * @return boolean|array if failed
+     * @return boolean
      */
     public static function minLength($data, $arg){ 
         if(FW_String::strlen($data) < $arg){
-            throw new FW_Exception_WrongParameter(array('message' => 'min_length', 'arg' => $arg));
+            return false;
         } 
           
         return true; 
@@ -36,14 +35,13 @@ final class FW_Validate{
      *  
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @param int $arg 
-     * @return boolean|array if failed
+     * @return boolean
      */
     public static function maxLength($data, $arg){ 
         if(FW_String::strlen($data) > $arg){
-            throw new FW_Exception_WrongParameter(array('message' => 'max_length', 'arg' => $arg)); 
+            return false;
         } 
           
         return true; 
@@ -54,14 +52,13 @@ final class FW_Validate{
      *  
      * @access public 
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $data 
      * @param int $arg 
-     * @return boolean|array if failed
+     * @return boolean
      */
     public static function isLength($data, $arg){ 
         if(FW_String::strlen($data) !== $arg){
-            throw new FW_Exception_WrongParameter(array('message' => 'must_be_long', 'arg' => $arg));
+            return false;
         } 
           
         return true; 
@@ -72,13 +69,12 @@ final class FW_Validate{
      *  
      * @access public 
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param int $data 
-     * @return boolean|string if failed
+     * @return boolean
      */
     public static function isInteger($data){ 
         if(!is_int($data)){
-            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_integer'));
+            return false;
         } 
           
         return true; 
@@ -89,18 +85,17 @@ final class FW_Validate{
      *
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param int $min
      * @param int $max
      * @param int $value
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function inRange($min, $max, $value){
         if(self::isInteger($value) && self::isInteger($min) && self::isInteger($max)){
             if($value >= $min && $value <= $max){
                 return true;
             }else{
-                throw new FW_Exception_WrongParameter(array('message' => 'not_in_range'));
+                return false;
             }
         }
     }
@@ -110,13 +105,12 @@ final class FW_Validate{
      *  
      * @access public 
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $data 
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isString($data){
         if(!ctype_alpha($data) && !is_string($data) && !($data instanceof FW_String)){
-            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_string'));
+            return false;
         } 
           
         return true; 
@@ -127,13 +121,12 @@ final class FW_Validate{
      *  
      * @access public 
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $data 
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isNumeric($data){ 
         if(!is_numeric($data)){
-            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_numberic'));
+            return false;
         } 
           
         return true; 
@@ -144,13 +137,12 @@ final class FW_Validate{
      *  
      * @access public 
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param float $data 
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isFloat($data){ 
         if(!is_float($data)){
-            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_float'));
+            return false;
         } 
           
         return true; 
@@ -161,13 +153,12 @@ final class FW_Validate{
      *  
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param boolean $data 
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isBool($data){ 
         if(!is_bool($data)){
-            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_boolean'));
+            return false;
         } 
           
         return true; 
@@ -179,7 +170,7 @@ final class FW_Validate{
 	 * @access public
 	 * @static
 	 * @param boolean $data
-	 * @return boolean|string is failed
+	 * @return boolean
 	 */
 	public static function isBoolean($data){
 		return self::isBool($data);
@@ -190,15 +181,13 @@ final class FW_Validate{
      *  
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param array $data 
      * @param boolean $throw
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isArray($data, $throw = false){
         if(!is_array($data)){
         	if($throw){
-				throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_array', 'arg' => $data));
         	}else{
         		return false;
         	}
@@ -212,13 +201,12 @@ final class FW_Validate{
      *  
      * @access public 
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param mixed $data 
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isMixed($data){
         if(!preg_match('/[a-zA-Z0-9\.+\- ]/i', $data)){
-            throw new FW_Exception_WrongParameter(array('message' => 'must_be_a_mixed'));
+            return false;
         } 
           
         return true; 
@@ -229,13 +217,12 @@ final class FW_Validate{
      *  
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $data 
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isValidMail($data){
         if(FW_Stringhelper::isValidMail($data) === true){
-            throw new FW_Exception_WrongParameter(array('message' => 'mail_not_valid'));
+            return false;
         } 
           
         return true; 
@@ -246,13 +233,12 @@ final class FW_Validate{
      *
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $data
-     * @return boolean|string is failed
+     * @return boolean
      */
     public static function isValidUrl($data){ 
         if(!FW_Stringhelper::isValidUrl($data)){
-            throw new FW_Exception_WrongParameter(array('message' => 'url_not_valid'));
+            return false;
         } 
           
         return true; 
@@ -263,13 +249,12 @@ final class FW_Validate{
      *
      * @access public
      * @static
-     * @throws FW_Exception_WrongParameter
      * @param string $date
      * @return boolean|string is failed
      */
     public static function isValidDate($date){
         if(!preg_match('/^\d{2}\.\d{2}\.\d{4}$/', $date)){
-            throw new FW_Exception_WrongParameter(array('message' => 'not_valid_date'));
+            return false;
         }
 
         $daysPerMonth = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
@@ -284,7 +269,7 @@ final class FW_Validate{
 
             // valid parts of this date
             if($day == 0 || $month == 0){
-                throw new FW_Exception_WrongParameter(array('message' => 'not_valid_date'));
+                return false;
             }
 
             // is year an leap year
@@ -294,7 +279,7 @@ final class FW_Validate{
 
             // check days in this month
             if($daysPerMonth[$month] < $day){
-                throw new FW_Exception_WrongParameter(array('message' => 'not_valid_date'));
+                return false;
             }
 
             return true;

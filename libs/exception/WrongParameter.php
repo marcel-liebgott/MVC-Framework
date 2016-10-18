@@ -30,10 +30,14 @@ final class FW_Exception_WrongParameter extends FW_Exception_Critical{
 
 		$registry = FW_Registry::getInstance();
 		$lang = $registry->getLanguage();
-
-		$lang_value = $lang->getLangValue($message);
 		
-		$msg = $lang_value . $arg;
+		if($lang != null){
+			$lang_value = $lang->getLangValue($message);
+			
+			$msg = $lang_value . $arg;
+		}else{
+			$msg = "";
+		}
 
 		parent::__construct($msg, $code);
 	}
