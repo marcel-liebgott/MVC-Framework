@@ -1,0 +1,14 @@
+{
+    "name": "mliebgott/mvcframework",
+    "description": "PHP MVC-Framework",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marcel Liebgott",
+            "email": "marcel.liebgott@googlemail.com"
+        }
+    ],
+    "require-dev": {
+    	"phpunit/phpunit": "5.6.*"
+    }
+}
