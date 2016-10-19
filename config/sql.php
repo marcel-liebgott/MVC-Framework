@@ -2,8 +2,8 @@
 /**
  * Database Tables
  */
-define('FW_DB_TABLE_USER',				DB_PREFIX . 'user');
-define('FW_DB_TABLE_GROUP',				DB_PREFIX . 'group');
+define('FW_DB_TABLE_USER',				DB_PREFIX . 'users');
+define('FW_DB_TABLE_GROUP',				DB_PREFIX . 'groups');
 
 /**
  * Database Table 'user'

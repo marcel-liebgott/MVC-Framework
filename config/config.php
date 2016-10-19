@@ -117,7 +117,7 @@ define('DOWNLOAD_DIR','download/');
 define('TYPE','mysql');
 define('HOST','127.0.0.1');
 define('USER','root');
-define('PASS','root');
+define('PASS','');
 define('DATA','mvc_fw');
 
 // use cookies
