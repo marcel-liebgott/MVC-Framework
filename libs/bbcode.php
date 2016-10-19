@@ -36,14 +36,6 @@ class FW_BBCode extends FW_Singleton{
 	private $string;
 
 	/**
-	 * regex for BBCode-Tag
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $tagRegex = '#\[(.*?)\](.*?)\[/(.*?)\]#s';
-
-	/**
 	 * number of different characters between BBCode-Tag and replaced text
 	 *
 	 * @access private
