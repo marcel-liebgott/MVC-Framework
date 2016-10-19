@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 /**
  * this class will be help with many function for working with strings
  * they will be checked or manipulated it

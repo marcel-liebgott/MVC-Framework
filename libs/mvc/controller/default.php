@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * class to represent a default controller class
  * 
@@ -20,7 +16,7 @@ abstract class FW_MVC_Controller_Default extends FW_Abstract_Controller implemen
 		
 		$this->groupAccess();
 		
-		$this->_guestAccess = true;
+		$this->guestAccess = true;
 	}
 	
 	/**

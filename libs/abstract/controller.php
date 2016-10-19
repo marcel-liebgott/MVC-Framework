@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * basic class for all custom controller types
  * 
@@ -97,7 +93,7 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @access public
 	 * @var boolean
 	 */
-	public $_guestAccess = true;
+	public $guestAccess = true;
 	
 	/**
 	 * collection with user groups which have access to this controller
@@ -105,7 +101,7 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @access public
 	 * @var FW_Array
 	 */
-	private $_groupAccess;
+	private $groupAccess;
 	
 	/**
 	 * collection with user groups who haven'T any access to this controller
@@ -114,7 +110,7 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @access private
 	 * @var FW_Array
 	 */
-	private $_groupDenied;
+	private $groupDenied;
 	
 	/**
 	 * @access protected
@@ -141,8 +137,8 @@ abstract class FW_Abstract_Controller extends FW_Object{
 		$this->preFilter = new FW_FilterChain();
 		$this->postFilter = new FW_FilterChain();
 		
-		$this->_groupAccess = new FW_Array();
-		$this->_groupDenied = new FW_Array();
+		$this->groupAccess = new FW_Array();
+		$this->groupDenied = new FW_Array();
 		
 		$this->page = new FW_Html_Page();
 		$this->page->setView($this->view);
@@ -207,7 +203,7 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @param int $groupId
 	 */
 	protected function addAccessGroup($groupId){
-		$this->_groupAccess->add($groupId);
+		$this->groupAccess->add($groupId);
 	}
 	
 	/**
@@ -219,7 +215,7 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @param int $groupId
 	 */
 	protected function addDeniedGroup($groupId){
-		$this->_groupDenied->add($groupId);
+		$this->groupDenied->add($groupId);
 	}
 	
 	/**
@@ -230,8 +226,8 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @return boolean
 	 */
 	public function hasAccess($gid){
-		if($this->_groupAccess !== null){
-			if($this->_groupAccess->get($gid)){
+		if($this->groupAccess !== null){
+			if($this->groupAccess->get($gid)){
 				return true;
 			}
 		}
@@ -247,7 +243,7 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @return boolean
 	 */
 	public function hasDeniedAccess($gid){
-		if($this->_groupDenied->get($gid)){
+		if($this->groupDenied->get($gid)){
 			return true;
 		}
 		

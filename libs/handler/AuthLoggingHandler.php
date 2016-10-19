@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 class FW_Handler_AuthLoggingHandler implements FW_Interface_EventHandler{
 	protected $logFile;
 

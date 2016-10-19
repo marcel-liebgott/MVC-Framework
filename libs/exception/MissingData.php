@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("direct script access allowed");
-}
-
 /**
  * missing data exception
  * 

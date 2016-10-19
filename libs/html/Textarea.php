@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 /**
  * with this class you could be generate an html textarea - based on html5
  *
@@ -32,7 +28,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * @access private
 	 * @var boolean
 	 */
-	private $verticalResize = true;
+	private $verticalResizeable = true;
 
 	/**
 	 * css property to resize textarea horizontal
@@ -40,7 +36,7 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * @access private
 	 * @var boolean
 	 */
-	private $horizontalResize = true;
+	private $horizontalResizeable = true;
 
 	/**
 	 * cols property of this element
@@ -145,11 +141,11 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * set vertical resize css property
 	 *
 	 * @access public
-	 * @param boolean $resize
+	 * @param boolean $resizeable
 	 */
-	public final function setVerticalResize($resize){
-		if(FW_Validate::isBool($resize)){
-			$this->verticalResize = $resize;
+	public final function setVerticalResizeable($resizeable){
+		if(FW_Validate::isBool($resizeable)){
+			$this->verticalResizeable = $resizeable;
 		}
 	}
 
@@ -159,19 +155,19 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * @access public
 	 * @return boolean
 	 */
-	public final function getVerticalResize(){
-		return $this->verticalResize;
+	public final function isVerticalResizeable(){
+		return $this->verticalResizeable;
 	}
 
 	/**
 	 * set horizontal resize css property
 	 *
 	 * @access public
-	 * @param boolean $resize
+	 * @param boolean $resizeable
 	 */
-	public final function setHorizontalResize($resize){
-		if(FW_Validate::isBool($resize)){
-			$this->horizontalResize = $resize;
+	public final function setHorizontalResizeable($resizeable){
+		if(FW_Validate::isBool($resizeable)){
+			$this->horizontalResizeable = $resizeable;
 		}
 	}
 
@@ -181,8 +177,8 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * @access public
 	 * @return boolean
 	 */
-	public final function getHorizontalResize(){
-		return $this->horizontalResize;
+	public final function isHorizontalResizeable(){
+		return $this->horizontalResizeable;
 	}
 
 	/**
@@ -214,15 +210,15 @@ final class FW_Html_Textarea extends FW_Abstract_HtmlElement{
 	 * @return mixed
 	 */
 	public function toString(){
-		if($this->verticalResize){
+		if($this->verticalResizeable){
 			$this->setStyle('resize', 'vertical');
 		}
 
-		if($this->horizontalResize){
+		if($this->horizontalResizeable){
 			$this->setStyle('resize', 'horizontal');
 		}
 
-		if(!$this->horizontalResize && !$this->verticalResize){
+		if(!$this->horizontalResizeable && !$this->verticalResizeable){
 			$this->setStyle('resize', 'none');
 		}
 

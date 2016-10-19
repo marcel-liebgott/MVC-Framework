@@ -1,8 +1,4 @@
-<?php   
-if(!defined('PATH')){ 
-    throw new FW_Exception_AccessDenied("No direct script access allowed"); 
-} 
-  
+<?php
 /** 
  * Description of Validate 
  * 

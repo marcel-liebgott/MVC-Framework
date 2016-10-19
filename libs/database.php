@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-    throw new FW_Exception_AccessDenied("No direct script access allowed");
-}
-
 /**
  * class to work with databases
  * 
@@ -267,7 +263,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      * @return boolean
      */
-    public function getUseTransaction(){
+    public function isUseTransaction(){
         return $this->use_transaction;
     }
 

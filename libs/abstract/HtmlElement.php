@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 /**
  * basic class for html input elements
  * 
@@ -236,7 +232,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * @access public
 	 * @return boolean
 	 */
-	public final function getAutocomplete(){
+	public final function isAutocomplete(){
 		return $this->autocomplete;
 	}
 
@@ -246,7 +242,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * @access public
 	 * @return boolean
 	 */
-	public final function getRequired(){
+	public final function isRequired(){
 		return $this->required;
 	}
 
@@ -268,7 +264,7 @@ abstract class FW_Abstract_HtmlElement{
 	 * @access public
 	 * @return boolean
 	 */
-	public final function getAutofocus(){
+	public final function isAutofocus(){
 		return $this->autofocus;
 	}
 

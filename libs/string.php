@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 /**
  * this class work with much of string function in your selected encoding
  *
@@ -72,7 +68,7 @@ final class FW_String{
 	 * @access public
 	 * @return boolean
 	 */
-	public static function getMbUsing(){
+	public static function isMbUsing(){
 		return self::$use_mb;
 	}
 

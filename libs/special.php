@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed test");
-}
-
 class FW_Special extends FW_Singleton{
 	/**
 	 * database

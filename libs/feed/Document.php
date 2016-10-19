@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * feed document which is presenting {@link FW_Feed_Item}s
  * 

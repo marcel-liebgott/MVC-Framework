@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 /**
  * http://www.phpbuddy.eu/emails-mit-php-versenden.html?start=2
  *

@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 /**
  * this class representate a page section
  *
@@ -10,7 +6,7 @@ if(!defined('PATH')){
  * @package libs.html
  * @since 1.01
  */
-class FW_Html_Section{
+class FW_Html_Section extends FW_Object{
 	/**
 	 * @access private
 	 * @var int

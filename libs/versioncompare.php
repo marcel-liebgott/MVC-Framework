@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * comparison to check if a new Version exists
  * 

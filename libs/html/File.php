@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied("no direct script access allowed");
-}
-
 /**
  * with this class you could be generate an html textbox element - based on html5
  *
@@ -154,7 +150,7 @@ final class FW_Html_File extends FW_Abstract_HtmlElement{
 	 * @access public
 	 * @return boolean
 	 */
-	public final function getMultiple(){
+	public final function isMultiple(){
 		return $this->multiple;
 	}
 

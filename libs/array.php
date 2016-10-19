@@ -1,15 +1,16 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * class to represenate an array
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @since 1.01
  */
-final class FW_Array{	
+final class FW_Array{
+	/**
+	 * @var array
+	 */
+	private $array;
+	
 	/**
 	 * constructor
 	 * 
@@ -21,7 +22,7 @@ final class FW_Array{
 			$array = $array[0];
 		}
 		
-		$this->_array = $array;
+		$this->array = $array;
 	}
 	
 	/**
@@ -30,7 +31,7 @@ final class FW_Array{
 	 * @access public
 	 */
 	public function __destruct(){
-		$this->_array = null;
+		$this->array = null;
 	}
 	
 	/**
@@ -44,10 +45,10 @@ final class FW_Array{
 			$keys = array_keys($data);
 			
 			foreach($keys as $key){
-				$this->_array[$key] = $data[$key];
+				$this->array[$key] = $data[$key];
 			}
 		}else{
-			$this->_array[] = $data;
+			$this->array[] = $data;
 		}
 	}
 	
@@ -58,7 +59,7 @@ final class FW_Array{
 	 * @return int
 	 */
 	public function size(){
-		return count($this->_array);
+		return count($this->array);
 	}
 	
 	/**
@@ -69,11 +70,11 @@ final class FW_Array{
 	 * @return mixed
 	 */
 	public function get($needed){
-		$keys = array_keys($this->_array);
+		$keys = array_keys($this->array);
 		
 		foreach($keys as $key){
 			if($key == $needed){
-				return $this->_array[$key];
+				return $this->array[$key];
 			}
 		}
 	}
@@ -86,10 +87,10 @@ final class FW_Array{
 	 * @return boolean
 	 */
 	public function exists($key){
-		$keys = array_keys($this->_array);
+		$keys = array_keys($this->array);
 		
 		foreach($keys as $key){
-			if(key == $needed){
+			if($key == $needed){
 				return true;
 			}
 		}
@@ -104,11 +105,11 @@ final class FW_Array{
 	 * @param Mixed $key
 	 */
 	public function remove($key){
-		$keys = array_keys($this->_array);
+		$keys = array_keys($this->array);
 		
 		foreach($keys as $key){
 			if(key == $needed){
-				unset($this->_array[$key]);
+				unset($this->array[$key]);
 			}
 		}
 	}

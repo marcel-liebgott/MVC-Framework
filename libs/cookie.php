@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-    throw new FW_Exception_AccessDenied("No direct script access allowed");
-}
-
 /**
  * Description of Cookie
  *
@@ -256,7 +252,7 @@ class FW_Cookie{
      * @access public
      * @return boolean
      */
-    public function getSecure(){
+    public function isSecure(){
         return $this->secure;
     }
     
@@ -266,7 +262,7 @@ class FW_Cookie{
      * @access public
      * @return boolean
      */
-    public function getHttpOnly(){
+    public function isHttpOnly(){
         return $this->httponly;
     }
     

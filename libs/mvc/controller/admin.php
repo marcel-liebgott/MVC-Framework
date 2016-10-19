@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * this class represent an special controller for admin anly
  * 
@@ -22,7 +18,7 @@ abstract class FW_MVC_Controller_Admin extends FW_Abstract_Controller implements
 		$this->groupAccess();
 		
 		// guest doesn't have any access!
-		$this->_guestAccess = false;
+		$this->guestAccess = false;
 	}
 	/**
 	 * (non-PHPdoc)

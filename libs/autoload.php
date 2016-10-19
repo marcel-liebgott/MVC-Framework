@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 require_once 'interface/autoload.php';
 
 /**
@@ -20,7 +16,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @static
 	 * @var string
 	 */
-	private static $_prefix;
+	private static $prefix;
 	
 	/**
 	 * instance
@@ -29,7 +25,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @static
 	 * @var FW_Autoload
 	 */
-	private static $_instance = null;
+	private static $instance = null;
 	
 	/**
 	 * get singleton instance
@@ -39,11 +35,11 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @return FW_Autoload
 	 */
 	public static function getInstance(){
-		if(self::$_instance === null){
-			self::$_instance = new FW_Autoload();
+		if(self::$instance === null){
+			self::$instance = new FW_Autoload();
 		}
 		
-		return self::$_instance;
+		return self::$instance;
 	}
 	
 	/**
@@ -69,7 +65,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @param String $prefix
 	 */
 	public function setPrefix($prefix){
-		self::$_prefix = $prefix;
+		self::$prefix = $prefix;
 	}
 	
 	/**
@@ -91,7 +87,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @param string $class
 	 */
 	public static function autoload($class){
-		if(substr($class, 0, 3) == self::$_prefix){
+		if(substr($class, 0, 3) == self::$prefix){
 			$class = substr($class, 3);
 			
 			$class = strtolower($class);

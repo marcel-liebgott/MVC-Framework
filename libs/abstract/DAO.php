@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * basic class for all data access object
  *  
@@ -16,7 +12,7 @@ abstract class FW_Abstract_DAO extends FW_Singleton{
 	 * @access protected
 	 * @var FW_Database
 	 */
-	protected $_db;
+	protected $db;
 	
 	/**
 	 * constructor
@@ -24,7 +20,7 @@ abstract class FW_Abstract_DAO extends FW_Singleton{
 	 * @access protected
 	 */
 	public function __construct(){
-		$this->_db = FW_Registry::getInstance()->getDatabase();
+		$this->db = FW_Registry::getInstance()->getDatabase();
 	}
 }
 ?>

@@ -1,15 +1,11 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * some version information
  * Hint:
- * 	Please do not somethink in this class
+ * 	Please don't change anythink here
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
- * @version 1.02
+ * @version 1.00
  */
 final class FW_Version{
 	/**

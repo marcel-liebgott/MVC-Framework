@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * Data access object for users
  * 
@@ -28,7 +24,7 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * @return FW_Array
 	 */
 	public function getUserById($id){
-		$user = $this->_db->select(
+		$user = $this->db->select(
 				"SELECT * FROM " . FW_DB_TABLE_USER . " WHERE " . FW_DB_TBL_USER_ID . " = :id",
 				array(':id' => $id));
 		
@@ -43,7 +39,7 @@ final class FW_DAO_User extends FW_Abstract_DAO{
 	 * @return FW_Array
 	 */
 	public function getUserByName($name){
-		$user = $this->_db->select(
+		$user = $this->db->select(
 				"SELECT * FROM " . FW_DB_TABLE_USER . " WHERE " . FW_DB_TBL_USER_NAME . " = :name",
 				array(':name' => $name));
 		

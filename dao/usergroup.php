@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	throw new FW_Exception_AccessDenied('no direct script access allowed');
-}
-
 /**
  * data access object for user groups
  * 
@@ -32,7 +28,7 @@ class FW_DAO_UserGroup extends FW_Abstract_DAO{
 	 */
 	public function getGroupById($id){
 		if(FW_Validate::isInteger($id) && $id >= 0){
-			$group = $this->_db->select("SELECT * FROM `" . FW_DB_TABLE_GROUP . "` WHERE " . FW_DB_TBL_GROUP_ID . " = :gid",
+			$group = $this->db->select("SELECT * FROM `" . FW_DB_TABLE_GROUP . "` WHERE " . FW_DB_TBL_GROUP_ID . " = :gid",
 					array(':gid' => $id));
 			
 			return $group;
@@ -50,7 +46,7 @@ class FW_DAO_UserGroup extends FW_Abstract_DAO{
 	 * @return FW_Array
 	 */
 	public function getGroupByName($name){
-		$group = $this->_db->select("SELECT * FROM " . FW_DB_TABLE_GROUP . " WHERE " . FW_DB_TBL_GROUP_NAME . " = :g_name",
+		$group = $this->db->select("SELECT * FROM " . FW_DB_TABLE_GROUP . " WHERE " . FW_DB_TBL_GROUP_NAME . " = :g_name",
 				array(':g_name' => $name));
 		
 		return $group;
@@ -65,7 +61,7 @@ class FW_DAO_UserGroup extends FW_Abstract_DAO{
 	 * @param array $data
 	 */
 	public function updateGroupById($id, $data){
-		$this->_db->update(FW_DB_TABLE_GROUP, $data, FW_DB_TBL_GROUP_ID . " = " . $id);
+		$this->db->update(FW_DB_TABLE_GROUP, $data, FW_DB_TBL_GROUP_ID . " = " . $id);
 	}
 	
 	/**
@@ -77,7 +73,7 @@ class FW_DAO_UserGroup extends FW_Abstract_DAO{
 	 * @param array $data
 	 */
 	public function updateGroupByName($name, $data){
-		$this->_db->update(FW_DB_TABLE_GROUP, $data, FW_DB_TBL_GROUP_NAME . " = " . $name);
+		$this->db->update(FW_DB_TABLE_GROUP, $data, FW_DB_TBL_GROUP_NAME . " = " . $name);
 	}
 }
 ?>
