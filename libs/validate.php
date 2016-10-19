@@ -201,11 +201,11 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isMixed($data){
-        if(!preg_match('/[a-zA-Z0-9\.+\- ]/i', $data)){
-            return false;
+        if(preg_match('/[a-zA-Z0-9\.+\-]/u', $data)){
+            return true;
         } 
           
-        return true; 
+        return false; 
     }
       
     /** 
