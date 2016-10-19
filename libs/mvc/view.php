@@ -61,7 +61,7 @@ class FW_Mvc_View extends FW_Object{
 	 */
 	public function setUseHeadline($headline){
 		if(!FW_Validate::isBoolean($headline)){
-			throw new FW_Exception_WrongParameter("use header must be an boolean");
+			throw new FW_Exception_WrongParameter(array('message' => 'use header must be an boolean'));
 		}
 		
 		$this->useHeadline = $headline;
@@ -85,7 +85,7 @@ class FW_Mvc_View extends FW_Object{
 	 */
 	public function setUseFooter($footer){
 		if(!FW_Validate::isBoolean($footer)){
-			throw new FW_Exception_WrongParameter("use header must be an boolean");
+			throw new FW_Exception_WrongParameter(array('message' => 'use header must be an boolean'));
 		}
 		
 		$this->useFooter = $footer;

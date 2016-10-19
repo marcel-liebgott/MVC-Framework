@@ -7,7 +7,7 @@
  */
 final class FW_Array{
 	/**
-	 * @var array
+	 * @var FW_Array
 	 */
 	private $array;
 	
@@ -15,7 +15,7 @@ final class FW_Array{
 	 * constructor
 	 * 
 	 * @access public
-	 * @param array $array
+	 * @param FW_Array $array
 	 */
 	public function __construct($array = array()){
 		if(count($array) == 1){

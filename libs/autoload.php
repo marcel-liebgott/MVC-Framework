@@ -82,6 +82,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * handle class request
 	 * 
 	 * @access private
+	 * @throws FW_Exception_NotSupported
 	 * @static
 	 * @since 1.01
 	 * @param string $class

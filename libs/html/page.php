@@ -17,7 +17,7 @@ class FW_Html_Page extends FW_Object{
 	 * @access private
 	 * @var FW_Array
 	 */
-	private $sections = array();
+	private $sections;
 	
 	/**
 	 * @access private
@@ -33,7 +33,7 @@ class FW_Html_Page extends FW_Object{
 	public function __construct(){
 		parent::__construct();
 		
-		$this->array = new FW_Array();
+		$this->sections = new FW_Array();
 	}
 	
 	/**

@@ -273,7 +273,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function startTransaction(){
-        if($this->getUseTransaction() && $this->pdo !== null){
+        if($this->isUseTransaction() && $this->pdo !== null){
             $this->pdo->beginTransaction();
         }
     }
@@ -284,7 +284,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function commitTransaction(){
-        if($this->getUseTransaction() && $this->pdo !== null){
+        if($this->isUseTransaction() && $this->pdo !== null){
             $this->pdo->commit();
         }
     }
@@ -295,7 +295,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @access public
      */
     public function rollbackTransaction(){
-        if($this->getUseTransaction() && $this->pdo !== null){
+        if($this->isUseTransaction() && $this->pdo !== null){
             $this->pdo->rollBack();
         }
     }

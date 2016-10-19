@@ -1,4 +1,10 @@
 <?php
+/**
+ * auto logging class
+ * 
+ * @author Marcel Liebgott (marcel@mliebgott.de)
+ * @since 1.00
+ */
 class FW_Handler_AuthLoggingHandler implements FW_Interface_EventHandler{
 	protected $logFile;
 

@@ -34,7 +34,7 @@ class FW_Html_Section extends FW_Object{
 	 * @access public
 	 * @param string $template
 	 */
-	public function setTemplate(String $template){
+	public function setTemplate($template){
 		$this->template = $template;
 	}
 	
