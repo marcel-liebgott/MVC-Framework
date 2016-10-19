@@ -1,8 +1,4 @@
 <?php
-if(!defined('PATH')){
-	define('PATH', '');
-}
-
 include_once 'libs/string.php';
 
 class StringTest extends PHPUnit_Framework_TestCase{
