@@ -150,7 +150,7 @@ class FW_User_Data{
 					if($loggedin){
 						// store user in sessions
 						FW_Registry::set('user', $userObject);
-						FW_Session::set('user', $userObject->getUserData(FW_DB_TBL_USER_ID));
+						FW_Session::set(CURRENT_SESSION_USER, $userObject);
 					}
 					
 					// set cookie if it's enabled
