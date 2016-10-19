@@ -102,5 +102,9 @@ class ValidationTest extends PHPUnit_Framework_TestCase{
 	public function test_isValidMailTrue(){
 		$this->assertTrue(FW_Validate::isValidMail("test@test.de"));
 	}
+	
+	public function test_isValidUrlTrue(){
+		$this->assertTrue(FW_Validate::isValidUrl("www.test.de"));
+	}
 }
 ?>
