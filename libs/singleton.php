@@ -38,10 +38,10 @@ abstract class FW_Singleton{
 	/**
 	 * constructor
 	 *
-	 * @access public
+	 * @access protected
 	 * @throws FW_Exception
 	 */
-	public function __construct(){
+	protected function __construct(){
 		if(self::$_locked){
 			throw new FW_Exception("Called class is a singleton class");
 		}
@@ -50,8 +50,8 @@ abstract class FW_Singleton{
 	/**
 	 * copy constructor
 	 *
-	 * @access public
+	 * @access private
 	 */
-	public function __clone(){}
+	private function __clone(){}
 }
 ?>
