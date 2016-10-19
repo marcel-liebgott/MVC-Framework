@@ -30,7 +30,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      * @static
      * @var boolean
      */
-    private static $_use_db = false;
+    private static $_use_db;
 
     /**
      * get instance of this class - singleton
@@ -45,7 +45,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
     /**
      * constructer
      *
-     * @access public
+     * @access private
      * @throws FW_Exception_DBConnectionFailure
      */
     public function __construct(){
@@ -53,7 +53,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
     	
     	self::$_use_db = parent::$config->getConfig('use_database');
     	 
-    	if(self::$_use_db === true){
+    	if((boolean) self::$_use_db === true){
     		try{
 	            $this->pdo = new PDO(TYPE . ':host=' . HOST. ';dbname=' . DATA , USER, PASS);
 	            
@@ -100,15 +100,6 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC){
         try{
         	if($this->pdo !== null){
-	            $sth = $this->pdo->prepare($sql);
-	
-	            foreach($array as $key => &$value){
-	                $sth->bindParam("$key", $value);
-	            }
-	            
-	            $this->execute($sth);
-	            
-	            return new FW_Array($sth->fetchAll($fetchMode));
 	        	if(self::$_use_db){
 		            $sth = $this->pdo->prepare($sql);
 		
@@ -137,7 +128,7 @@ class FW_Database extends FW_Abstract_Database implements FW_Interface_Database{
      */
     public function insert($table, $data){
         try{
-	        	if($this->pdo !== null){
+	        if($this->pdo !== null){
 	            ksort($data);
 	            
 	            $fieldNames = implode('`, `', array_keys($data));
