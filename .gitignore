@@ -19,6 +19,7 @@ public/
 phpunit_html/src/
 phpunit_html/README.md
 phpunit_html/.htaccess
+phpunit_html/tests/index.php
 
 # External tool builders
 .externalToolBuilders/
