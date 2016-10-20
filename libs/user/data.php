@@ -9,7 +9,7 @@ class FW_User_Data{
 	 * all user data
 	 * 
 	 * @access private
-	 * @var array
+	 * @var FW_Array
 	 */
 	private $_data;
 	
@@ -17,7 +17,7 @@ class FW_User_Data{
 	 * constructor
 	 * 
 	 * @access public
-	 * @param arary $data
+	 * @param array $data
 	 */
 	public function __construct($data = array()){
 		if($data === null || count($data) == 0){
@@ -66,7 +66,7 @@ class FW_User_Data{
 	 * return a property from the user data
 	 * 
 	 * @access public
-	 * @param String $key
+	 * @param string $key
 	 * @return string
 	 */
 	public function getUserData($key){
@@ -87,7 +87,7 @@ class FW_User_Data{
 		
 		if($gid > 0){
 			if(isset($uid) && $uid !== null ){
-				if(isset($gid) && $gid !== null){
+				if(isset($gid) && $gid > 0){
 					$group = FW_DAO::getGroup()->getGroupById($gid);
 		
 					$this->_data->add(array(FW_DB_TABLE_GROUP => $group));
@@ -155,7 +155,7 @@ class FW_User_Data{
 					if($loggedin){
 						// store user in sessions
 						FW_Registry::set('user', $userObject);
-						FW_Session::set(CURRENT_SESSION_USER, $userObject);
+						FW_Session::set(CURRENT_SESSION_USER, $uid);
 					}
 					
 					// set cookie if it's enabled
