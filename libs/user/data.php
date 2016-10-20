@@ -23,7 +23,11 @@ class FW_User_Data{
 		if($data === null || count($data) == 0){
 			$this->_data = new FW_Array();
 			$lang = FW_Registry::getInstance()->getLanguage();
-			$langGuest = $lang->getLangValue(GUEST_USER_NAME);
+			$langGuest = "guest";
+			
+			if($lang != null){
+				$langGuest = $lang->getLangValue(GUEST_USER_NAME);
+			}
 			
 			$this->_data->add(array(
 				FW_DB_TBL_USER_GROUP => GUEST_GROUP_GID,
