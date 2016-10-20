@@ -77,6 +77,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * @since 1.00
 	 */
 	private function initRegistry(){
+		FW_Session::init();
 		FW_Session::set('lang', DEFAULT_LANG);
 
 		$lang = FW_Language::getInstance();
@@ -239,13 +240,14 @@ class FW_Bootstrap extends FW_Singleton{
 	 * check if the current user has access to the requestes controller
 	 * 
 	 * @access private
-	 * @since 1.10
+	 * @since 1.01
 	 * @return boolean
 	 */
 	private function checkControllerAccess(){
 		// check if called constructor have access for the current user
-		$user = FW_Session::get(CURRENT_SESSION_USER);
-		$groupId = $user->getUserData(FW_DB_TBL_USER_GROUP);
+		$userId = FW_Session::get(CURRENT_SESSION_USER);
+		$userStorage = FW_User_Storage::getInstance();
+		$groupId = $userStorage->getUserData(FW_DB_TBL_USER_GROUP);
 			
 		if(!$this->controller->hasAccess($groupId)){
 			return true;
@@ -258,7 +260,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * instanziate the called controller
 	 * 
 	 * @access private
-	 * @since 1.02
+	 * @since 1.01
 	 * @param String $name
 	 */
 	private function instanziateController($name){
@@ -270,6 +272,7 @@ class FW_Bootstrap extends FW_Singleton{
 	 * checked if controller existst;
 	 *
 	 * @access private
+	 * @since 1.00
 	 * @param string $file
 	 * @return boolean
 	 */

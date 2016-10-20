@@ -27,7 +27,7 @@ class FW_Session{
     }
 
     /**
-     * register a new session
+     * register a new session value
      *
      * @access public
      * @static
