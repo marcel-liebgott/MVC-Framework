@@ -46,12 +46,10 @@ abstract class FW_Singleton{
 			throw new FW_Exception("Called class is a singleton class");
 		}
 	}
-
-	/**
-	 * copy constructor
-	 *
-	 * @access private
-	 */
 	private function __clone(){}
+
+	private function __call(){}
+	
+	private function __weekup(){}
 }
 ?>
