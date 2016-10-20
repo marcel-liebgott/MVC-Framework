@@ -130,6 +130,7 @@ class FW_User_Data{
 	 * @access public
 	 * @param String $name
 	 * @param String $pass
+	 * @return boolean
 	 */
 	public function login($name, $pass){
 		if($name !== null && $pass !== null){
@@ -161,9 +162,10 @@ class FW_User_Data{
 					// save current user into the regsitry
 					FW_Registry::set('user', $userObject);
 					
-					$response->redirectUrl('index', true);
+					return true;
 				}else{
-					echo "login daten stimmen nicht!";
+					// generate a notification
+					return false;
 				}
 			}
 		}
