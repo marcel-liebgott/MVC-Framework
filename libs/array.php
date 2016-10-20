@@ -70,13 +70,17 @@ final class FW_Array{
 	 * @return mixed
 	 */
 	public function get($needed){
-		$keys = array_keys($this->array);
-		
-		foreach($keys as $key){
-			if($key == $needed){
-				return $this->array[$key];
+		if($this->array !== null && count($this->array) > 0){
+			$keys = array_keys($this->array);
+			
+			foreach($keys as $key){
+				if($key == $needed){
+					return $this->array[$key];
+				}
 			}
 		}
+		
+		return null;
 	}
 	
 	/**
