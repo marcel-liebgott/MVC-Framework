@@ -46,9 +46,10 @@ abstract class FW_Singleton{
 			throw new FW_Exception("Called class is a singleton class");
 		}
 	}
+	
 	private function __clone(){}
 
-	private function __call(){}
+	public function __call($method, $args){}
 	
 	private function __weekup(){}
 }
