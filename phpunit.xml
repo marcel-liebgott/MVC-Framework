@@ -25,8 +25,8 @@
          verbose="false">
 	<testsuites>
 		<testsuite name="utilities">
-			<file>tests/StringTest.php</file>
-			<file>tests/ValidationTest.php</file>
+			<file>phpunit_html/tests/StringTest.php</file>
+			<file>phpunit_html/tests/ValidationTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
