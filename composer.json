@@ -9,7 +9,9 @@
         }
     ],
     "require-dev": {
+    	"php": "7.*",
     	"phpunit/phpunit": "5.6.*",
+    	"phpunit/dbunit": "2.0.*",
         "phpmd/phpmd": "@stable",
         "pdepend/pdepend": "2.2.4",
         "squizlabs/php_codesniffer": "2.*"
