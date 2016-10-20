@@ -16,6 +16,9 @@ local.properties
 .settings/
 .loadpath
 public/
+phpunit_html/src/
+phpunit_html/README.md
+phpunit_html/.htaccess
 
 # External tool builders
 .externalToolBuilders/
