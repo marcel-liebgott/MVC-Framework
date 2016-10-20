@@ -119,9 +119,11 @@ class FW_Response extends FW_Singleton{
         $url = FW_Security::cleanUrl($url);
         $this->addHeader("Location", $url);
         
-        if($immediately === true){
-            $this->send();
+        if(!$immediately){
+        	sleep(REDIRECTION_TIMEOUT);        	
         }
+        
+        $this->send();
     }
 }
 ?>

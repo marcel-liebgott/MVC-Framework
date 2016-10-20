@@ -8,6 +8,11 @@ $disp_port = ($protocol == 'http' && $port == 80 || $protocol == 'https' && $por
 $domain = $_SERVER['SERVER_NAME'];
 $full_url = "${protocol}://$domain$disp_port$base_dir";
 
+/**
+ * time in seconds for not immediately redirection
+ */
+define('REDIRECTION_TIMEOUT', '3');
+
 define('DIR_PATH',  $protocol . '://' . $domain . '/' . $base_url . '/');
 define('DOMAIN',	$domain);
 define('PROTOCOL',	$protocol);
