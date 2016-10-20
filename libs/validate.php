@@ -68,10 +68,10 @@ final class FW_Validate{
      * @param int $data 
      * @return boolean
      */
-    public static function isInteger($data){ 
-        if(!is_int($data)){
+    public static function isInteger($data){
+        if(!is_scalar($data) && !preg_match('/^-?[0-9]+$/', $data)){
             return false;
-        } 
+        }
           
         return true; 
     } 
