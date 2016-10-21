@@ -21,7 +21,8 @@ final class FW_Version{
 	 * 
 	 * @access private
 	 * @static
-	 * @var String
+	 * @var string
+	 * @since 1.01
 	 */
 	private static $_version = "1";
 	
@@ -30,7 +31,8 @@ final class FW_Version{
 	 * 
 	 * @access private
 	 * @static
-	 * @var String
+	 * @var string
+	 * @since 1.01
 	 */
 	private static $_major = "01";
 	
@@ -39,9 +41,10 @@ final class FW_Version{
 	 * 
 	 * @access private
 	 * @static
-	 * @var String
+	 * @var string
+	 * @since 1.01
 	 */
-	private static $_build = "012";
+	private static $_build = "013";
 	
 	/**
 	 * current version state
@@ -49,7 +52,8 @@ final class FW_Version{
 	 * 
 	 * @access private
 	 * @static
-	 * @var String
+	 * @var string
+	 * @since 1.01
 	 */
 	private static $_state = FW_Version::BETA;
 	
@@ -58,10 +62,10 @@ final class FW_Version{
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.02
-	 * @return String
+	 * @since 1.01
+	 * @return string
 	 */
-	public static function getVersion(){
+	public static function getVersion() : string{
 		return FW_Version::$_version;
 	}
 	
@@ -70,22 +74,22 @@ final class FW_Version{
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.02
-	 * @return String
+	 * @since 1.01
+	 * @return string
 	 */
-	public static function getMajor(){
+	public static function getMajor() : string{
 		return FW_Version::$_major;
 	}
 	
 	/**
 	 * get current build version
 	 * 
-	 * @access püublic
+	 * @access public
 	 * @static
-	 * @since 1.02
-	 * @return String
+	 * @since 1.01
+	 * @return string
 	 */
-	public static function getBuild(){
+	public static function getBuild() : string{
 		return FW_Version::$_build;
 	}
 	
@@ -94,10 +98,10 @@ final class FW_Version{
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.02
-	 * @return String
+	 * @since 1.01
+	 * @return string
 	 */
-	public static function getVersionState(){
+	public static function getVersionState() : string{
 		return FW_Version::$_state;
 	}
 	
@@ -106,10 +110,10 @@ final class FW_Version{
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.02
-	 * @return String
+	 * @since 1.01
+	 * @return string
 	 */
-	public static function getVersionId(){
+	public static function getVersionId() : string{
 		return FW_Version::getVersion() . FW_Version::getMajor();
 	}
 	
@@ -118,10 +122,10 @@ final class FW_Version{
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.02
-	 * @return String
+	 * @since 1.01
+	 * @return string
 	 */
-	public static function getVersionFullId(){
+	public static function getVersionFullId() : string{
 		return FW_Version::getVersion() . FW_Version::getMajor() . FW_Version::$_build;
 	}
 	
@@ -130,10 +134,10 @@ final class FW_Version{
 	 * 
 	 * @access public
 	 * @static
-	 * @since 1.02
-	 * @return String
+	 * @since 1.01
+	 * @return string
 	 */
-	public static function getFull(){
+	public static function getFull() : string{
 		return FW_Version::$_version . "." . FW_Version::$_major . "." . FW_Version::$_build;
 	}
 }
