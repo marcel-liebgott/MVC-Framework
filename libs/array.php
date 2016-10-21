@@ -7,9 +7,17 @@
  */
 final class FW_Array{
 	/**
+	 * @access private
 	 * @var FW_Array
 	 */
 	private $array;
+	
+	/**
+	 * @access private
+	 * @var FW_Iterator
+	 * @since 1.01
+	 */
+	private $iterator;
 	
 	/**
 	 * constructor
@@ -23,6 +31,7 @@ final class FW_Array{
 		}
 		
 		$this->array = $array;
+		$this->iterator = new FW_Iterator($this->data);
 	}
 	
 	/**
@@ -58,7 +67,7 @@ final class FW_Array{
 	 * @access public
 	 * @return int
 	 */
-	public function size(){
+	public function size() : int{
 		return count($this->array);
 	}
 	
@@ -87,10 +96,10 @@ final class FW_Array{
 	 * check if key exists
 	 * 
 	 * @access public
-	 * @param Mixed $key
+	 * @param mixed $key
 	 * @return boolean
 	 */
-	public function exists($key){
+	public function exists($key) : bool{
 		$keys = array_keys($this->array);
 		
 		foreach($keys as $key){
@@ -106,16 +115,38 @@ final class FW_Array{
 	 * remove an array element by given key
 	 * 
 	 * @access public
-	 * @param Mixed $key
+	 * @param mixed $key
 	 */
 	public function remove($key){
 		$keys = array_keys($this->array);
 		
 		foreach($keys as $key){
-			if(key == $needed){
+			if($key == $needed){
 				unset($this->array[$key]);
 			}
 		}
+	}
+	
+	/**
+	 * return data as array
+	 * 
+	 * @access public
+	 * @since 1.01
+	 * @return array
+	 */
+	public function asArray() : array{
+		return $this->array;
+	}
+	
+	/**
+	 * return the current array iterator
+	 * 
+	 * @access public
+	 * @return FW_Iterator
+	 * @since 1.01
+	 */
+	public function getIterator() : FW_Iterator{
+		return $this->iterator;
 	}
 }
 ?>
