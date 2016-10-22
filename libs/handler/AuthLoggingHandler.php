@@ -6,13 +6,13 @@
  * @since 1.00
  */
 class FW_Handler_AuthLoggingHandler implements FW_Interface_EventHandler{
-	protected $logFile;
-
 	/**
-	 * constructor
-	 * 
-	 * @param string $logFile
+	 * @access private 
+	 * @var resource
+	 * @since 1.00
 	 */
+	private $logFile;
+
 	public function __construct($logFile){
 		$this->logFile = $logFile;
 	}
