@@ -11,7 +11,6 @@ class FW_Mvc_View extends FW_Object{
 	private $useFooter = true;
 	
     private $template;
-    private $class;
     
     private $templateFile;
     private $headerFile;
@@ -46,8 +45,6 @@ class FW_Mvc_View extends FW_Object{
      */
     public function __construct($class){
 		parent::__construct();
-		
-        $this->class = $class;
 
         $this->lang = FW_Registry::getInstance()->getLanguage();
     }
