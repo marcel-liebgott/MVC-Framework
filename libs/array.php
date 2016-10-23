@@ -5,7 +5,7 @@
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @since 1.01
  */
-final class FW_Array{
+final class FW_Array implements Countable{
 	/**
 	 * @access private
 	 * @var FW_Array
@@ -31,7 +31,7 @@ final class FW_Array{
 		}
 		
 		$this->array = $array;
-		$this->iterator = new FW_Iterator($this->data);
+		$this->iterator = new FW_Iterator($this->array);
 	}
 	
 	/**
@@ -69,6 +69,16 @@ final class FW_Array{
 	 */
 	public function size() : int{
 		return count($this->array);
+	}
+	
+	/**
+	 * get the size of the array
+	 *
+	 * @access public
+	 * @return int
+	 */
+	public function count() : int{
+		return size();
 	}
 	
 	/**
