@@ -1,6 +1,4 @@
 <?php
-include_once '../libs/string.php';
-
 class StringTest extends PHPUnit_Framework_TestCase{
 	private $string = "MVC-Framework";
 	private $mailMatcher;

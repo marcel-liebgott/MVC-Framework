@@ -1,7 +1,4 @@
 <?php
-include_once '../libs/array.php';
-include_once '../libs/iterator.php';
-
 class IteratorTest extends PHPUnit_Framework_TestCase{
 	private $arrayData = array(1,2,3,4,5,6,7,8,9,0);
 	private $array;
