@@ -11,6 +11,7 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 *
 	 * @access protected
 	 * @var FW_View
+	 * @deprecated
 	 */
 	protected $view;
 	
