@@ -4,6 +4,7 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
          backupGlobals="true"
          backupStaticAttributes="false"
+         bootstrap="tests/bootstrap.php"
          cacheTokens="false"
          colors="false"
          convertErrorsToExceptions="true"
@@ -25,9 +26,9 @@
          verbose="false">
 	<testsuites>
 		<testsuite name="utilities">
-			<file>phpunit_html/tests/StringTest.php</file>
-			<file>phpunit_html/tests/ValidationTest.php</file>
-			<file>phpunit_html/tests/IteratorTest.php</file>
+			<file>tests/StringTest.php</file>
+			<file>tests/ValidationTest.php</file>
+			<file>tests/IteratorTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
