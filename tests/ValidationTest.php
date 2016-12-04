@@ -1,11 +1,11 @@
 <?php
-include_once '../../libs/validate.php';
-include_once '../../libs/singleton.php';
-include_once '../../libs/registry.php';
-include_once '../../libs/stringhelper.php';
-include_once '../../libs/exception.php';
-include_once '../../libs/exception/Critical.php';
-include_once '../../libs/exception/WrongParameter.php';
+include_once '../libs/validate.php';
+include_once '../libs/singleton.php';
+include_once '../libs/registry.php';
+include_once '../libs/stringhelper.php';
+include_once '../libs/exception.php';
+include_once '../libs/exception/Critical.php';
+include_once '../libs/exception/WrongParameter.php';
 
 class ValidationTest extends PHPUnit_Framework_TestCase{
 	private $string = "MVC-Framework";
