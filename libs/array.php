@@ -78,7 +78,7 @@ final class FW_Array implements Countable{
 	 * @return int
 	 */
 	public function count() : int{
-		return size();
+		return $this->size();
 	}
 	
 	/**
@@ -89,7 +89,7 @@ final class FW_Array implements Countable{
 	 * @return mixed
 	 */
 	public function get($needed){
-		if($this->array !== null && count($this->array) > 0){
+		if($this->array !== null && count($this->array) > 0 && $this->exists($needed)){
 			$keys = array_keys($this->array);
 			
 			foreach($keys as $key){
@@ -112,8 +112,8 @@ final class FW_Array implements Countable{
 	public function exists($key) : bool{
 		$keys = array_keys($this->array);
 		
-		foreach($keys as $key){
-			if($key == $needed){
+		foreach($keys as $_key){
+			if($_key == $key){
 				return true;
 			}
 		}
@@ -130,8 +130,8 @@ final class FW_Array implements Countable{
 	public function remove($key){
 		$keys = array_keys($this->array);
 		
-		foreach($keys as $key){
-			if($key == $needed){
+		foreach($keys as $_key){
+			if($_key == $key){
 				unset($this->array[$key]);
 			}
 		}
