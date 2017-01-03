@@ -43,7 +43,7 @@ class FW_Handler_IpCheckHandler implements FW_Interface_EventHandler{
 	 * (non-PHPdoc)
 	 * @see FW_Interface_EventHandler::handle()
 	 */
-	public function handle($event){
+	public function handle(FW_Event $event){
 		
 	}
 }

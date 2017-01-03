@@ -11,7 +11,7 @@ class FW_Html_Section extends FW_Object{
 	 * @access private
 	 * @var int
 	 */
-	private $id;
+	private $sectionId;
 	
 	/**
 	 * @access private
