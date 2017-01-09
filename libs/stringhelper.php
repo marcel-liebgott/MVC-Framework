@@ -32,7 +32,7 @@ final class FW_Stringhelper{
 	 * @return boolean
 	 */
 	public static function isValidMail($mail){
-		if(filter_var($mail, FILTER_VALIDATE_EMAIL) === true){
+		if(filter_var($mail, FILTER_VALIDATE_EMAIL) === $mail){
 			return true;
 		}else{
 			return false;
@@ -53,7 +53,7 @@ final class FW_Stringhelper{
 			$url = 'http://' . $url;
 		}
 
-		if(filter_var($url, FILTER_VALIDATE_URL)){
+		if(filter_var($url, FILTER_VALIDATE_URL) === $url){
 			return true;
 		}else{
 			return false;

@@ -69,7 +69,7 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isInteger($data){
-        if(!is_scalar($data) && !preg_match('/^-?[0-9]+$/', $data)){
+        if(!preg_match('/^-?[0-9]+$/', $data)){
             return false;
         }
           
@@ -217,11 +217,11 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isValidMail($data){
-        if(FW_Stringhelper::isValidMail($data) === true){
-            return false;
+        if(FW_Stringhelper::isValidMail($data)){
+            return true;
         } 
           
-        return true; 
+        return false; 
     } 
       
     /**
@@ -233,11 +233,11 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isValidUrl($data){ 
-        if(!FW_Stringhelper::isValidUrl($data)){
-            return false;
+        if(FW_Stringhelper::isValidUrl($data)){
+            return true;
         } 
           
-        return true; 
+        return false; 
     } 
     
     /**
@@ -249,7 +249,7 @@ final class FW_Validate{
      * @return boolean|string is failed
      */
     public static function isValidDate($date){
-        if(!preg_match('/^\d{2}\.\d{2}\.\d{4}$/', $date)){
+        if(!preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\.([1-9]|0[1-9]|1[0-2])\.[0-9]{4}$/', $date)){
             return false;
         }
 
@@ -263,9 +263,8 @@ final class FW_Validate{
             $month = $match[2];
             $year = $match[3];
 
-            // valid parts of this date
-            if($day == 0 || $month == 0){
-                return false;
+            if(preg_match('/^0[1-9]$/', $month)){
+                $month = FW_String::substr($month, 1);
             }
 
             // is year an leap year
