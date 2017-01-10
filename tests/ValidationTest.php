@@ -74,6 +74,7 @@ class ValidationTest extends PHPUnit_Framework_TestCase{
 		$this->assertTrue(FW_Validate::isValidDate("24.12.2016"));
 		$this->assertFalse(FW_Validate::isValidDate("31.02.2016"));
 		$this->assertFalse(FW_Validate::isValidDate("32.02.2016"));
+		$this->assertFalse(FW_Validate::isValidDate("01.01.01.2017"));
 	}
 }
 ?>

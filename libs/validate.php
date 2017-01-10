@@ -90,10 +90,10 @@ final class FW_Validate{
         if(self::isInteger($value) && self::isInteger($min) && self::isInteger($max)){
             if($value >= $min && $value <= $max){
                 return true;
-            }else{
-                return false;
             }
         }
+
+        return false;
     }
       
     /** 
@@ -258,27 +258,25 @@ final class FW_Validate{
         $match = array();
         preg_match('/^(.*?)\.(.*?)\.(.*?)$/', $date, $match);
 
-        if(count($match) == 4){
-            $day = $match[1];
-            $month = $match[2];
-            $year = $match[3];
+        $day = $match[1];
+        $month = $match[2];
+        $year = $match[3];
 
-            if(preg_match('/^0[1-9]$/', $month)){
-                $month = FW_String::substr($month, 1);
-            }
-
-            // is year an leap year
-            if(($year % 400) == 0 || (($year % 4) == 0 && ($year % 100) !== 0)){
-                $daysPerMonth[2] = 29;
-            }
-
-            // check days in this month
-            if($daysPerMonth[$month] < $day){
-                return false;
-            }
-
-            return true;
+        if(preg_match('/^0[1-9]$/', $month)){
+            $month = FW_String::substr($month, 1);
         }
+
+        // is year an leap year
+        if(($year % 400) == 0 || (($year % 4) == 0 && ($year % 100) !== 0)){
+            $daysPerMonth[2] = 29;
+        }
+
+        // check days in this month
+        if($daysPerMonth[$month] < $day){
+            return false;
+        }
+
+        return true;
     }
 } 
 ?>

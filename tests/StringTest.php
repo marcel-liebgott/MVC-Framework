@@ -104,17 +104,25 @@ class StringTest extends PHPUnit_Framework_TestCase{
 	public function test_encoding(){
 		$encoding = "UTF-8";
 		$string = new FW_String();
+		FW_String::setMbUsing(true);
 		$string->setEncoding($encoding);
 
 		$this->assertEquals($encoding, $string->getEncoding());
+
+		FW_String::setMbUsing(false);
+		$this->assertEquals('', $string->getEncoding());
 	}
 
 	public function test_language(){
 		$lang = FW_Locale::$de_de_country;
 		$string = new FW_String();
+		FW_String::setMbUsing(true);
 		$string->setLanguage($lang);
 
 		$this->assertEquals(FW_Locale::$de_de_name, $string->getLanguage());
+
+		FW_String::setMbUsing(false);
+		$this->assertEquals('', $string->getLanguage());
 	}
 }
 ?>

@@ -97,6 +97,8 @@ final class FW_String{
 		if(self::$use_mb){
 			return self::$encoding;
 		}
+
+		return '';
 	}
 
 	/**
@@ -121,6 +123,8 @@ final class FW_String{
 		if(self::$use_mb){
 			return mb_language();
 		}
+
+		return '';
 	}
 
 	/**
