@@ -30,7 +30,7 @@ class ValidationTest extends PHPUnit_Framework_TestCase{
 	
 	public function test_isString(){
 		$this->assertTrue(FW_Validate::isString($this->string));
-		$this->assertTrue(FW_Validate::isString(1));
+		$this->assertFalse(FW_Validate::isString(1));
 	}
 	
 	public function test_isNumeric(){
@@ -72,10 +72,10 @@ class ValidationTest extends PHPUnit_Framework_TestCase{
 	}
 	
 	public function test_isValidDate(){
-		$this->assertTrue(FW_Validate::isValidDate("24.12.2016"));
+		$this->assertTrue(FW_Validate::isValidDate("09.09.2016"));
 		$this->assertFalse(FW_Validate::isValidDate("00.12.2016"));
 		$this->assertFalse(FW_Validate::isValidDate("24..12.2016"));
-		$this->assertFalse(FW_Validate::isValidDate("32.12.2016"));
+		$this->assertFalse(FW_Validate::isValidDate("30.02.2016"));
 	}
 }
 ?>

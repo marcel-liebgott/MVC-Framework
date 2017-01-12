@@ -69,7 +69,7 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isInteger($data){
-        return preg_match('/^\d+$/', $data); 
+        return preg_match('/^-?[0-9]+$/', $data) == true; 
     } 
 
     /**
@@ -86,10 +86,10 @@ final class FW_Validate{
         if(self::isInteger($value) && self::isInteger($min) && self::isInteger($max)){
             if($value >= $min && $value <= $max){
                 return true;
-            }else{
-                return false;
             }
         }
+        
+        return false;
     }
       
     /** 
@@ -101,11 +101,7 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isString($data){
-        if(!ctype_alpha($data) && !is_string($data) && !($data instanceof FW_String)){
-            return false;
-        } 
-          
-        return true; 
+        return is_string($data); 
     } 
       
     /** 
@@ -213,11 +209,11 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isValidMail($data){
-        if(!FW_Stringhelper::isValidMail($data)){
-            return false;
+        if(FW_Stringhelper::isValidMail($data)){
+            return true;
         } 
           
-        return true; 
+        return false;
     } 
       
     /**
@@ -229,11 +225,11 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isValidUrl($data){ 
-        if(!FW_Stringhelper::isValidUrl($data)){
-            return false;
+        if(FW_Stringhelper::isValidUrl($data)){
+            return true;
         } 
           
-        return true; 
+        return false;
     } 
     
     /**
@@ -245,37 +241,35 @@ final class FW_Validate{
      * @return boolean|string is failed
      */
     public static function isValidDate($date){
-        if(!preg_match('/^\d{2}\.\d{2}\.\d{4}$/', $date)){
-            return false;
-        }
+    	if(FW_Stringhelper::getCleanDate($date) === ''){
+    		return false;
+    	}
 
         $daysPerMonth = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
         $match = array();
         preg_match('/^(.*?)\.(.*?)\.(.*?)$/', $date, $match);
 
-        if(count($match) == 4){
-            $day = $match[1];
-            $month = $match[2];
-            $year = $match[3];
 
-            // valid parts of this date
-            if($day == 0 || $month == 0){
-                return false;
-            }
+		$day = $match[1];
+        $month = $match[2];
+        $year = $match[3];
 
-            // is year an leap year
-            if(($year % 400) == 0 || (($year % 4) == 0 && ($year % 100) !== 0)){
-                $daysPerMonth[2] = 29;
-            }
+        if(preg_match('/^0[1-9]$/', $month)){
+        	$month = FW_String::substr($month, 1);
+		}
 
-            // check days in this month
-            if($daysPerMonth[$month] < $day){
-                return false;
-            }
+        // is year an leap year
+        if(($year % 400) == 0 || (($year % 4) == 0 && ($year % 100) !== 0)){
+        	$daysPerMonth[2] = 29;
+       	}
 
-            return true;
+        // check days in this month
+        if($daysPerMonth[$month] < $day){
+        	return false;
         }
+        
+        return true;
     }
 } 
 ?>

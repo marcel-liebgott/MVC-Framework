@@ -124,5 +124,14 @@ class StringTest extends PHPUnit_Framework_TestCase{
 		FW_String::setMbUsing(false);
 		$this->assertEquals('', $string->getLanguage());
 	}
+	
+	public function test_string(){
+		$string = new FW_String($this->string);
+		$this->assertEquals($this->string, $string->__toString());
+	}
+	
+	public function test_mbUsing(){
+		$this->assertFalse(FW_String::isMbUsing());
+	}
 }
 ?>

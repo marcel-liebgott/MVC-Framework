@@ -16,7 +16,7 @@ final class FW_Stringhelper{
 	 * @return string
 	 */
 	public static function getCleanDate($date){
-		if(preg_match('/\d{2}\.\d{2}\.\d{4}/', $date)){
+		if(preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/', $date) === 1){
 			return $date;
 		}
 
@@ -32,7 +32,7 @@ final class FW_Stringhelper{
 	 * @return boolean
 	 */
 	public static function isValidMail($mail){
-		return preg_match('/^[a-z0-9!#$%&*+-=?^_`{|}~]+(\.[a-z0-9!#$%&*+-=?^_`{|}~]+)*@([-a-z0-9]+\.)+([a-z]{2,3})$/i', $mail);
+		return preg_match('/^[a-z0-9!#$%&*+-=?^_`{|}~]+(\.[a-z0-9!#$%&*+-=?^_`{|}~]+)*@([-a-z0-9]+\.)+([a-z]{2,3})$/i', $mail) == true;
 	}
 
 	/**
@@ -49,7 +49,7 @@ final class FW_Stringhelper{
 			$url = 'http://' . $url;
 		}
 
-		if(filter_var($url, FILTER_VALIDATE_URL)){
+		if(filter_var($url, FILTER_VALIDATE_URL) === $url){
 			return true;
 		}else{
 			return false;
