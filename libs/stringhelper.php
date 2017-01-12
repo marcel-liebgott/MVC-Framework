@@ -32,11 +32,7 @@ final class FW_Stringhelper{
 	 * @return boolean
 	 */
 	public static function isValidMail($mail){
-		if(filter_var($mail, FILTER_VALIDATE_EMAIL) === true){
-			return true;
-		}else{
-			return false;
-		}
+		return preg_match('/^[a-z0-9!#$%&*+-=?^_`{|}~]+(\.[a-z0-9!#$%&*+-=?^_`{|}~]+)*@([-a-z0-9]+\.)+([a-z]{2,3})$/i', $mail);
 	}
 
 	/**

@@ -69,11 +69,7 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isInteger($data){
-        if(!is_scalar($data) && !preg_match('/^-?[0-9]+$/', $data)){
-            return false;
-        }
-          
-        return true; 
+        return preg_match('/^\d+$/', $data); 
     } 
 
     /**
@@ -217,7 +213,7 @@ final class FW_Validate{
      * @return boolean
      */
     public static function isValidMail($data){
-        if(FW_Stringhelper::isValidMail($data) === true){
+        if(!FW_Stringhelper::isValidMail($data)){
             return false;
         } 
           
