@@ -37,8 +37,10 @@ final class FW_String{
 	 * @param string $string
 	 * @since 1.01
 	 */
-	public function __construct($string){
-		$this->value = $string;
+	public function __construct($string = ''){
+		if($string != null && $string != ''){
+			$this->value = $string;
+		}
 	}
 	
 	/**
@@ -95,6 +97,8 @@ final class FW_String{
 		if(self::$use_mb){
 			return self::$encoding;
 		}
+
+		return '';
 	}
 
 	/**
@@ -119,6 +123,8 @@ final class FW_String{
 		if(self::$use_mb){
 			return mb_language();
 		}
+
+		return '';
 	}
 
 	/**
@@ -133,7 +139,7 @@ final class FW_String{
 	public static function substr($string, $startPos, $lenght = 0){
 		if(self::$use_mb){
 			if($lenght > 0){
-				return mb_substr($string, $startPos, $length);
+				return mb_substr($string, $startPos, $lenght);
 			}else{
 				return mb_substr($string, $startPos);
 			}

@@ -4,6 +4,8 @@
  *
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.01
+ *
+ * @codeCoverageIgnore
  */
 abstract class FW_Singleton{
 	/**

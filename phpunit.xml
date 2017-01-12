@@ -6,7 +6,7 @@
          backupStaticAttributes="false"
          bootstrap="tests/bootstrap.php"
          cacheTokens="false"
-         colors="false"
+         colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
@@ -28,7 +28,8 @@
 		<testsuite name="utilities">
 			<file>tests/StringTest.php</file>
 			<file>tests/ValidationTest.php</file>
-			<file>tests/IteratorTest.php</file>
+			<file>tests/ArrayTest.php</file>
+         <file>tests/StringhelperTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
@@ -42,7 +43,6 @@
 		<log type="coverage-php" target="/report/coverage.serialized"/>
 		<log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
 		<log type="json" target="/tmp/logfile.json"/>
-		<log type="tap" target="/tmp/logfile.tap"/>
 		<log type="junit" target="/tmp/logfile.xml" logIncompleteSkipped="false"/>
 		<log type="testdox-html" target="/tmp/testdox.html"/>
 		<log type="testdox-text" target="/tmp/testdox.txt"/>

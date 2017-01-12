@@ -67,5 +67,11 @@ class ArrayTest extends PHPUnit_Framework_TestCase{
 		
 		$this->assertEquals(1, $array->size());
 	}
+
+	public function test_asArray(){
+		$array = new FW_Array($this->arrayData);
+
+		$this->assertInternalType('array', $array->asArray());
+	}
 }
 ?>
