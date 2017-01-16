@@ -75,7 +75,7 @@ class FW_Autoload implements FW_Interface_Autoload{
 	 * @since 1.01
 	 */
 	public function register(){
-		spl_autoload_register('FW_Autoload::autoload');
+		spl_autoload_register(array('FW_Autoload', 'autoload'));
 	}
 	
 	/**
