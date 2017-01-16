@@ -10,7 +10,7 @@ final class FW_Array implements Countable{
 	 * @access private
 	 * @var FW_Array
 	 */
-	private $array;
+	private $array = array();
 	
 	/**
 	 * @access private
@@ -25,12 +25,8 @@ final class FW_Array implements Countable{
 	 * @access public
 	 * @param FW_Array $array
 	 */
-	public function __construct($array = array()){
-		if(count($array) == 1){
-			$array = $array[0];
-		}
-		
-		$this->array = $array;
+	public function __construct($array = array()){		
+		$this->add($array);
 		$this->iterator = new FW_Iterator($this->array);
 	}
 	
@@ -51,13 +47,9 @@ final class FW_Array implements Countable{
 	 */
 	public function add($data){
 		if(is_array($data)){
-			$keys = array_keys($data);
-			
-			foreach($keys as $key){
-				$this->array[$key] = $data[$key];
-			}
+			$this->array = array_merge($this->array, $data);
 		}else{
-			$this->array[] = $data;
+			$this->array = array_merge($this->array, array($data));
 		}
 	}
 	
@@ -90,7 +82,7 @@ final class FW_Array implements Countable{
 	 */
 	public function get($needed){
 		if($this->array !== null && count($this->array) > 0 && $this->exists($needed)){
-			$keys = array_keys($this->array);
+			$keys = array_values($this->array);
 			
 			foreach($keys as $key){
 				if($key == $needed){
@@ -103,14 +95,14 @@ final class FW_Array implements Countable{
 	}
 	
 	/**
-	 * check if key exists
+	 * check if value exists
 	 * 
 	 * @access public
 	 * @param mixed $key
 	 * @return boolean
 	 */
 	public function exists($key) : bool{
-		$keys = array_keys($this->array);
+		$keys = array_values($this->array);
 		
 		foreach($keys as $_key){
 			if($_key == $key){
@@ -118,6 +110,25 @@ final class FW_Array implements Countable{
 			}
 		}
 		
+		return false;
+	}
+	
+	/**
+	 * check if key exists
+	 *
+	 * @access public
+	 * @param mixed $key
+	 * @return boolean
+	 */
+	public function existsKey($key) : bool{
+		$keys = array_keys($this->array);
+	
+		foreach($keys as $_key){
+			if($_key == $key){
+				return true;
+			}
+		}
+	
 		return false;
 	}
 	

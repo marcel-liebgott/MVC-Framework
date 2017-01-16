@@ -59,7 +59,7 @@ class ArrayTest extends PHPUnit_Framework_TestCase{
 		$this->array = new FW_Array($this->arrayData);
 		$this->array->remove(4);
 		
-		$this->assertFalse($this->array->exists(4));
+		$this->assertFalse($this->array->existsKey(4));
 	}
 	
 	public function test_arraySingleElement(){
