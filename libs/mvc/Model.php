@@ -4,6 +4,8 @@
  * 
  * @author marcel
  * @version 1.00
+ * 
+ * @codeCoverageIgnore
  */
 class FW_Mvc_Model{
 	/**

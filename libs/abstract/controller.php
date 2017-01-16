@@ -89,12 +89,12 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	
 	/**
 	 * grant access for guests
-	 * by default the access is true
+	 * by default the access is false
 	 * 
 	 * @access public
 	 * @var boolean
 	 */
-	public $guestAccess = true;
+	public $guestAccess = false;
 	
 	/**
 	 * collection with user groups which have access to this controller
@@ -227,10 +227,8 @@ abstract class FW_Abstract_Controller extends FW_Object{
 	 * @return boolean
 	 */
 	public function hasAccess($gid){
-		if($this->groupAccess !== null){
-			if($this->groupAccess->get($gid)){
-				return true;
-			}
+		if($this->groupAccess->size() > 0 && $this->groupAccess->exists($gid)){
+			return true;
 		}
 		
 		return false;

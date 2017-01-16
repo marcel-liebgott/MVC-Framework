@@ -6,6 +6,8 @@
  * 
  * @author Marcel Liebgott <marcel@mliebgott.de>
  * @version 1.00
+ * 
+ * @codeCoverageIgnore
  */
 final class FW_Version{
 	/**

@@ -29,7 +29,11 @@
 			<file>tests/StringTest.php</file>
 			<file>tests/ValidationTest.php</file>
 			<file>tests/ArrayTest.php</file>
-         <file>tests/StringhelperTest.php</file>
+        	<file>tests/StringhelperTest.php</file>
+		</testsuite>
+		<testsuite name="core">
+			<file>tests/DefaultControllerTest.php</file>
+			<file>tests/AdminControllerTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>

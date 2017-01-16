@@ -42,7 +42,7 @@ class FW_Iterator implements Iterator{
 	 * @since 1.01
 	 */
 	public function next(){
-		$this->idx++;
+		++$this->idx;
 	}
 	
 	/**
@@ -60,7 +60,7 @@ class FW_Iterator implements Iterator{
 	 * checks if the current position is valid
 	 */
 	public function valid(){
-		return isset($this->data[$this->idx]);
+		return array_key_exists($this->idx, $this->data);
 	}
 	
 	/**
